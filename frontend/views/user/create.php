@@ -26,32 +26,3 @@
 			<input id="register_user" type="submit" name="create" value="Create">
 		</fieldset>
 	</form>
-
-<script type="text/javascript">
-	
-	$(function() {
-
-		$("#user_register_form").submit(function(e) {
-			e.preventDefault();
-
-			var this_form = $(this);
-
-			$.ajax({
-				type: 'POST',
-				url: '<?php echo base_url('user/create') ?>',
-				dataType: 'JSON',
-				data: this_form.serialize(),
-				success: function(response) {
-					if (response.status == API_SUCCESS) {
-						window.location.reload();
-					} else {
-						alert(response.message);
-					}
-				}
-			});
-		});
-
-
-	});
-
-</script>

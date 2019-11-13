@@ -29,9 +29,11 @@
             <div class="collapse navbar-collapse pr-5" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
                     <a id="contact" class="nav-item nav-link mr-3 active" href="#">Liên hệ<span class="sr-only">(current)</span></a>
-                    <form class="form-inline" style="display: inline;">
-                        <input type="text" class="form-control" placeholder="Nhập sản phẩm..." aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <button class="btn btn-outline-dark mr-1" type="button">Tìm kiếm</button>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <input id="form-hf" type="text" class="form-control" placeholder="Nhập sản phẩm...">
+                            <button type="submit">Tìm kiếm</button>
+                        </div>
                     </form>
                     <?php if (!$_SESSION['name']) : ?>
                         <a id="login" class="nav-item nav-link ml-2 active" href="<?php echo base_url('home/login') ?>"><img class="mb-1" src="<?php echo IMG_URL . 'images/user.png' ?>" alt="" height="auto"></a>
@@ -44,7 +46,7 @@
                                 <a class="dropdown-item" href="#">Thông tin cá nhân</a>
                                 <a class="dropdown-item" href="#">Lịch sử giao dịch</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="<?php echo base_url('home/handle_logout')?>">Đăng xuất</a>
+                                <a class="dropdown-item" href="<?php echo base_url('home/handle_logout') ?>">Đăng xuất</a>
                             </div>
                         </li>
                     <?php endif; ?>
@@ -101,7 +103,6 @@
 
     <footer class="container">
         <div class="row mx-auto">
-            <!-- <div > -->
             <div class="card border-0">
                 <div class="card-body">
                     <p class="text-center"><a href="<?php echo base_url("home/index") ?>"><img src="<?php echo IMG_URL . 'images/Logo-VTCS.png' ?>" alt="" width="100px" height="auto"></a></p>
@@ -109,7 +110,6 @@
                     <p><img src="<?php echo IMG_URL . 'images/email.png' ?>" alt="" width="12px" height="auto"><span>namdeptrai@vodoi.com</span></p>
                 </div>
             </div>
-            <!-- </div> -->
             <div class="col-sm">
                 <div class="row mx-auto">
                     <div class="col-sm border-0 m-0">
@@ -175,14 +175,15 @@
                             <div class="border-bottom"></div>
                             <br>
                             <h5><b>ĐĂNG KÝ NHẬN THÔNG TIN MỚI <br> TỪ VTC STORE</b></h5>
-                            <form class="form-inline" style="display: inline;">
-                                <input type="text" class="form-control" placeholder="Nhập Email..." aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                <button class="btn btn-outline-dark" type="button">Đăng Ký</button>
+                            <form class="form-inline" method="post">
+                                <div class="form-group mr-auto ml-auto">
+                                    <input id="form-hf" type="text" class="form-control" placeholder="Nhập Email...">
+                                    <button type="button">Đăng Ký</button>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="border-bottom"></div>
         </div>

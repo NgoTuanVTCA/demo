@@ -1,29 +1,27 @@
-<div class="container mt-2">
+<div class="container">
+    <p></p>
     <section id="page-wrapper">
         <div class="wrapper">
             <div class="grid">
-                <div class="grid__item large--one-third push--large--one-third text-center">
-                    <div id="LoginForm" class="form-vertical">
-                        <form accept-charset="UTF-8" action="<? echo base_url('home/handle_login') ?>" id="login" method="post">
-                            <input name="form_type" type="hidden" value="login">
-                            <input name="utf8" type="hidden" value="✓">
-                            <h3><b>Đăng nhập</b></h3>
-                            <div>
-                                <label for="Email" class="hidden-label">Email:</label>
-                                <input type="email" name="email" id="email" class="" placeholder="Email" require>
-                                <?php echo $errors['email']; ?>
-                            </div>
-                            <div>
-                                <label for="Password" class="hidden-label">Mật khẩu:<input type="password" value="" name="password" id="password" class="" placeholder="Mật khẩu" require>
-                                    <?php echo $errors['password']; ?></label>
-                            </div>
-                            <p>
-                                <input type="submit" class="btn" value="Đăng nhập">
-                            </p>
-                            <p class="text-dark"><a href="#recover" id="RecoverPassword">Quên mật khẩu?</a> <a href="/account/register" id="register_link">Đăng kí</a></p>
-                        </form>
+                <form class="form-content" action="<?php echo base_url('home/handle_login') ?>" method="post">
+                    <h3><b>Đăng nhập</b></h3>
+                    <div class="question">
+                        <input type="email" name="email" required />
+                        <label>Email</label>
+                        <?php echo $errors['email']; ?>
                     </div>
-                </div>
+                    <div class="question">
+                        <input type="password" name="password" required />
+                        <label>Mật khẩu</label>
+                        <?php echo $errors['password']; ?>
+                        <?php echo $error_message; ?>
+                    </div>
+                    <p class="button">
+                        <a href="#recover" id="RecoverPassword">Quên mật khẩu?</a>
+                        <a href="<?php echo base_url('home/registration') ?>" id="registration">Đăng kí</a>
+                    </p><br>
+                    <p class="button ml-auto"><button type="submit">Đăng nhập</button></p>
+                </form>
             </div>
         </div>
     </section>

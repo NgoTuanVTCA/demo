@@ -7,9 +7,13 @@ header, #login img, #cart img {
     width: 24px;
 }
 
-.btn, #bottom {
-    background-color: black;
-    color: white;
+.form-control {
+    padding: 1.25rem 0.1rem;
+    border-radius: 0;
+}
+
+#form-hf {
+    border: 2px solid black;
 }
 
 article {
@@ -24,20 +28,6 @@ a:hover {
     color: black;
 }
 
-#email {
-    margin-left: 27px;
-}
-
-#password {
-    margin-left: 6px;
-}
-
-#email, #password {
-    /* border: auto; */
-    border-radius: 2px;
-
-}
-
 .receive .card {
     background-color: whitesmoke !important;
 }
@@ -46,12 +36,184 @@ a:hover {
     margin-right: 3px;
 }
 
-@media (min-width: 1200px) {}
+@media (min-width: 1200px) {
+    .form-content {
+        max-width: 700px;
+        min-width: 500px;
+    }
+}
 
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+    .form-content {
+        max-width: 700px;
+        min-width: 500px;
+    }
+}
 
-@media (min-width: 768px) {}
+@media (min-width: 768px) {
+    .form-content {
+        max-width: 700px;
+        min-width: 500px;
+    }
+}
 
-@media (min-width: 576px) {}
+@media (min-width: 576px) {
+    .form-content {
+        max-width: 700px;
+        min-width: 500px;
+    }
+}
 
 @media (min-width: 320px) {}
+
+.transition, .form-content button, .form-content .question label, .form-content .question input[type="text"], .form-content .question input[type="number"], .form-content .question input[type="email"], .form-content .question input[type="password"] {
+    -moz-transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
+    -o-transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
+    -webkit-transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
+    transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
+}
+
+.form-content {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0 25px;
+    background-color: white;
+    border-radius: 40px;
+    left: 50%;
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+}
+
+.form-content h3 {
+    color: black;
+    font-weight: 100;
+    letter-spacing: 0.01em;
+    margin-left: 15px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.form-content button {
+    margin-top: 18px;
+    background-color: white;
+    border: 2px solid black;
+    line-height: 0;
+    font-size: 17px;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 20px 15px;
+    border-radius: 60px;
+    color: black;
+    font-weight: 100;
+    letter-spacing: 0.01em;
+    position: relative;
+    z-index: 1;
+}
+
+.form-content button:hover, .form-content button:focus {
+    color: white;
+    background-color: black;
+}
+
+.form-content .question {
+    position: relative;
+    padding: 18px 0;
+}
+
+.form-content .question:first-of-type {
+    padding-top: 0;
+}
+
+.form-content .question:last-of-type {
+    padding-bottom: 0;
+}
+
+.form-content .question label {
+    transform-origin: left center;
+    color: black;
+    font-weight: 100;
+    letter-spacing: 0.01em;
+    font-size: 24px;
+    box-sizing: border-box;
+    padding: 0 15px;
+    display: block;
+    position: absolute;
+    margin-top: -40px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.form-content .question input[type="text"], .form-content .question input[type="number"], .form-content .question input[type="email"], .form-content .question input[type="password"] {
+    appearance: none;
+    background-color: none;
+    border: 2px solid black;
+    line-height: 0;
+    font-size: 17px;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    border-radius: 60px;
+    color: black;
+    font-weight: 100;
+    letter-spacing: 0.01em;
+    position: relative;
+    z-index: 1;
+}
+
+.form-content .question input[type="text"]:focus, .form-content .question input[type="number"]:focus, .form-content .question input[type="email"]:focus, .form-content .question input[type="password"]:focus {
+    outline: none;
+    background: white;
+    color: black;
+}
+
+/* .form-content .question input[type="text"]:valid, .form-content .question input[type="number"]:valid, .form-content .question input[type="email"]:valid, .form-content .question input[type="password"]:valid {
+    margin-top: 10px;
+} */
+
+.form-content .question input[type="text"]:focus~label, .form-content .question input[type="number"]:focus~label, .form-content .question input[type="password"]:focus~label, .form-content .question input[type="email"]:focus~label {
+    -moz-transform: translate(0, -35px);
+    -ms-transform: translate(0, -35px);
+    -webkit-transform: translate(0, -35px);
+    transform: translate(0, -35px);
+}
+
+.form-content .question input[type="text"]:valid~label, .form-content .question input[type="number"]:valid~label, .form-content .question input[type="email"]:valid~label, .form-content .question input[type="password"]:valid~label {
+    text-transform: uppercase;
+    -moz-transform: translate(5px, -35px) scale(0.6);
+    -ms-transform: translate(5px, -35px) scale(0.6);
+    -webkit-transform: translate(5px, -35px) scale(0.6);
+    transform: translate(5px, -35px) scale(0.6);
+}
+
+button {
+    background-color: white;
+    border: 2px solid black;
+    line-height: 0;
+    font-size: 17px;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 20px 15px;
+    color: black;
+    font-weight: 100;
+    letter-spacing: 0.01em;
+    position: relative;
+    z-index: 1;
+}
+
+button:hover {
+    background-color: black;
+    color: white;
+}
+
+.button {
+    float: right;
+}
+
+#bottom {
+    background-color: black;
+    color: white;
+}
