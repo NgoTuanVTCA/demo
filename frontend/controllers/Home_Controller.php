@@ -58,13 +58,11 @@ class Home_Controller extends Base_Controller
 			$user = $this->model->user->get_by_email($email);
 			if (password_verify($password, $user['password']) == true) {
 				if ($user['role'] == 2) {
-					session_start();
 					$_SESSION['name'] = $user['name'];
 					$_SESSION['phone_number'] = $user['phone_number'];
 					$_SESSION['address'] = $user['address'];
 					redirect('home/index');
 				} elseif ($user['role'] == 1) {
-					session_start();
 					$_SESSION['name'] = $user['name'];
 					$_SESSION['phone_number'] = $user['phone_number'];
 					$_SESSION['address'] = $user['address'];
