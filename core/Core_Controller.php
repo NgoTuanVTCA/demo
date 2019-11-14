@@ -5,7 +5,8 @@ class Core_Controller {
 	protected $model;
 	protected $helper;
 
-	function __construct() {
+	public function __construct() {
+		session_start();
 		// layout loader
 		require_once BASE_PATH . '/core/loaders/Layout_Loader.php';
 		$this->layout = new Layout_Loader;
@@ -25,7 +26,7 @@ class Core_Controller {
 		$this->autoload();
 	}
 
-	function autoload() {
+	public function autoload() {
 		$autoload_config = require BASE_PATH . '/config/autoload.php';
         foreach ($autoload_config as $autoload_key => $autoloads) {
             foreach ($autoloads as $autoload) {

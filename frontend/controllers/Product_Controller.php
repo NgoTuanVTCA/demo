@@ -1,12 +1,12 @@
 <?php
 class Product_Controller extends Base_Controller
 {
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	function index()
+	public function index()
 	{
 		// trang danh sach san pham
 		$products = $this->model->product->find();
@@ -15,20 +15,20 @@ class Product_Controller extends Base_Controller
 		]);
 	}
 
-	function show()
+	public function show()
 	{
 		// trang chi tiet san pham
 
 	}
 
-	function add()
+	public function add()
 	{
 		// trang them san pham
 		// hien thi form them san pham
 		$this->view->load('product/add');
 	}
 
-	function store()
+	public function store()
 	{
 		// xu li them san pham
 
@@ -64,19 +64,19 @@ class Product_Controller extends Base_Controller
 		}
 	}
 
-	function edit()
+	public function edit()
 	{
 		// trang sua san pham
 		// hien thi form sua san pham
 	}
 
-	function update()
+	public function update()
 	{
 		// xu li sua san pham
 
 	}
 
-	function destroy()
+	public function destroy()
 	{
 		// xu li xoa san pham
 		$id = getParameter('id');

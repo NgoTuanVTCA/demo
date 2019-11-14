@@ -1,22 +1,36 @@
 <?php
 class Home_Controller extends Base_Controller
 {
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	// show all posts
-	function index()
+
+	public function index()
 	{
+		// show home
 		$products = $this->model->product->find_category();
 		$this->view->load('home/index', [
 			'products' => $products
 		]);
 	}
 
+	public function show()
+	{
+		// show profile
+		$this->view->load('home/show');
+	}
+
+	public function transaction_history()
+	{
+		// show transation his
+		$this->view->load('home/transaction');
+	}
 	public function login()
 	{
+		// show login
+
 		$this->view->load('home/login');
 	}
 
@@ -42,15 +56,19 @@ class Home_Controller extends Base_Controller
 			]);
 		} else {
 			$user = $this->model->user->get_by_email($email);
-			if ($email == $user['email'] && $password == $user['password']) {
+			if (password_verify($password, $user['password']) == true) {
 				if ($user['role'] == 2) {
 					session_start();
 					$_SESSION['name'] = $user['name'];
+					$_SESSION['phone_number'] = $user['phone_number'];
+					$_SESSION['address'] = $user['address'];
 					redirect('home/index');
 				} elseif ($user['role'] == 1) {
 					session_start();
 					$_SESSION['name'] = $user['name'];
-					redirect('home/index');
+					$_SESSION['phone_number'] = $user['phone_number'];
+					$_SESSION['address'] = $user['address'];
+					redirect('user/index');
 				}
 			} else {
 				$this->view->load('home/login', [
@@ -67,11 +85,13 @@ class Home_Controller extends Base_Controller
 		session_start();
 		unset($_SESSION['name']);
 		session_destroy();
-		redirect('home/index');
+		redirect('home/login');
 	}
 
 	public function registration()
 	{
+		// show registration
+
 		$this->view->load('home/registration');
 	}
 
@@ -119,7 +139,7 @@ class Home_Controller extends Base_Controller
 			]);
 		} else {
 			$role = 2;
-			$password = hash_password($email, $password);
+			$password = hash_password($password);
 			$user = $this->model->user->create([
 				'name' => $name,
 				'address' => $address,

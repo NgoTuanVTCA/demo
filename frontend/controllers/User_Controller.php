@@ -3,30 +3,30 @@
 class User_Controller extends Base_Controller {
 	
 	
-	function index(){
+	public function index(){
 		$this->view->load('auth/auth_layout');
 		$this->layout->set(null);
 	}
 	// view form
-	function add() {
+	public function add() {
 		$this->view->load('user/create');
 		$this->layout->set(null);
 	}
 
 	// insert
-	function create() {
+	public function create() {
 		$this->layout->set(null);
 
 		$status = API_SUCCESS;
 		$message = 'Lỗi hệ thống!';
 
-	    $phone	 = getPostParameter('phone');
-	    $username	 = getPostParameter('username');
+	    $phone_number	 = getPostParameter('phone_number');
+	    $email	 = getPostParameter('email');
 	    $name	 = getPostParameter('name');
 	    $password	 = getPostParameter('password');
 	    $repassword	 = getPostParameter('repassword');
 
-	    $user = $this->model->user->get_by_username($username);
+	    $user = $this->model->user->get_by_email($email);
 
 	    // Lỗi nhập lại password ko chính xác
 	    // và thay đổi nội dung thông báo
@@ -35,16 +35,16 @@ class User_Controller extends Base_Controller {
 	    	$message = 'Nhập lại mật khẩu không chính xác!';
 	    } else if ($user) {
 	    	$status = API_ERROR;
-	    	$message = "Username \"$username\" đã tồn tại!";
+	    	$message = "email \"$email\" đã tồn tại!";
 	    }
 
 	    // neu ko co loi
 	    if ($status === API_SUCCESS) {
 	    	$this->model->user->create([
-		    	'phone' => $phone,
-		    	'username' => $username,
+		    	'phone' => $phone_number,
+		    	'email' => $email,
 		    	'name' => $name,
-		    	'password' => hash_password($username, $password)
+		    	'password' => hash_password($password)
 		    ]);
 
 		    // Khi login cho user

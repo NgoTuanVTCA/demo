@@ -6,13 +6,13 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item">
-            <img src="<? echo IMG_URL . 'images/banner-wedding.jpg' ?>" class="d-block w-100" alt="..." width="100%" height="auto">
+            <img src="<?php echo IMG_URL . 'images/banner-wedding.jpg' ?>" class="d-block w-100" alt="..." width="100%" height="auto">
         </div>
         <div class="carousel-item">
-            <img src="<? echo IMG_URL . 'images/banner-travel.jpg' ?>" class="d-block w-100" alt="..." width="100%" height="auto">
+            <img src="<?php echo IMG_URL . 'images/banner-travel.jpg' ?>" class="d-block w-100" alt="..." width="100%" height="auto">
         </div>
         <div class="carousel-item active">
-            <img src="<? echo IMG_URL . 'images/banner-banquest.jpg' ?>" class="d-block w-100" alt="..." width="100%" height="auto">
+            <img src="<?php echo IMG_URL . 'images/banner-banquest.jpg' ?>" class="d-block w-100" alt="..." width="100%" height="auto">
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

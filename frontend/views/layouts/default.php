@@ -43,7 +43,7 @@
                                 <?php echo $_SESSION['name'] ?>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+                                <a class="dropdown-item" href="<?php echo base_url('home/show') ?>">Thông tin cá nhân</a>
                                 <a class="dropdown-item" href="#">Lịch sử giao dịch</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?php echo base_url('home/handle_logout') ?>">Đăng xuất</a>

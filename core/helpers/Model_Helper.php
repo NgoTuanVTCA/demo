@@ -5,8 +5,8 @@ vì nó phục vụ cho cơ chế chung của Base_Model
 */
 
 	// hàm mã hóa password, ko lưu trực tiếp password vào db
-	function hash_password($username, $password) {
-		return sha1($username . $password);
+	function hash_password($password) {
+		return password_hash($password,PASSWORD_DEFAULT);
 	}
 
 	// hàm tự động tạo ra câu sql insert

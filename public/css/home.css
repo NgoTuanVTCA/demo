@@ -12,10 +12,6 @@ header, #login img, #cart img {
     border-radius: 0;
 }
 
-#form-hf {
-    border: 2px solid black;
-}
-
 article {
     background-color: #ffffff;
 }
@@ -34,6 +30,125 @@ a:hover {
 
 .card-body p img {
     margin-right: 3px;
+}
+
+.info, .change-name, .change-input {
+    display: block;
+    margin: 0 10px 10px 10px;
+    padding: 3px;
+    border: none;
+    font-size: 22px;
+}
+.change-name{
+    font-size: 18px;
+}
+.info:focus {
+    outline: 0;
+}
+
+
+.info {
+    font-size: 22px;
+    padding-top: 30px;
+    /* padding-bottom: 16px; */
+    font-weight: 300;
+    border-radius: 2px;
+    margin: 0;
+    border: none;
+    width: 80%;
+    background: rgba(0, 0, 0, 0);
+    transition: padding-top 0.2s ease, margin-top 0.2s ease;
+    overflow-x: hidden;
+    /* Hack to make "rows" attribute apply in Firefox. */
+}
+
+/* Underline and Placeholder */
+
+.info+.change-input {
+    display: block;
+    position: relative;
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+    width: 30%;
+    border-top: 1px solid red;
+    -webkit-transition: width 0.4s ease;
+    transition: width 0.4s ease;
+    height: 5px;
+}
+
+.info:focus+.change-input {
+    width: 80%;
+}
+
+.info:focus, .info:valid {
+    padding-top: 35px;
+}
+
+.info:focus+.change-input>.change-name, .info:valid+.change-input>.change-name {
+    top: -66px;
+    font-size: 19px;
+    color: #333;
+}
+
+.info:valid+.change-input {
+    border-color: black;
+}
+
+.info:invalid {
+    box-shadow: none;
+}
+
+.info+.change-input>.change-name {
+    /*   font-weight: 300; */
+    margin: 0;
+    position: absolute;
+    color: #8F8F8F;
+    /*   font-size: 48px; */
+    top: -70px;
+    left: 0px;
+    z-index: -1;
+    -webkit-transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+    transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+}
+
+input[type="submit"] {
+    -webkit-transition: opacity 0.2s ease, background 0.2s ease;
+    transition: opacity 0.2s ease, background 0.2s ease;
+    display: block;
+    opacity: 0;
+    margin: 10px 0 0 0;
+    padding: 10px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background: #EEE;
+}
+
+input[type="submit"]:active {
+    background: #999;
+}
+
+.info:valid~input[type="submit"] {
+    -webkit-animation: appear 1s forwards;
+    animation: appear 1s forwards;
+}
+
+.info:invalid~input[type="submit"] {
+    display: none;
+}
+
+@-webkit-keyframes appear {
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes appear {
+    100% {
+        opacity: 1;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -196,7 +311,7 @@ button {
     font-size: 17px;
     display: inline-block;
     box-sizing: border-box;
-    padding: 20px 15px;
+    padding: 19px 15px;
     color: black;
     font-weight: 100;
     letter-spacing: 0.01em;
