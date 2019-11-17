@@ -1,36 +1,4 @@
-* {
-    font-family: Arial, Helvetica, sans-serif;
-}
 
-header, #login img, #cart img {
-    font-size: 24px;
-    width: 24px;
-}
-
-.form-control {
-    padding: 1.25rem 0.1rem;
-    border-radius: 0;
-}
-
-article {
-    background-color: #ffffff;
-}
-
-a {
-    color: dimgray;
-}
-
-a:hover {
-    color: black;
-}
-
-.receive .card {
-    background-color: whitesmoke !important;
-}
-
-.card-body p img {
-    margin-right: 3px;
-}
 
 .info, .change-name, .change-input {
     display: block;
@@ -39,18 +7,18 @@ a:hover {
     border: none;
     font-size: 22px;
 }
-.change-name{
+
+.change-name {
     font-size: 18px;
 }
+
 .info:focus {
     outline: 0;
 }
 
-
 .info {
     font-size: 22px;
     padding-top: 30px;
-    /* padding-bottom: 16px; */
     font-weight: 300;
     border-radius: 2px;
     margin: 0;
@@ -100,11 +68,9 @@ a:hover {
 }
 
 .info+.change-input>.change-name {
-    /*   font-weight: 300; */
     margin: 0;
     position: absolute;
     color: #8F8F8F;
-    /*   font-size: 48px; */
     top: -70px;
     left: 0px;
     z-index: -1;
@@ -116,15 +82,15 @@ input[type="submit"] {
     -webkit-transition: opacity 0.2s ease, background 0.2s ease;
     transition: opacity 0.2s ease, background 0.2s ease;
     display: block;
-    opacity: 0;
-    margin: 10px 0 0 0;
+    /* opacity: 0; */
+    /* margin: 10px 0 0 0; */
     padding: 10px;
     cursor: pointer;
 }
-
-input[type="submit"]:hover {
-    background: #EEE;
+input{
+    color: #333333;
 }
+
 
 input[type="submit"]:active {
     background: #999;
@@ -151,35 +117,7 @@ input[type="submit"]:active {
     }
 }
 
-@media (min-width: 1200px) {
-    .form-content {
-        max-width: 700px;
-        min-width: 500px;
-    }
-}
 
-@media (min-width: 992px) {
-    .form-content {
-        max-width: 700px;
-        min-width: 500px;
-    }
-}
-
-@media (min-width: 768px) {
-    .form-content {
-        max-width: 700px;
-        min-width: 500px;
-    }
-}
-
-@media (min-width: 576px) {
-    .form-content {
-        max-width: 700px;
-        min-width: 500px;
-    }
-}
-
-@media (min-width: 320px) {}
 
 .transition, .form-content button, .form-content .question label, .form-content .question input[type="text"], .form-content .question input[type="number"], .form-content .question input[type="email"], .form-content .question input[type="password"] {
     -moz-transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
@@ -207,7 +145,7 @@ input[type="submit"]:active {
     font-weight: 100;
     letter-spacing: 0.01em;
     margin-left: 15px;
-    margin-bottom: 16px;
+    margin-bottom: 36px;
     text-align: center;
 }
 
@@ -231,6 +169,7 @@ input[type="submit"]:active {
 .form-content button:hover, .form-content button:focus {
     color: white;
     background-color: black;
+    cursor: pointer;
 }
 
 .form-content .question {
@@ -256,7 +195,7 @@ input[type="submit"]:active {
     padding: 0 15px;
     display: block;
     position: absolute;
-    margin-top: -40px;
+    margin-top: -48px;
     z-index: 2;
     pointer-events: none;
 }
@@ -277,6 +216,7 @@ input[type="submit"]:active {
     letter-spacing: 0.01em;
     position: relative;
     z-index: 1;
+    width: 345px;
 }
 
 .form-content .question input[type="text"]:focus, .form-content .question input[type="number"]:focus, .form-content .question input[type="email"]:focus, .form-content .question input[type="password"]:focus {
@@ -304,9 +244,8 @@ input[type="submit"]:active {
     transform: translate(5px, -35px) scale(0.6);
 }
 
-button {
+.button {
     background-color: white;
-    border: 2px solid black;
     line-height: 0;
     font-size: 17px;
     display: inline-block;
@@ -319,16 +258,11 @@ button {
     z-index: 1;
 }
 
-button:hover {
-    background-color: black;
+.button:hover {
+    /* background-color: black; */
     color: white;
 }
 
 .button {
     float: right;
-}
-
-#bottom {
-    background-color: black;
-    color: white;
 }

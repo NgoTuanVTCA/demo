@@ -88,7 +88,7 @@ class Base_Model
 		}
 	}
 
-	// update a record by id
+	// update record
 	function update($id, $data = [])
 	{
 		if (!$id || count($data) == 0) {
@@ -113,6 +113,28 @@ class Base_Model
 		return false;
 	}
 
+	// update a record by id
+	function update_by_id($id, $data = [])
+	{
+		if (!$id || count($data) == 0) {
+			return;
+		}
+		$data += get_update_time();
+		// auto gen values and fiels from a array
+		$result = gen_update_fields_form_array($data);
+		$query = "update `{$this->table}` set {$result->field_string} where `id` = {$id} ";
+		try {
+			$this->db->beginTransaction();
+			$sth = $this->db->prepare($query);
+			$sth->execute($result->bind_values);
+			$this->db->commit();
+			return true;
+		} catch (PDOExecption $e) {
+			$this->db->rollback();
+			exit("Error!: " . $e->getMessage());
+		}
+		return false;
+	}
 	function destroy($id)
 	{
 		$query = "delete from `{$this->table}` where `id` = :id";

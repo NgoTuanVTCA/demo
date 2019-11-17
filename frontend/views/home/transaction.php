@@ -12,21 +12,17 @@
 			</ul>
 		</div>
 		<div class="col-sm-9">
-			<h3>Thông tin cá nhân</h3>
+			<?php echo $successfully; ?>
+			<h3>Lịch sử giao dịch</h3>
 			<div class="border-bottom"></div>
-			<?php if (!$_SESSION['name']) : ?>
-				<h1 class="text-center mt-5">Bạn cần phải <a href="<?php echo base_url('home/login') ?>">Đăng nhập</a></h1>
-			<?php else : ?>
-				<form style="width: 100%;" class="form-content mt-3 mb" action="<?php echo base_url('home/show') ?>" method="post">
-					<input type="text" name="name" class="info" id="nme" placeholder="<?php echo $_SESSION['name'] ?>" required autocomplete="off" />
-					<label class="change-input" for="nme"><span class="change-name">Tên thay đổi:</span></label>
-					<input type="text" name="name" class="info" id="nme" placeholder="<?php echo $_SESSION['address'] ?>" required autocomplete="off" />
-					<label class="change-input" for="nme"><span class="change-name">Địa chỉ thay đổi:</span></label>
-					<input type="text" name="name" class="info" id="nme" placeholder="<?php echo $_SESSION['phone_number'] ?>" required autocomplete="off" />
-					<label class="change-input" for="nme"><span class="change-name">Số điện thoại thay đổi:</span></label>
-					<p class="button ml-auto"><button type="submit">Thay đổi</button></p>
-				</form>
-			<?php endif; ?>
+			<? if ($orders == null) : ?>
+				<p class="text-center mt-4">------------------------------------------------------------------------------------</p>
+				<h3 class="text-center"><a href="<?php echo base_url("home/index"); ?>">Bạn hay mua đồ để được đẹp trai</a></h3>
+				<p class="text-center">------------------------------------------------------------------------------------</p>
+			<? else : ?>
+				<?php foreach ($orders as $order) : ?>
+				<?php endforeach; ?>
+			<? endif; ?>
 		</div>
 	</div>
 </div>

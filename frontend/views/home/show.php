@@ -12,32 +12,35 @@
 			</ul>
 		</div>
 		<div class="col-sm-9">
+			<?php echo $successfully; ?>
 			<h3>Thông tin cá nhân</h3>
 			<div class="border-bottom"></div>
-			<?php if (!$_SESSION['name']) : ?>
-				<h1 class="text-center mt-5">Bạn cần phải <a href="<?php echo base_url('home/login') ?>">Đăng nhập</a></h1>
-			<?php else : ?>
-				<form style="width: 100%;" class="form-content mt-3 mb" action="<?php echo base_url('home/show') ?>" method="post">
-					<input type="text" name="name" class="info" id="nme" placeholder="<?php echo $_SESSION['name'] ?>" required autocomplete="off" />
-					<label class="change-input" for="nme"><span class="change-name">Tên thay đổi:</span></label>
-					<input type="text" name="name" class="info" id="nme" placeholder="<?php echo $_SESSION['address'] ?>" required autocomplete="off" />
-					<label class="change-input" for="nme"><span class="change-name">Địa chỉ thay đổi:</span></label>
-					<input type="text" name="name" class="info" id="nme" placeholder="<?php echo $_SESSION['phone_number'] ?>" required autocomplete="off" />
-					<label class="change-input" for="nme"><span class="change-name">Số điện thoại thay đổi:</span></label>
-					<p class="button ml-auto"><button type="submit">Thay đổi</button></p>
-				</form>
-				<div class="border-bottom"></div>
-				<h3 class="mt-3 mb-3">Đổi mật khẩu</h3>
-				<form style="width: 100%;" class="form-content mt-3 mb" action="<?php echo base_url('home/show') ?>" method="post">
-					<input type="password" name="name" class="info" id="nme" required autocomplete="off" />
-					<label class="change-input" for="nme"><span class="change-name">Mật khẩu cũ:</span></label>
-					<input type="password" name="name" class="info" id="nme" required autocomplete="off" />
-					<label class="change-input" for="nme"><span class="change-name">Mật khẩu mới:</span></label>
-					<input type="password" name="name" class="info" id="nme" required autocomplete="off" />
-					<label class="change-input" for="nme"><span class="change-name">Nhập lại mật khẩu mới:</span></label>
-					<p class="button ml-auto"><button type="submit">Thay đổi</button></p>
-				</form>
-			<?php endif; ?>
+			<form style="width: 100%;" class="form-content mt-3 mb" action="<?php echo base_url('home/handle_update') ?>" method="post">
+				<input type="text" name="name" class="info" id="nme" placeholder="<?php echo $_SESSION['name'] ?>" required />
+				<label class="change-input" for="nme"><span class="change-name">Tên thay đổi:</span></label>
+				<?php echo $errors['name']; ?>
+				<input type="text" name="address" class="info" id="nme" placeholder="<?php echo $_SESSION['address'] ?>" required />
+				<label class="change-input" for="nme"><span class="change-name">Địa chỉ thay đổi:</span></label>
+				<?php echo $errors['address']; ?>
+				<input type="number" name="phone_number" class="info" id="nme" placeholder="<?php echo $_SESSION['phone_number'] ?>" required />
+				<label class="change-input" for="nme"><span class="change-name">Số điện thoại thay đổi:</span></label>
+				<?php echo $errors['phone_number']; ?>
+				<p class="button ml-auto"><button type="submit">Thay đổi</button></p>
+			</form>
+			<div class="border-bottom"></div>
+			<h3 class="mt-3 mb-3">Đổi mật khẩu</h3>
+			<form style="width: 100%;" class="form-content mt-3 mb" action="<?php echo base_url('home/handle_password') ?>" method="post">
+				<input type="password" name="old_password" class="info" id="nme" required />
+				<label class="change-input" for="nme"><span class="change-name">Mật khẩu cũ:</span></label>
+				<?php echo $errors['old_password']; ?>
+				<input type="password" name="new_password" class="info" id="nme" required />
+				<label class="change-input" for="nme"><span class="change-name">Mật khẩu mới:</span></label>
+				<?php echo $errors['new_password']; ?>
+				<input type="password" name="re_new_password" class="info" id="nme" required />
+				<label class="change-input" for="nme"><span class="change-name">Nhập lại mật khẩu mới:</span></label>
+				<?php echo $errors['re_new_password']; ?>
+				<p class="button ml-auto"><button type="submit">Thay đổi</button></p>
+			</form>
 		</div>
 	</div>
 </div>

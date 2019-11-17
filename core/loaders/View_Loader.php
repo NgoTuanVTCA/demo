@@ -2,8 +2,7 @@
 	class View_Loader {
 
 		private $_contents = [];
-
-
+		
 		function load($view, $data = []) {
 			extract($data);
 			$view_path = APP_PATH . "/views/{$view}.php";

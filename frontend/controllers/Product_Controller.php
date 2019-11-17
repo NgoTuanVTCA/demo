@@ -19,6 +19,15 @@ class Product_Controller extends Base_Controller
 	{
 		// trang chi tiet san pham
 
+		$id = getGetParameter('id');
+		$product = $this->model->product->find_by_id($id);
+		$comments = $this->model->comment->find();
+		$users = $this->model->user->find();
+		$this->view->load('product/show', [
+			'product' => $product,
+			'comments' => $comments,
+			'users' => $users
+		]);
 	}
 
 	public function add()
