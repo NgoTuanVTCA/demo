@@ -676,7 +676,7 @@ a:hover {
 }
 
 .site-blocks-cover h2 {
-  font-size: 14px;
+  font-size: 24px;
   font-weight: normal;
   color: #000;
   letter-spacing: .2em;
@@ -726,7 +726,7 @@ a:hover {
 
 @media (min-width: 768px) {
   .site-blocks-cover.inner-page .site-block-cover-content {
-    margin-top: 30%;
+    /* margin-top: 30%; */
   }
 }
 

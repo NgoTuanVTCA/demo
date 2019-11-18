@@ -3,7 +3,7 @@
     <section id="page-wrapper">
         <div class="wrapper">
             <div class="grid">
-                <form class="form-content" action="<?php echo base_url('home/handle_login') ?>" method="post">
+                <form class="form-content" action="<?php echo base_url('user/handle_login') ?>" method="post">
                     <h3><b>Đăng nhập</b></h3>
                     <div class="question">
                         <input type="email" name="email" required />
@@ -18,7 +18,7 @@
                     </div>
                     <p class="button">
                         <a href="#recover" id="RecoverPassword">Quên mật khẩu?</a>
-                        <a href="<?php echo base_url('home/registration') ?>" id="registration">Đăng kí</a>
+                        <a href="<?php echo base_url('user/registration') ?>" id="registration">Đăng kí</a>
                     </p><br>
                     <p class="button ml-auto"><button type="submit">Đăng nhập</button></p>
                 </form>

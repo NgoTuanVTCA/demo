@@ -2,7 +2,7 @@
     <section id="page-wrapper">
         <div class="wrapper">
             <div class="grid">
-                <form class="form-content" action="<?php echo base_url('home/handle_registration') ?>" method="post">
+                <form class="form-content" action="<?php echo base_url('user/handle_registration') ?>" method="post">
                     <h3><b>Tạo tài khoản</b></h3>
                     <div class="question">
                         <input type="text" name="name" required />
@@ -40,7 +40,7 @@
                         </span>
                     </div>
                     <p class="button">
-                        <a href="<?php echo base_url('home/login') ?>" id="registration"><b>Đăng nhập </b></a> <span> /</span>
+                        <a href="<?php echo base_url('user/login') ?>" id="registration"><b>Đăng nhập </b></a> <span> /</span>
                         <button type="submit">Đăng ký</button>
                     </p>
                 </form>

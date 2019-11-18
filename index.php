@@ -8,7 +8,7 @@ define('CSS_URL', BASE_URL . '/public/css/');
 define('JS_URL', BASE_URL . '/public/js/');
 define('FONTS_URL', BASE_URL . '/public/fonts/');
 define('IMG_URL', BASE_URL . '/public/images/');
-define('PRODUCT_URL', BASE_URL . '/public/uploads/');
+define('PRODUCT_URL', BASE_URL . '/public/');
 require BASE_PATH . '/config/constant.php';
 require BASE_PATH . '/core/Common.php';
 

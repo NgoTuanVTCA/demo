@@ -4,7 +4,7 @@
 			<h3>Thông tin tài khoàn</h3>
 			<ul class="list-group mt-3">
 				<li class="list-group-item">
-					<a href="<?php echo base_url("home/show"); ?>">Thông tin cá nhân</a>
+					<a href="<?php echo base_url("user/profile"); ?>">Thông tin cá nhân</a>
 				</li>
 				<li class="list-group-item">
 					<a href="<?php echo base_url('home/transaction_history'); ?>">Lịch sử giao dịch</a>
@@ -17,7 +17,7 @@
 			<div class="border-bottom"></div>
 			<? if ($orders == null) : ?>
 				<p class="text-center mt-4">------------------------------------------------------------------------------------</p>
-				<h3 class="text-center"><a href="<?php echo base_url("home/index"); ?>">Bạn hay mua đồ để được đẹp trai</a></h3>
+				<h3 class="text-center"><a href="<?php echo base_url("home/index"); ?>">Bạn chưa mua hàng lần nào</a></h3>
 				<p class="text-center">------------------------------------------------------------------------------------</p>
 			<? else : ?>
 				<?php foreach ($orders as $order) : ?>

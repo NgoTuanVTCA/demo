@@ -2,7 +2,7 @@
     <div class="row mt-5">
         <div class="col-lg-6">
             <div class="row">
-                <div class="col-lg-6"><img src="<?php echo IMG_URL . $product['image'] ?>" alt="" width="100%" height="100%"></div>
+                <div class="col-lg-6"><img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="" width="100%" height="100%"></div>
             </div>
         </div>
         <div class="col-lg-6">
@@ -23,7 +23,7 @@
                     if (!$_SESSION['name']) :
 
                         ?>
-                        * <a href="<? echo base_url('home/login') ?>">Đăng nhập</a> hoặc <a href="">Đăng ký</a> để bình luận
+                        * <a href="<? echo base_url('user/login') ?>">Đăng nhập</a> hoặc <a href="<? echo base_url('user/registration') ?>">Đăng ký</a> để bình luận
                     <?php
                     else :
 

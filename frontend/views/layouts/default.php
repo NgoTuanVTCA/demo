@@ -4,6 +4,7 @@
 <head>
     <title>VTC Store &mdash; Colorlib e-Commerce Template</title>
     <meta charset="utf-8">
+    <link rel="shortcut icon" href="<?php echo IMG_URL . 'logo.png' ?>" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
     <link rel="stylesheet" href="<?php echo FONTS_URL . 'icomoon/style.css' ?>">
@@ -42,23 +43,23 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="logo">
                         <div class="site-logo">
-                            <a href="<?php echo base_url("home/index") ?>"><img src="<?php echo IMG_URL.'logo.png'?>" alt="logo" width="100px" height="auto"></a>
+                            <a href="<?php echo base_url("home/index") ?>"><img src="<?php echo IMG_URL . 'logo.png' ?>" alt="logo" width="100px" height="auto"></a>
                         </div>
                     </div>
                     <div class="main-nav d-none d-lg-block">
                         <nav class="site-navigation text-right text-md-center" role="navigation">
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
-                                <li><a href="shop.html">VEST</a></li>
-                                <li><a href="contact.html">ÁO DA</a></li>
-                                <li><a href="#">SƠ MI</a></li>
-                                <li><a href="#">QUẦN ÂU</a></li>
-                                <li><a href="contact.html">GIÀY DA</a></li>
+                                <li><a href="shop.html"><b>VEST</b></a></li>
+                                <li><a href="contact.html"><b>ÁO DA</b></a></li>
+                                <li><a href="#"><b>SƠ MI</b></a></li>
+                                <li><a href="#"><b>QUẦN ÂU</b></a></li>
+                                <li><a href="contact.html"><b>GIÀY DA</b></a></li>
                                 <li class="has-children active">
                                     <a href="index.html"><b>PHỤ KIỆN VEST</b></a>
                                     <ul class="dropdown">
-                                        <li><a href="#">CARAVAT</a></li>
-                                        <li><a href="#">NƠ</a></li>
-                                        <li><a href="#">KHĂN CÀI VEST</a></li>
+                                        <li><a href="#"><b>CARAVAT</b></a></li>
+                                        <li><a href="#"><b>NƠ</b></a></li>
+                                        <li><a href="#"><b>KHĂN CÀI VEST</b></a></li>
                                         <!-- <li class="has-children">
                                             <a href="#">Sub Menu</a>
                                             <ul class="dropdown">
@@ -79,14 +80,14 @@
                                         <i class="fa fa-search fa-lg" aria-hidden="true"></i></a>
                                 </li>
                                 <?php if (!$_SESSION['name']) : ?>
-                                    <a href="<?php echo base_url('home/login') ?>" class="icons-btn d-inline-block" style="color: black;"><i class="fa fa-user fa-lg" aria-hidden="true"></i></a>
+                                    <a href="<?php echo base_url('user/login') ?>" class="icons-btn d-inline-block" style="color: black;"><i class="fa fa-user fa-lg" aria-hidden="true"></i></a>
                                 <?php else : ?>
                                     <li class="has-children ">
-                                        <a href="login.html" class="icons-btn d-inline-block">Chào <?php echo $_SESSION['name'] ?></i></a>
+                                        <a href="" class="icons-btn d-inline-block">Chào <?php echo $_SESSION['name'] ?></i></a>
                                         <ul class="dropdown">
-                                            <li><a href="<?php echo base_url('home/show') ?>">Thông tin cá nhân</a></li>
-                                            <li><a href="#">Lịch sử giao dịch</a></li>
-                                            <li><a href="<?php echo base_url('home/handle_logout') ?>">Đăng xuất</a></li>
+                                            <li><a href="<?php echo base_url('user/profile') ?>">Thông tin cá nhân</a></li>
+                                            <li><a href="<?php echo base_url('home/transaction_history'); ?>">Lịch sử giao dịch</a></li>
+                                            <li><a href="<?php echo base_url('user/handle_logout') ?>">Đăng xuất</a></li>
                                         </ul>
                                     </li>
                                 <?php endif; ?>
