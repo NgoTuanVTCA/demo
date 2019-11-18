@@ -14,7 +14,7 @@ class Product_Controller extends Base_Controller
 			'products' => $products
 		]);
 	}
-
+	
 	public function show()
 	{
 		// trang chi tiet san pham

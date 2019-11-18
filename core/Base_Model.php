@@ -143,14 +143,4 @@ class Base_Model
 			':id' => $id
 		]);
 	}
-
-	function find_category()
-	{
-		$query = "select * from {$this->table} limit 4";
-		$sth = $this->db->prepare($query);
-		$sth->execute();
-		$data = $sth->fetchAll(PDO::FETCH_ASSOC);
-		$sth->closeCursor();
-		return $data;
-	}
 }

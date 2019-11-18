@@ -83,10 +83,12 @@
                                     <a href="<?php echo base_url('user/login') ?>" class="icons-btn d-inline-block" style="color: black;"><i class="fa fa-user fa-lg" aria-hidden="true"></i></a>
                                 <?php else : ?>
                                     <li class="has-children ">
-                                        <a href="" class="icons-btn d-inline-block">Chào <?php echo $_SESSION['name'] ?></i></a>
+                                        <a class="icons-btn d-inline-block"><b>Chào <?php echo $_SESSION['name'] ?></b></a>
                                         <ul class="dropdown">
                                             <li><a href="<?php echo base_url('user/profile') ?>">Thông tin cá nhân</a></li>
+                                            <li><a href="<?php echo base_url('home/transaction_history'); ?>">Thay đổi mật khẩu</a></li>
                                             <li><a href="<?php echo base_url('home/transaction_history'); ?>">Lịch sử giao dịch</a></li>
+                                            <small>-----------------------------------------</small>
                                             <li><a href="<?php echo base_url('user/handle_logout') ?>">Đăng xuất</a></li>
                                         </ul>
                                     </li>

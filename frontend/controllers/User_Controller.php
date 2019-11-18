@@ -23,6 +23,97 @@ class User_Controller extends Base_Controller
 		$this->view->load('user/profile');
 	}
 
+	public function handle_update()
+	{
+		// process update
+
+		$id = $_SESSION['id'];
+		$name = getPostParameter('name');
+		$phone_number = getPostParameter('phone_number');
+		$address = getPostParameter('address');
+		$errors = [];
+		if (!$name) {
+			$errors['name'] = 'Vui lòng nhập Họ và Tên';
+		}
+
+		if (!$address) {
+			$errors['address'] = 'Vui lòng nhập địa chỉ';
+		}
+
+		if (!$phone_number || !preg_match('/^[0-9]{3}[0-9]{3}[0-9]{4}$/', $phone_number)) {
+			$errors['phone_number'] = 'Vui lòng nhập đúng số điện thoại';
+		}
+
+		if (count($errors) > 0) {
+			$this->view->load('user/profile', [
+				'errors' => $errors
+			]);
+		} else {
+			$user = $this->model->user->update_by_id($id, [
+				'name' => $name,
+				'address' => $address,
+				'phone_number' => $phone_number
+			]);
+			$_SESSION['name'] = $name;
+			$_SESSION['address'] = $address;
+			$_SESSION['phone_number'] = $phone_number;
+			$this->view->load('user/profile', [
+				'successfully' => 'Đổi thông tin thành công'
+			]);
+		}
+	}
+	public function password()
+	{
+		// show profile
+
+		if (!$_SESSION['email']) {
+			redirect('user/login');
+		}
+		$this->view->load('user/password');
+	}
+
+	public function handle_password()
+	{
+
+		// process change password
+
+		$id = $_SESSION['id'];
+		$user = $this->model->user->find_by_id($id);
+
+		$old_password = getPostParameter('old_password');
+		$new_password = getPostParameter('new_password');
+		$re_new_password = getPostParameter('re_new_password');
+
+		$errors = [];
+		if (!$old_password) {
+			$errors['old_password'] = 'Trường  này không được để trống';
+		} elseif (!$new_password) {
+			$errors['new_password'] = 'Trường này không được để trống';
+		} elseif (!$re_new_password) {
+			$errors['re_new_password'] = 'Trường này không được để trống';
+		} elseif (password_verify($old_password, $user['password']) == false) {
+			$errors['old_password'] = 'Sai mật khẩu hiện tại';
+		} elseif ($old_password == $new_password) {
+			$errors['new_password'] = 'Mật khẩu mới không được giống mật khẩu cũ';
+		} elseif ($new_password != $re_new_password) {
+			$errors['re_new_password'] = 'Mật khẩu không trùng khớp';
+		}
+		$new_password = hash_password($new_password);
+		if (count($errors) > 0) {
+			$this->view->load('user/password', [
+				'errors' => $errors
+			]);
+		} else {
+			$user = $this->model->user->update_by_id($id, [
+				'password' => $new_password
+			]);
+
+			$this->view->load('user/password', [
+				'successfully' => 'Đổi mật khẩu thành công'
+			]);
+		}
+	}
+
 	public function login()
 	{
 		// show login
@@ -58,7 +149,6 @@ class User_Controller extends Base_Controller
 			if (password_verify($password, $user['password']) == true) {
 				if ($user['role'] == 2) {
 					$_SESSION['id'] = $user['id'];
-					var_dump($_SESSION['id']);
 					$_SESSION['email'] = $user['email'];
 					$_SESSION['name'] = $user['name'];
 					$_SESSION['phone_number'] = $user['phone_number'];
@@ -117,8 +207,8 @@ class User_Controller extends Base_Controller
 			$errors['address'] = 'Vui lòng nhập địa chỉ';
 		}
 
-		if (!$phone_number) {
-			$errors['phone_number'] = 'Vui lòng nhập số điện thoại';
+		if (!$phone_number || !preg_match('/^[0-9]{3}[0-9]{3}[0-9]{4}$/', $phone_number)) {
+			$errors['phone_number'] = 'Vui lòng nhập đúng số điện thoại';
 		}
 
 		if (!$email) {
@@ -152,6 +242,7 @@ class User_Controller extends Base_Controller
 			redirect('home/index');
 		}
 	}
+
 	// view form
 	public function add()
 	{

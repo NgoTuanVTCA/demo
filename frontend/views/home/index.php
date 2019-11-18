@@ -63,26 +63,29 @@
     <div class="container">
         <div class="row">
             <div class="title-section mb-5 col-12">
-                <h2 class="text-uppercase">SẢN PHẨM NỔI BẬT</h2>
+                <h2 class="text-uppercase">SẢN PHẨM MỚI</h2>
             </div>
         </div>
         <div class="row">
+
             <!-- foreach sản phẩm mới đăng -->
-            <div class="col-lg-4 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                    <img src="<?php echo IMG_URL . 'prod_2.png' ?>" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Gray Shoe</a></h2>
-                <strong class="item-price">$20.00</strong>
-            </div>
-            <div class="col-lg-4 col-md-6 item-entry mb-4">
+
+            <?php foreach ($products as $product) : ?>
+                <div class="col-lg-4 col-md-6 item-entry mb-4">
+                    <a href="#" class="product-item md-height bg-gray d-block">
+                        <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
+                    </a>
+                    <h2 class="item-title"><a href="#"><?php echo $product['name']?></a></h2>
+                    <strong class="item-price"><?php echo $product['price']?></strong>
+                </div>
+            <?php endforeach; ?>
+            <!-- <div class="col-lg-4 col-md-6 item-entry mb-4">
                 <a href="#" class="product-item md-height bg-gray d-block">
                     <img src="<?php echo IMG_URL . 'prod_3.png' ?>" alt="Image" class="img-fluid">
                 </a>
                 <h2 class="item-title"><a href="#">Blue Shoe High Heels</a></h2>
                 <strong class="item-price"><del>$46.00</del> $28.00</strong>
             </div>
-
             <div class="col-lg-4 col-md-6 item-entry mb-4">
                 <a href="#" class="product-item md-height bg-gray d-block">
                     <img src="<?php echo IMG_URL . 'model_5.png' ?>" alt="Image" class="img-fluid">
@@ -110,7 +113,7 @@
                 </a>
                 <h2 class="item-title"><a href="#">Yellow Jacket</a></h2>
                 <strong class="item-price">$58.00</strong>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

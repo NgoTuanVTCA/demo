@@ -15,7 +15,7 @@
                         <span><?php echo $errors['address']; ?></span>
                     </div>
                     <div class="question">
-                        <input type="number" name="phone_number" required />
+                        <input type="text" name="phone_number" required />
                         <label>Số điện thoại</label>
                         <span><?php echo $errors['phone_number']; ?></span>
                     </div>
