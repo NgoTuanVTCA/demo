@@ -42,7 +42,7 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="logo">
                         <div class="site-logo">
-                            <a href="<?php echo base_url("home/index") ?>" class="js-logo-clone">VTC Store</a>
+                            <a href="<?php echo base_url("home/index") ?>"><img src="<?php echo IMG_URL.'logo.png'?>" alt="logo" width="100px" height="auto"></a>
                         </div>
                     </div>
                     <div class="main-nav d-none d-lg-block">

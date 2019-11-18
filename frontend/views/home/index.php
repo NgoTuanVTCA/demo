@@ -13,7 +13,22 @@
         </div>
     </div>
 </div>
-
+<div class="site-blocks-cover inner-page py-5 aos-init aos-animate" data-aos="fade">
+    <div class="container" style="border: 2px solid;">
+        <div class="row">
+            <div class="col-md-6 ml-auto order-md-2 align-self-start">
+                <div class="site-block-cover-content">
+                    <h2 class="sub-title">Từ ngày 20/11 - 27/11 giảm 50%</h2>
+                    <h1>Mua ngay tại cửa hàng</h1>
+                    <p><a href="#" class="btn btn-black rounded-0">Shop Now</a></p>
+                </div>
+            </div>
+            <div class="col-md-6 order-1 align-self-end">
+                <img src="<?php echo IMG_URL . 'model_6.png' ?>" alt="Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
 <div class="site-section">
     <div class="container">
         <div class="title-section mb-5">
