@@ -28,7 +28,7 @@
                 <div class="container">
                     <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
                     <form action="contact.html" method="post">
-                        <input type="text" class="form-control" placeholder="Search keyword and hit enter...">
+                        <input type="text" class="form-control" placeholder="Nhập tên sản phẩm...">
                     </form>
                 </div>
             </div>
@@ -86,14 +86,14 @@
                                         <a class="icons-btn d-inline-block"><b>Chào <?php echo $_SESSION['name'] ?></b></a>
                                         <ul class="dropdown">
                                             <li><a href="<?php echo base_url('user/profile') ?>">Thông tin cá nhân</a></li>
-                                            <li><a href="<?php echo base_url('home/transaction_history'); ?>">Thay đổi mật khẩu</a></li>
+                                            <li><a href="<?php echo base_url('user/password'); ?>">Thay đổi mật khẩu</a></li>
                                             <li><a href="<?php echo base_url('home/transaction_history'); ?>">Lịch sử giao dịch</a></li>
                                             <small>-----------------------------------------</small>
                                             <li><a href="<?php echo base_url('user/handle_logout') ?>">Đăng xuất</a></li>
                                         </ul>
                                     </li>
                                 <?php endif; ?>
-                                <li><a href="cart.html" class="icons-btn d-inline-block bag">
+                                <li><a href="<?php echo base_url('product/cart')?>" class="icons-btn d-inline-block bag">
                                         <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
                                         <span class="number">2</span>
                                     </a></li>

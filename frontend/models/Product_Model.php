@@ -3,9 +3,9 @@ class Product_Model extends Base_Model
 {
 	protected $table = 'products';
 
-	function find_limit_by_time()
+	function find_by_new_products()
 	{
-		$query = "select * from {$this->table} where created_at >= current_timestamp - interval 7 day and current_timestamp limit 6";
+		$query = "select * from {$this->table} order by id desc";
 		$sth = $this->db->prepare($query);
 		$sth->execute();
 		$data = $sth->fetchAll(PDO::FETCH_ASSOC);

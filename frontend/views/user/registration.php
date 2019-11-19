@@ -23,6 +23,7 @@
                         <input type="email" name="email" required />
                         <label>Email</label>
                         <?php echo $errors['email']; ?>
+                        <?php echo $error_message; ?>
                     </div>
                     <div class="question">
                         <input type="password" name="password" required />

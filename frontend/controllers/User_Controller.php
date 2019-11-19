@@ -64,7 +64,7 @@ class User_Controller extends Base_Controller
 	}
 	public function password()
 	{
-		// show profile
+		// show change password
 
 		if (!$_SESSION['email']) {
 			redirect('user/login');
@@ -146,7 +146,7 @@ class User_Controller extends Base_Controller
 			]);
 		} else {
 			$user = $this->model->user->get_by_email($email);
-			if (password_verify($password, $user['password']) == true) {
+			if ($email == $user['email'] && password_verify($password, $user['password']) == true) {
 				if ($user['role'] == 2) {
 					$_SESSION['id'] = $user['id'];
 					$_SESSION['email'] = $user['email'];
@@ -228,18 +228,25 @@ class User_Controller extends Base_Controller
 				'errors' => $errors
 			]);
 		} else {
-			$role = 2;
-			$password = hash_password($password);
-			$user = $this->model->user->create([
-				'name' => $name,
-				'address' => $address,
-				'phone_number' => $phone_number,
-				'email' => $email,
-				'password' => $password,
-				'role' => $role
-			]);
-			$_SESSION['name'] = $user['name'];
-			redirect('home/index');
+			$user = $this->model->user->get_by_email($email);
+			if ($email != $user['email']) {
+				$role = 2;
+				$password = hash_password($password);
+				$user = $this->model->user->create([
+					'name' => $name,
+					'address' => $address,
+					'phone_number' => $phone_number,
+					'email' => $email,
+					'password' => $password,
+					'role' => $role
+				]);
+				$_SESSION['name'] = $user['name'];
+				redirect('home/index');
+			} else {
+				$this->view->load('user/registration', [
+					'error_message' => 'Email đã được đăng ký'
+				]);
+			}
 		}
 	}
 

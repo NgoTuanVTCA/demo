@@ -10,7 +10,8 @@ class Home_Controller extends Base_Controller
 	{
 		// show home
 
-		$products = $this->model->product->find_limit_by_time();
+		// $products = $this->model->product->find_limit_by_time();
+		$products = $this->model->product->find_by_new_products();
 		$this->view->load('home/index', [
 			'products' => $products
 		]);

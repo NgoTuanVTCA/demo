@@ -30,6 +30,11 @@ class Product_Controller extends Base_Controller
 		]);
 	}
 
+	public function cart(){
+		$this->view->load('product/cart');
+	}
+
+
 	public function add()
 	{
 		// trang them san pham

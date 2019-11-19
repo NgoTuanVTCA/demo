@@ -28,6 +28,7 @@
         </div>
     </div>
 </div>
+
 <div class="site-section">
     <div class="container">
         <div class="title-section mb-5">
@@ -59,122 +60,102 @@
         </div>
     </div>
 </div>
+
 <div class="site-section">
     <div class="container">
         <div class="row">
-            <div class="title-section mb-5 col-12">
-                <h2 class="text-uppercase">SẢN PHẨM MỚI</h2>
-            </div>
-        </div>
-        <div class="row">
-
-            <!-- foreach sản phẩm mới đăng -->
-
-            <?php foreach ($products as $product) : ?>
-                <div class="col-lg-4 col-md-6 item-entry mb-4">
-                    <a href="#" class="product-item md-height bg-gray d-block">
-                        <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
-                    </a>
-                    <h2 class="item-title"><a href="#"><?php echo $product['name']?></a></h2>
-                    <strong class="item-price"><?php echo $product['price']?></strong>
-                </div>
-            <?php endforeach; ?>
-            <!-- <div class="col-lg-4 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                    <img src="<?php echo IMG_URL . 'prod_3.png' ?>" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Blue Shoe High Heels</a></h2>
-                <strong class="item-price"><del>$46.00</del> $28.00</strong>
-            </div>
-            <div class="col-lg-4 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                    <img src="<?php echo IMG_URL . 'model_5.png' ?>" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Denim Jacket</a></h2>
-                <strong class="item-price"><del>$46.00</del> $28.00</strong>
-            </div>
-            <div class="col-lg-4 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                    <img src="<?php echo IMG_URL . 'prod_1.png' ?>" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Leather Green Bag</a></h2>
-                <strong class="item-price"><del>$46.00</del> $28.00</strong>
-            </div>
-            <div class="col-lg-4 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                    <img src="<?php echo IMG_URL . 'model_1.png' ?>" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Smooth Cloth</a></h2>
-                <strong class="item-price"><del>$46.00</del> $28.00</strong>
-            </div>
-            <div class="col-lg-4 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                    <img src="<?php echo IMG_URL . 'model_7.png' ?>" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Yellow Jacket</a></h2>
-                <strong class="item-price">$58.00</strong>
-            </div> -->
-        </div>
-    </div>
-</div>
-
-<!-- <div class="site-section">
-    <div class="container">
-        <div class="row">
-            <div class="title-section text-center mb-5 col-12">
-                <h2 class="text-uppercase">ĐÁNH GIÁ NHẤT</h2>
+            <div class="title-section text-center col-12">
+                <h2 class="text-uppercase">Bộ sưu tập VEST mới</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 block-3">
                 <div class="nonloop-block-3 owl-carousel">
-                    <div class="item">
-                        <div class="item-entry">
-                            <a href="#" class="product-item md-height bg-gray d-block">
-                                <img src="<?php echo IMG_URL . 'model_1.png' ?>" alt="Image" class="img-fluid">
-                            </a>
-                            <h2 class="item-title"><a href="#">Smooth Cloth</a></h2>
-                            <strong class="item-price"><del>$46.00</del> $28.00</strong>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="item-entry">
-                            <a href="#" class="product-item md-height bg-gray d-block">
-                                <img src="<?php echo IMG_URL . 'prod_3.png' ?>" alt="Image" class="img-fluid">
-                            </a>
-                            <h2 class="item-title"><a href="#">Blue Shoe High Heels</a></h2>
-                            <strong class="item-price"><del>$46.00</del> $28.00</strong>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="item-entry">
-                            <a href="#" class="product-item md-height bg-gray d-block">
-                                <img src="<?php echo IMG_URL . 'model_5.png' ?>" alt="Image" class="img-fluid">
-                            </a>
-                            <h2 class="item-title"><a href="#">Denim Jacket</a></h2>
-                            <strong class="item-price"><del>$46.00</del> $28.00</strong>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="item-entry">
-                            <a href="#" class="product-item md-height bg-gray d-block">
-                                <img src="<?php echo IMG_URL . 'prod_1.png' ?>" alt="Image" class="img-fluid">
-                            </a>
-                            <h2 class="item-title"><a href="#">Leather Green Bag</a></h2>
-                            <strong class="item-price"><del>$46.00</del> $28.00</strong>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="item-entry">
-                            <a href="#" class="product-item md-height bg-gray d-block">
-                                <img src="<?php echo IMG_URL . 'model_7.png' ?>" alt="Image" class="img-fluid">
-                            </a>
-                            <h2 class="item-title"><a href="#">Yellow Jacket</a></h2>
-                            <strong class="item-price">$58.00</strong>
-                        </div>
-                    </div>
+                    <?php foreach ($products as $product) : ?>
+                        <?php if ($product['categories_id'] == 1) : ?>
+                            <div class="item">
+                                <div class="item-entry">
+                                    <a href="#" class="product-item md-height bg-gray d-block">
+                                        <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
+                                    </a>
+                                    <h2 class="item-title"><a href="#"><?php echo $product['name'] ?></a></h2>
+                                    <p class="item-price"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></p>
+                                </div>
+                            </div>
+                            <?php $count += 1; ?>
+                            <?php if ($count == 6) : ?>
+                                <?php break; ?>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
     </div>
-</div> -->
+</div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="title-section text-center col-12">
+                <h2 class="text-uppercase">Bộ sưu tập Áo Da mới</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 block-3">
+                <div class="nonloop-block-3 owl-carousel">
+                    <?php foreach ($products as $product) : ?>
+                        <?php if ($product['categories_id'] == 7) : ?>
+                            <div class="item">
+                                <div class="item-entry">
+                                    <a href="#" class="product-item md-height bg-gray d-block">
+                                        <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
+                                    </a>
+                                    <h2 class="item-title"><a href="#"><?php echo $product['name'] ?></a></h2>
+                                    <p class="item-price"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></p>
+                                </div>
+                            </div>
+                            <?php $count_vest += 1; ?>
+                            <?php if ($count_vest == 6) : ?>
+                                <?php break; ?>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="title-section text-center col-12">
+                <h2 class="text-uppercase">Bộ sưu tập Sơ Mi mới</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 block-3">
+                <div class="nonloop-block-3 owl-carousel">
+                    <?php foreach ($products as $product) : ?>
+                        <?php if ($product['categories_id'] == 2) : ?>
+                            <div class="item">
+                                <div class="item-entry">
+                                    <a href="#" class="product-item md-height bg-gray d-block">
+                                        <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
+                                    </a>
+                                    <h2 class="item-title"><a href="#"><?php echo $product['name'] ?></a></h2>
+                                    <p class="item-price"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></p>
+                                </div>
+                            </div>
+                            <?php $count_sowmi += 1; ?>
+                            <?php if ($count_sowmi == 6) : ?>
+                                <?php break; ?>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
