@@ -1289,6 +1289,7 @@ a:hover {
 .product-item.md-height {
   height: 400px;
   padding: 40px;
+  padding-top: 0;
 }
 
 #vest {

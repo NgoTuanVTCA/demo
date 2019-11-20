@@ -64,7 +64,7 @@
 <div class="site-section">
     <div class="container">
         <div class="row">
-            <div class="title-section text-center col-12">
+            <div class="title-section text-center col-12 p-5">
                 <h2 class="text-uppercase">Bộ sưu tập VEST mới</h2>
             </div>
         </div>
@@ -75,10 +75,10 @@
                         <?php if ($product['categories_id'] == 1) : ?>
                             <div class="item">
                                 <div class="item-entry">
-                                    <a href="#" class="product-item md-height bg-gray d-block">
+                                    <a href="<?php echo base_url("product/show?id={$product['id']}") ?>" class="product-item md-height bg-gray d-block">
                                         <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
                                     </a>
-                                    <h2 class="item-title"><a href="#"><?php echo $product['name'] ?></a></h2>
+                                    <h2 class="item-title"><a href="<?php echo base_url("product/show?id={$product['id']}") ?>"><?php echo $product['name'] ?></a></h2>
                                     <p class="item-price"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></p>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
 <div class="site-section">
     <div class="container">
         <div class="row">
-            <div class="title-section text-center col-12">
+            <div class="title-section text-center col-12 p-5">
                 <h2 class="text-uppercase">Bộ sưu tập Áo Da mới</h2>
             </div>
         </div>
@@ -108,10 +108,10 @@
                         <?php if ($product['categories_id'] == 7) : ?>
                             <div class="item">
                                 <div class="item-entry">
-                                    <a href="#" class="product-item md-height bg-gray d-block">
+                                    <a href="<?php echo base_url("product/show?id={$product['id']}") ?>" class="product-item md-height bg-gray d-block">
                                         <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
                                     </a>
-                                    <h2 class="item-title"><a href="#"><?php echo $product['name'] ?></a></h2>
+                                    <h2 class="item-title"><a href="<?php echo base_url("product/show?id={$product['id']}") ?>"><?php echo $product['name'] ?></a></h2>
                                     <p class="item-price"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></p>
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
 <div class="site-section">
     <div class="container">
         <div class="row">
-            <div class="title-section text-center col-12">
+            <div class="title-section text-center col-12 p-5">
                 <h2 class="text-uppercase">Bộ sưu tập Sơ Mi mới</h2>
             </div>
         </div>
@@ -141,10 +141,10 @@
                         <?php if ($product['categories_id'] == 2) : ?>
                             <div class="item">
                                 <div class="item-entry">
-                                    <a href="#" class="product-item md-height bg-gray d-block">
+                                    <a href="<?php echo base_url("product/show?id={$product['id']}") ?>" class="product-item md-height bg-gray d-block">
                                         <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
                                     </a>
-                                    <h2 class="item-title"><a href="#"><?php echo $product['name'] ?></a></h2>
+                                    <h2 class="item-title"><a href="<?php echo base_url("product/show?id={$product['id']}") ?>"><?php echo $product['name'] ?></a></h2>
                                     <p class="item-price"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></p>
                                 </div>
                             </div>

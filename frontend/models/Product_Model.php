@@ -12,4 +12,13 @@ class Product_Model extends Base_Model
 		$sth->closeCursor();
 		return $data;
 	}
+
+	function search_products($name)
+	{
+		$query = "select * from products like name = '%:name%' ";
+		$sth = $this->db->prepare($query);
+		$sth->execute([
+			':name' => $name
+		]);
+	}
 }

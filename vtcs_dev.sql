@@ -27,7 +27,9 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `products`
 --
-
+ drop database vtcs_dev;
+ create database vtcs_dev;
+ use vtcs_dev;
 CREATE TABLE `products` (
   `id` bigint(20) NOT NULL,
   `categories_id` bigint(20) NOT NULL,
@@ -43,6 +45,7 @@ CREATE TABLE `products` (
 --
 -- Dumping data for table `products`
 --
+SELECT * FROM products where categories_id = '1' order by id desc;
 
 INSERT INTO `products` (`id`, `categories_id`, `brand_id`, `name`, `price`, `image`, `quantity`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 'Áo Vest Đen Cổ Sẫm (NEW)', 2000000, 'vest/AO VEST DEN CO SAM (NEW).jpg', 1, '2019-11-09 12:46:25', '2019-11-09 12:46:25'),

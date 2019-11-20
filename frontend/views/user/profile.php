@@ -17,7 +17,7 @@
 					<a href="<?php echo base_url("user/password"); ?>">Thay đổi mật khẩu</a>
 				</li>
 				<li class="list-group-item">
-					<a href="<?php echo base_url('home/transaction_history'); ?>">Lịch sử giao dịch</a>
+					<a href="<?php echo base_url('order/transaction_history'); ?>">Lịch sử giao dịch</a>
 				</li>
 			</ul>
 		</div>

@@ -27,17 +27,16 @@
             <div class="search-wrap">
                 <div class="container">
                     <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
-                    <form action="contact.html" method="post">
+                    <form action="#" method="post">
                         <input type="text" class="form-control" placeholder="Nhập tên sản phẩm...">
                     </form>
                 </div>
             </div>
-
             <div class="container">
-                <a id="calltrap-btn" class="b-calltrap-btn calltrap_offline hidden-phone visible-tablet" href="tel:0866707982">
+                <a id="calltrap-btn" class="b-calltrap-btn calltrap_offline hidden-phone visible-tablet" href="tel:19001008">
                     <div id="calltrap-ico"></div>
                     <div id="box-title">
-                        <p>Hotline:0866.707.982</p>
+                        <p>Hotline:19001008</p>
                     </div>
                 </a>
                 <div class="d-flex align-items-center justify-content-between">
@@ -87,7 +86,7 @@
                                         <ul class="dropdown">
                                             <li><a href="<?php echo base_url('user/profile') ?>">Thông tin cá nhân</a></li>
                                             <li><a href="<?php echo base_url('user/password'); ?>">Thay đổi mật khẩu</a></li>
-                                            <li><a href="<?php echo base_url('home/transaction_history'); ?>">Lịch sử giao dịch</a></li>
+                                            <li><a href="<?php echo base_url('order/transaction_history'); ?>">Lịch sử giao dịch</a></li>
                                             <small>-----------------------------------------</small>
                                             <li><a href="<?php echo base_url('user/handle_logout') ?>">Đăng xuất</a></li>
                                         </ul>
@@ -160,7 +159,7 @@
                                 <label for="email_subscribe" class="footer-heading">Hãy đăng ký để nhận được thông tin mới nhất</label>
                                 <div class="form-group">
                                     <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Nhập email...">
-                                    <input type="submit" class="btn btn-sm btn-primary" value="Send">
+                                    <input type="submit" class="btn btn-sm btn-primary" value="Gửi">
                                 </div>
                             </form>
                         </div>
