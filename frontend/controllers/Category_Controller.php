@@ -4,8 +4,6 @@ class Category_Controller extends Base_Controller
 	public function __construct()
 	{
 		parent::__construct();
-
-		$this->model->load('Post', 'post');
 	}
 
 	// show all posts
@@ -13,12 +11,14 @@ class Category_Controller extends Base_Controller
 	{ }
 
 	// show post detail
-	public function show()
+	public function show_product()
 	{
 		$id = getParameter('id');
-		$data = [
-			'post' => $this->model->post->find_by_id($id)
-		];
-		$this->view->load('post/show', $data);
+		$category = $this->model->category->find_by_id($id);
+		$products = $this->model->product->find();
+		$this->view->load('category/show_product', [
+			'category' => $category,
+			'products' => $products
+		]);
 	}
 }

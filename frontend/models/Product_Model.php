@@ -21,4 +21,13 @@ class Product_Model extends Base_Model
 			':name' => $name
 		]);
 	}
+
+	function search_category_products($id)
+	{
+		$query = "select * from products where categories_id = :categories_id";
+		$sth = $this->db->prepare($query);
+		$sth->execute([
+			':categories' => $id
+		]);
+	}
 }

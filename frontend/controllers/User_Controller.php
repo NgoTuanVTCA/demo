@@ -175,7 +175,7 @@ class User_Controller extends Base_Controller
 		session_start();
 		unset($_SESSION['name']);
 		session_destroy();
-		redirect('user/login');
+		redirect('home/index');
 	}
 
 	public function registration()

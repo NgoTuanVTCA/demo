@@ -1,7 +1,13 @@
 <div class="bg-light py-3">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <a href="shop.html">Shop</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Gray Shoe</strong></div>
+            <div class="col-md-12 mb-0">
+                <a href="<?php echo base_url("home/index") ?>">Trang chủ</a>
+                <span class="mx-2 mb-0">/</span>
+                <a href="#"><?php echo $category['name'] ?></a>
+                <span class="mx-2 mb-0">/</span>
+                <strong class="text-black"><?php echo $product['name'] ?></strong>
+            </div>
         </div>
     </div>
 </div>
@@ -22,18 +28,15 @@
                 <p class="mb-4">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
                 <p><strong class="text-primary h4"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></strong></p>
                 <div class="mb-1 d-flex">
-                    <label for="option-sm" class="d-flex mr-3 mb-3">
-                        <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-sm" name="shop-sizes"></span> <span class="d-inline-block text-black">Small</span>
-                    </label>
-                    <label for="option-md" class="d-flex mr-3 mb-3">
-                        <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-md" name="shop-sizes"></span> <span class="d-inline-block text-black">Medium</span>
-                    </label>
-                    <label for="option-lg" class="d-flex mr-3 mb-3">
-                        <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-lg" name="shop-sizes"></span> <span class="d-inline-block text-black">Large</span>
-                    </label>
-                    <label for="option-xl" class="d-flex mr-3 mb-3">
-                        <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-xl" name="shop-sizes"></span> <span class="d-inline-block text-black"> Extra Large</span>
-                    </label>
+                    <?php foreach ($product_size as $product_size) : ?>
+                        <?php foreach ($sizes as $size) : ?>
+                            <?php if ($product_size['size_id'] == $size['id']) : ?>
+                                <label for="option-sm" class="d-flex mr-3 mb-3">
+                                    <button class="btn btn-outline-primary js-btn-plus" type=""> <?php echo $size['name']; ?></button>
+                                </label>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </div>
                 <div class="mb-5">
                     <div class="input-group mb-3" style="max-width: 120px;">
@@ -45,11 +48,45 @@
                             <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
                         </div>
                     </div>
-
                 </div>
-                <p><a href="cart.html" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a></p>
-
+                <p><a href="cart.html" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Thêm vào giỏ hàng</a></p>
             </div>
+            <div class="col-md-6">
+                <br>
+                <form action="<? echo base_url("comment/store&id={$product['id']}") ?>" method="post">
+                    <div class="form-group comment">
+                        <label for="form-href">Bình luận:</label>
+                        <input type="text" class="form-control" name="comment" id="form-href" placeholder="Bình luận......">
+
+                        <div>
+                            <?php if (!$_SESSION['name']) : ?>
+                                * <a href="<? echo base_url('user/login') ?>">Đăng nhập</a> hoặc <a href="<? echo base_url('user/registration') ?>">Đăng ký</a> để bình luận
+                            <?php else : ?>
+                                <p><?php echo $_SESSION['name'];    ?></p>
+                                <div class="buttoncomment">
+                                    <br>
+                                    <button class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary" type="submit">Bình luận</button>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <br>
+        </div>
+        <div class="displaycomment">
+            <?php foreach ($comments as $comment) : ?>
+                <?php foreach ($users as $user) : ?>
+                    <?php if ($comment['product_id'] == $product['id']) : ?>
+                        <?php if ($comment['user_id'] == $user['id']) : ?>
+                            <div>
+                                <?php echo $user['name'] . '    :     ' . $comment['content'] . '     <br>      ' . $comment['created_at'];
+                                                echo '<hr>'; ?>
+                            </div>
+                        <? endif; ?>
+                    <? endif; ?>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>

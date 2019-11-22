@@ -116,10 +116,13 @@ class Base_Model
 	// update a record by id
 	function update_by_id($id, $data = [])
 	{
+		var_dump($id);
+		var_dump($data);
 		if (!$id || count($data) == 0) {
 			return;
 		}
 		$data += get_update_time();
+		var_dump($data);
 		// auto gen values and fiels from a array
 		$result = gen_update_fields_form_array($data);
 		$query = "update `{$this->table}` set {$result->field_string} where `id` = {$id} ";
@@ -127,6 +130,7 @@ class Base_Model
 			$this->db->beginTransaction();
 			$sth = $this->db->prepare($query);
 			$sth->execute($result->bind_values);
+			var_dump($result);
 			$this->db->commit();
 			return true;
 		} catch (PDOExecption $e) {

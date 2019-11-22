@@ -48,25 +48,17 @@
                     <div class="main-nav d-none d-lg-block">
                         <nav class="site-navigation text-right text-md-center" role="navigation">
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
-                                <li><a href="shop.html"><b>VEST</b></a></li>
-                                <li><a href="contact.html"><b>ÁO DA</b></a></li>
-                                <li><a href="#"><b>SƠ MI</b></a></li>
-                                <li><a href="#"><b>QUẦN ÂU</b></a></li>
-                                <li><a href="contact.html"><b>GIÀY DA</b></a></li>
+                                <li><a href="<?php echo base_url("category/show_product?id=1"); ?>"><b>VEST</b></a></li>
+                                <li><a href="<?php echo base_url("category/show_product?id=7"); ?>"><b>ÁO DA</b></a></li>
+                                <li><a href="<?php echo base_url("category/show_product?id=2"); ?>"><b>SƠ MI</b></a></li>
+                                <li><a href="<?php echo base_url("category/show_product?id=8"); ?>"><b>QUẦN ÂU</b></a></li>
+                                <li><a href="<?php echo base_url("category/show_product?id=6"); ?>"><b>GIÀY DA</b></a></li>
                                 <li class="has-children active">
-                                    <a href="index.html"><b>PHỤ KIỆN VEST</b></a>
+                                    <a href=""><b>PHỤ KIỆN VEST</b></a>
                                     <ul class="dropdown">
-                                        <li><a href="#"><b>CARAVAT</b></a></li>
-                                        <li><a href="#"><b>NƠ</b></a></li>
-                                        <li><a href="#"><b>KHĂN CÀI VEST</b></a></li>
-                                        <!-- <li class="has-children">
-                                            <a href="#">Sub Menu</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Menu One</a></li>
-                                                <li><a href="#">Menu Two</a></li>
-                                                <li><a href="#">Menu Three</a></li>
-                                            </ul>
-                                        </li> -->
+                                        <li><a href="<?php echo base_url("category/show_product?id=3"); ?>"><b>CARAVAT</b></a></li>
+                                        <li><a href="<?php echo base_url("category/show_product?id=4"); ?>"><b>NƠ</b></a></li>
+                                        <li><a href="<?php echo base_url("category/show_product?id=5"); ?>"><b>KHĂN CÀI VEST</b></a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -92,7 +84,7 @@
                                         </ul>
                                     </li>
                                 <?php endif; ?>
-                                <li><a href="<?php echo base_url('product/cart')?>" class="icons-btn d-inline-block bag">
+                                <li><a href="<?php echo base_url('product/cart') ?>" class="icons-btn d-inline-block bag">
                                         <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
                                         <span class="number">2</span>
                                     </a></li>

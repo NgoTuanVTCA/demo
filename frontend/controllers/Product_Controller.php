@@ -11,26 +11,36 @@ class Product_Controller extends Base_Controller
 		// trang danh sach san pham
 		$products = $this->model->product->find();
 		$this->view->load('product/index', [
-			'products' => $products
+			'products' => $products,
 		]);
 	}
-	
+
 	public function show()
 	{
 		// trang chi tiet san pham
 
 		$id = getGetParameter('id');
+		
 		$product = $this->model->product->find_by_id($id);
+
+		$category = $this->model->category->find_by_id($product['categories_id']);
+		$product_size = $this->model->product_size->find_by_product_size_id($product['id']);
+		$sizes = $this->model->size->find();
 		$comments = $this->model->comment->find();
 		$users = $this->model->user->find();
 		$this->view->load('product/show', [
 			'product' => $product,
 			'comments' => $comments,
-			'users' => $users
+			'category' => $category,
+			'users' => $users,
+			'sizes' => $sizes,
+			'product_size' => $product_size
+
 		]);
 	}
 
-	public function cart(){
+	public function cart()
+	{
 		$this->view->load('product/cart');
 	}
 
@@ -48,6 +58,7 @@ class Product_Controller extends Base_Controller
 
 		$name = getParameter('name');
 		$price = getParameter('price');
+		$filename = getParameter($_FILES['image']);
 
 		$errors = [];
 
@@ -78,6 +89,7 @@ class Product_Controller extends Base_Controller
 		}
 	}
 
+
 	public function edit()
 	{
 		// trang sua san pham
@@ -88,13 +100,5 @@ class Product_Controller extends Base_Controller
 	{
 		// xu li sua san pham
 
-	}
-
-	public function destroy()
-	{
-		// xu li xoa san pham
-		$id = getParameter('id');
-		$this->model->product->destroy($id);
-		redirect('product/index');
 	}
 }

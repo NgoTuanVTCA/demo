@@ -18,7 +18,7 @@
                     </div>
                     <p class="button">
                         <a href="#recover" id="RecoverPassword">Quên mật khẩu?</a>
-                        <a href="<?php echo base_url('user/registration') ?>" id="registration">Đăng kí</a>
+                        <a href="<?php echo base_url('user/registration') ?>" id="registration">Đăng ký</a>
                     </p><br>
                     <p class="button ml-auto"><button type="submit">Đăng nhập</button></p>
                 </form>

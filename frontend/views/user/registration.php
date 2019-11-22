@@ -5,7 +5,7 @@
                 <form class="form-content" action="<?php echo base_url('user/handle_registration') ?>" method="post">
                     <h3><b>Tạo tài khoản</b></h3>
                     <div class="question">
-                        <input type="text" name="name" required />
+                        <input type="text" name="name"  required />
                         <label>Họ và Tên</label>
                         <span><?php echo $errors['name']; ?></span>
                     </div>
