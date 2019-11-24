@@ -4,7 +4,7 @@
             <div class="col-md-12 mb-0">
                 <a href="<?php echo base_url("home/index") ?>">Trang chủ</a>
                 <span class="mx-2 mb-0">/</span>
-                <a href="#"><?php echo $category['name'] ?></a>
+                <a href="<?php echo base_url("category/show_product?id={$category['id']}")?>"><?php echo $category['name'] ?></a>
                 <span class="mx-2 mb-0">/</span>
                 <strong class="text-black"><?php echo $product['name'] ?></strong>
             </div>

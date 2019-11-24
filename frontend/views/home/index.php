@@ -139,7 +139,7 @@
                                 <a href="<?php echo base_url("product/show?id={$product['id']}") ?>" class="item-entry">
                                     <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid"> <br>
                                     <h2 class="item-title"><?php echo $product['name'] ?></h2>
-                                    <small class="item-price"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></small>
+                                    <p class="item-price"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></p>
                                 </a>
                             </div>
                             <?php $count_sowmi += 1; ?>

@@ -5,32 +5,27 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container mt-5">
   <?php
   $numOfCols = 3;
   $rowCount = 0;
   $bootstrapColWidth = 12 / $numOfCols;
   ?>
-  <div class="row">
-    <?php
-    foreach ($category as $category) {
-      foreach ($products as $products) {
-        if ($category['id'] == $products['categories_id']) {
-          ?>
-          <div class="col-md-<?php echo $bootstrapColWidth; ?>">
-            <div class="thumbnail">
-              <img src="<?php echo PRODUCT_URL . $products['image'] ?>" alt="Image" class="img-fluid">
-              </a>
-              <h2 class="item-title"><a href="<?php echo base_url("product/show&id={$products['id']}") ?>"><?php echo $products['name']; ?></a></h2>
-              <strong class="item-price"><?php echo $products['price'] . ' ' . 'VND'; ?></strong>
-            </div>
+  <div class="row mb-5">
+      <?php foreach ($products as $product) : ?>
+        <?php if ($category['id'] == $product['categories_id']) : ?>
+          <div class="col-lg-4 col-md-4 item-entry mb-4">
+            <a href="<?php echo base_url("product/show?id={$product['id']}") ?>" class="item-entry">
+              <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
+              <h2 class="item-title"><?php echo $product['name']; ?></h2>
+              <p class="item-price"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></p>
+            </a>
           </div>
+        <?php endif; ?>
+      <?php endforeach; ?>
     <?php
-          $rowCount++;
-          if ($rowCount % $numOfCols == 0) echo '</div><div class="row">';
-        }
-      }
-    }
+    $rowCount++;
+    if ($rowCount % $numOfCols == 0) echo '</div><div class="row">';
     ?>
   </div>
 </div>
