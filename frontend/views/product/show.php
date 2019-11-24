@@ -17,10 +17,11 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="item-entry">
-                    <a href="#" class="product-item md-height bg-gray d-block">
+                    <a href="#product_detail" class="product-item md-height bg-gray d-block">
                         <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
                     </a>
                 </div>
+                <a href="#1" class="lightbox trans" id="product_detail"><img src="<?php echo PRODUCT_URL . $product['image'] ?>"></a>
             </div>
             <div class="col-md-6">
                 <h2 class="text-black"><?php echo $product['name'] ?></h2>
@@ -55,16 +56,16 @@
                 <br>
                 <form action="<? echo base_url("comment/store&id={$product['id']}") ?>" method="post">
                     <div class="form-group comment">
-                        <label for="form-href">Bình luận:</label>
-                        <input type="text" class="form-control" name="comment" id="form-href" placeholder="Bình luận......">
-
                         <div>
                             <?php if (!$_SESSION['name']) : ?>
-                                * <a href="<? echo base_url('user/login') ?>">Đăng nhập</a> hoặc <a href="<? echo base_url('user/registration') ?>">Đăng ký</a> để bình luận
+                                <label for="form-href">Bình luận:</label>
+                                <input type="text" class="form-control" name="comment" id="form-href" disabled>
+                                <label >Hãy <a href="<?php echo base_url('user/login') ?>">Đăng nhập</a> để bình luận</label>
                             <?php else : ?>
-                                <p><?php echo $_SESSION['name'];    ?></p>
+                                <label for="form-href">Bình luận:</label>
+                                <input type="text" class="form-control" name="comment" id="form-href" placeholder="Bình luận......" require>
+                                <p><?php echo $_SESSION['name']; ?></p>
                                 <div class="buttoncomment">
-                                    <br>
                                     <button class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary" type="submit">Bình luận</button>
                                 </div>
                             <?php endif; ?>
@@ -80,11 +81,11 @@
                     <?php if ($comment['product_id'] == $product['id']) : ?>
                         <?php if ($comment['user_id'] == $user['id']) : ?>
                             <div>
-                                <?php echo $user['name'] . '    :     ' . $comment['content'] . '     <br>      ' . $comment['created_at'];
+                                <?php echo $user['name'] . ' : ' . $comment['content'] . '<br>' . $comment['created_at'];
                                                 echo '<hr>'; ?>
                             </div>
-                        <? endif; ?>
-                    <? endif; ?>
+                        <?php endif; ?>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             <?php endforeach; ?>
         </div>

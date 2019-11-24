@@ -22,7 +22,6 @@ class Product_Controller extends Base_Controller
 		$id = getGetParameter('id');
 		
 		$product = $this->model->product->find_by_id($id);
-
 		$category = $this->model->category->find_by_id($product['categories_id']);
 		$product_size = $this->model->product_size->find_by_product_size_id($product['id']);
 		$sizes = $this->model->size->find();

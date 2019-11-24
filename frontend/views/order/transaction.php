@@ -22,18 +22,21 @@
 			</ul>
 		</div>
 		<div class="col-sm-9">
-			<?php echo $successfully; ?>
 			<h3>Lịch sử giao dịch</h3>
 			<div class="border-bottom"></div>
-			<? if ($orders == null) : ?>
+			<? if (count($orders) == 0) : ?>
 				<p class="text-center mt-4">------------------------------------------------------------------------------------</p>
 				<h3 class="text-center"><a href="<?php echo base_url("home/index"); ?>">Bạn chưa mua hàng lần nào</a></h3>
 				<p class="text-center">------------------------------------------------------------------------------------</p>
 			<? else : ?>
 				<?php foreach ($orders as $order) : ?>
-					<?php if($user['id'] == $order['id']):?>
-						
-					<?php endif;?>
+					<?php if ($_SESSION['id'] == $order['user_id']) : ?>
+						<?php echo 'id order' . $order['id'] . '<br>' ?>
+						<?php echo 'id partner' . $order['partner_id'] . '<br>' ?>
+						<?php echo 'status' . $order['status'] . '<br>' ?>
+						<?php $order['created_at'] = date_format($order['created_at'], 'd/m/Y H:i:s'); ?>
+						<?php echo 'date' . $order['created_at'] . '<br>' ?>
+					<?php endif; ?>
 				<?php endforeach; ?>
 			<? endif; ?>
 		</div>

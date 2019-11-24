@@ -8,23 +8,23 @@ class Comment_Controller extends Base_Controller
 	public function store()
 	{
 		// process comment
-		$comment = getParameter('comment');
+		$product_id = getParameter('id');
 		$userid = $_SESSION['id'];
-		$proid = getParameter('id');
+		$comment = getParameter('comment');
 		$errors = [];
 
 		if (!$comment) {
 			$errors['comment'] = "vui lòng nhập bình luận";
 		}
 		if (count($errors) > 0) {
-			redirect("product/show&id={$proid['id']}");
+			redirect("product/show&id={$product_id}");
 		} else {
 			$this->model->comment->create([
 				'user_id' => $userid,
-				'product_id' => $proid,
+				'product_id' => $product_id,
 				'content' => $comment
 			]);
-			redirect("product/show&id={$proid['id']}");
+			redirect("product/show&id={$product_id}");
 		}
 	}
 }

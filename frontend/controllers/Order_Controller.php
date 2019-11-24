@@ -44,42 +44,22 @@ class Order_Controller extends Base_Controller
 		$id = getParameter('id');
 		var_dump($id);
 		$status = getPostParameter('status');
-		// $errors = [];
 
-		// if (!$name) {
-		// 	$errors['name_err'] = 'Vui lòng nhập tên đối tác';
-		// }
-		// if (!$address) {
-		// 	$errors['address_err'] = 'Vui long nhap địa chỉ';
-		// }
-		// if (!$phone_number) {
-		// 	$errors['phone_err'] = 'Vui lòng nhập số điện thoại';
-		// }
-		// // if (!$email) {
-		// // 	$errors['email_err'] = 'Vui lòng nhập email';
-		// // }
-		// if (!$area) {
-		// 	$errors['area_err'] = 'Vui lòng chọn khu vực hoạt động';
-		// }
-
-		// if (count($errors) > 0) {
-		// 	$this->layout->set('auth_layout');
-		// 	$this->view->load('order/edit', [
-		// 		'errors' => $errors
-		// 	]);
-			// redirect("partner/edit?id={$id}");
-		// } else {
-			$order = $this->model->order->update_by_id($id,[
-				'status' => $status
+		$order = $this->model->order->update_by_id($id, [
+			'status' => $status
+		]);
+		if ($order) {
+			redirect('order/check');
+		} else {
+			$this->view->load('order/check', [
+				'error_message' => 'Cập nhật không thành công'
 			]);
-			if ($order) {
-				redirect('order/check');
-			} else {
-				// $this->layout->set('auth_layout');
-				$this->view->load('order/check', [
-					'error_message' => 'Cập nhật không thành công'
-				]);
-			}
-		// }
+		}
+	}
+	public function transaction_history(){
+		$orders = $this->model->order->get_order_by_user($_SESSION['id']);
+		$this->view->load('order/transaction', [
+			'orders' => $orders
+		]);
 	}
 }

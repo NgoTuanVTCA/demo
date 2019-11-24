@@ -4,7 +4,7 @@
 <head>
     <title>VTC Store &mdash; Colorlib e-Commerce Template</title>
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="<?php echo IMG_URL . 'logo.png' ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo IMG_URL . 'logo2.png' ?>" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
     <link rel="stylesheet" href="<?php echo FONTS_URL . 'icomoon/style.css' ?>">
@@ -42,7 +42,7 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="logo">
                         <div class="site-logo">
-                            <a href="<?php echo base_url("home/index") ?>"><img src="<?php echo IMG_URL . 'logo.png' ?>" alt="logo" width="100px" height="auto"></a>
+                            <a href="<?php echo base_url("home/index") ?>"><img src="<?php echo IMG_URL . 'logo2.png' ?>" alt="logo" width="100px" height="auto"></a>
                         </div>
                     </div>
                     <div class="main-nav d-none d-lg-block">

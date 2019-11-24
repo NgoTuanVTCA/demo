@@ -41,7 +41,8 @@
                         </span>
                     </div>
                     <p class="button">
-                        <a href="<?php echo base_url('user/login') ?>" id="registration"><b>Đăng nhập </b></a> <span> /</span>
+                        <a href="<?php echo base_url('user/login') ?>" id="registration"><b>Đăng nhập </b></a>
+                        <small> /</small>
                         <button type="submit">Đăng ký</button>
                     </p>
                 </form>

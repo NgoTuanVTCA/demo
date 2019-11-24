@@ -1,5 +1,3 @@
-
-
 .info, .change-name, .change-input {
     display: block;
     margin: 0 10px 10px 10px;
@@ -87,10 +85,10 @@ input[type="submit"] {
     padding: 10px;
     cursor: pointer;
 }
-input{
+
+input {
     color: #333333;
 }
-
 
 input[type="submit"]:active {
     background: #999;
@@ -116,8 +114,6 @@ input[type="submit"]:active {
         opacity: 1;
     }
 }
-
-
 
 .transition, .form-content button, .form-content .question label, .form-content .question input[type="text"], .form-content .question input[type="number"], .form-content .question input[type="email"], .form-content .question input[type="password"] {
     -moz-transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
@@ -151,15 +147,15 @@ input[type="submit"]:active {
 
 .form-content button {
     margin-top: 18px;
-    background-color: white;
-    border: 2px solid black;
+    background-color: black;
+    border: 2px solid black; 
     line-height: 0;
     font-size: 17px;
     display: inline-block;
     box-sizing: border-box;
     padding: 20px 15px;
     border-radius: 60px;
-    color: black;
+    color: white;
     font-weight: 100;
     letter-spacing: 0.01em;
     position: relative;
@@ -168,7 +164,8 @@ input[type="submit"]:active {
 
 .form-content button:hover, .form-content button:focus {
     color: white;
-    background-color: black;
+    background-color: #333333;
+    border: 2px solid #333333;
     cursor: pointer;
 }
 
