@@ -56,10 +56,13 @@ class Order_Controller extends Base_Controller
 			]);
 		}
 	}
-	public function transaction_history(){
+	public function transaction_history()
+	{
 		$orders = $this->model->order->get_order_by_user($_SESSION['id']);
+		$partners = $this->model->partner->find();
 		$this->view->load('order/transaction', [
-			'orders' => $orders
+			'orders' => $orders,
+			'partners' => $partners
 		]);
 	}
 }

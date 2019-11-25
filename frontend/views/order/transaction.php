@@ -29,15 +29,30 @@
 				<h3 class="text-center"><a href="<?php echo base_url("home/index"); ?>">Bạn chưa mua hàng lần nào</a></h3>
 				<p class="text-center">------------------------------------------------------------------------------------</p>
 			<? else : ?>
-				<?php foreach ($orders as $order) : ?>
-					<?php if ($_SESSION['id'] == $order['user_id']) : ?>
-						<?php echo 'id order' . $order['id'] . '<br>' ?>
-						<?php echo 'id partner' . $order['partner_id'] . '<br>' ?>
-						<?php echo 'status' . $order['status'] . '<br>' ?>
-						<?php $order['created_at'] = date_format($order['created_at'], 'd/m/Y H:i:s'); ?>
-						<?php echo 'date' . $order['created_at'] . '<br>' ?>
-					<?php endif; ?>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">Mã đơn hàng</th>
+							<th scope="col">Đối tác giao</th>
+							<th scope="col">Trạng thái</th>
+							<th scope="col">Ngày tạo</th>
+						</tr>
+					</thead>
+					<?php foreach ($orders as $order) : ?>
+						<?php foreach ($partners as $partner) : ?>
+							<tr>
+								<?php if ($_SESSION['id'] == $order['user_id']) : ?>
+									<?php if ($partner['id'] == $order['partner_id']) : ?>
+										<td> <?php echo $order['id'] ?> </td>
+										<td> <?php echo $partner['name'] ?></td>
+										<td> <?php echo $order['status'] ?> </td>
+										<td> <?php echo $order['created_at'] ?> </td>
+									<?php endif; ?>
+							</tr>
+						<?php endif; ?>
+					<?php endforeach; ?>
 				<?php endforeach; ?>
+				</table>
 			<? endif; ?>
 		</div>
 	</div>
