@@ -4,7 +4,7 @@
             <div class="col-md-12 mb-0">
                 <a href="<?php echo base_url("home/index") ?>">Trang chủ</a>
                 <span class="mx-2 mb-0">/</span>
-                <a href="<?php echo base_url("category/show_product?id={$category['id']}")?>"><?php echo $category['name'] ?></a>
+                <a href="<?php echo base_url("category/show_product?id={$category['id']}") ?>"><?php echo $category['name'] ?></a>
                 <span class="mx-2 mb-0">/</span>
                 <strong class="text-black"><?php echo $product['name'] ?></strong>
             </div>
@@ -28,16 +28,31 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, vitae, explicabo? Incidunt facere, natus soluta dolores iusto! Molestiae expedita veritatis nesciunt doloremque sint asperiores fuga voluptas, distinctio, aperiam, ratione dolore.</p>
                 <p class="mb-4">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
                 <p><strong class="text-primary h4"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></strong></p>
-                <div class="mb-1 d-flex">
+                <div id="label" class="mb-1 d-flex">
                     <?php foreach ($product_size as $product_size) : ?>
                         <?php foreach ($sizes as $size) : ?>
                             <?php if ($product_size['size_id'] == $size['id']) : ?>
                                 <label for="option-sm" class="d-flex mr-3 mb-3">
-                                    <button class="btn btn-outline-primary js-btn-plus" type=""> <?php echo $size['name']; ?></button>
+                                    <button class="btn btn-outline-primary js-btn-plus a"> <?php echo $size['name']; ?></button>
                                 </label>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     <?php endforeach; ?>
+                    <script>
+                        var label = document.getElementById("label");
+                        var btns = label.getElementsByClassName("a");
+                        for (var i = 0; i < btns.length; i++) {
+                            btns[i].addEventListener("click", function() {
+                                var current = document.getElementsByClassName("active");
+                                
+                                if (current.length > 0) {
+                                    
+                                    current[1].className = current[1].className.replace(" active", "");
+                                }
+                                this.className += " active";
+                            });
+                        }
+                    </script>
                 </div>
                 <div class="mb-5">
                     <div class="input-group mb-3" style="max-width: 120px;">
@@ -60,7 +75,7 @@
                             <?php if (!$_SESSION['name']) : ?>
                                 <label for="form-href">Bình luận:</label>
                                 <input type="text" class="form-control" name="comment" id="form-href" disabled>
-                                <label >Hãy <a href="<?php echo base_url('user/login') ?>">Đăng nhập</a> để bình luận</label>
+                                <label>Hãy <a href="<?php echo base_url('user/login') ?>">Đăng nhập</a> để bình luận</label>
                             <?php else : ?>
                                 <label for="form-href">Bình luận:</label>
                                 <input type="text" class="form-control" name="comment" id="form-href" placeholder="Bình luận......" require>

@@ -32,10 +32,10 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th scope="col">Mã đơn hàng</th>
-							<th scope="col">Đối tác giao</th>
-							<th scope="col">Trạng thái</th>
-							<th scope="col">Ngày tạo</th>
+							<th scope="col" style="text-align: center;">Mã đơn hàng</th>
+							<th scope="col" style="text-align: center;">Đối tác giao hàng</th>
+							<th scope="col" style="text-align: center;">Trạng thái</th>
+							<th scope="col" style="text-align: center;">Ngày tạo</th>
 						</tr>
 					</thead>
 					<?php foreach ($orders as $order) : ?>
