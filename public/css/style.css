@@ -1345,6 +1345,10 @@ a:hover {
   color: gray;
 }
 
+.img-fluid:hover {
+  opacity: 0.7;;
+}
+
 .item-entry .item-price {
   color: #000;
   font-weight: bold;

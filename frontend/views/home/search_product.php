@@ -9,7 +9,7 @@
 <div class="container mt-5">
     <div class="row mb-5">
         <?php foreach ($products as $product) : ?>
-            <div class="col-lg-4 col-md-4 item-entry mb-4">
+            <div class="col-lg-4 col-md-4 mb-4">
                 <a href="<?php echo base_url("product/show?id={$product['id']}") ?>" class="item-entry">
                     <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
                     <h2 class="item-title"><?php echo $product['name']; ?></h2>
