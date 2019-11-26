@@ -18,18 +18,19 @@
             </div>
         <?php endforeach; ?>
     </div>
+    <? var_dump($name) ?>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             <li class="page-item">
-                <a class="page-link" href="<?php echo base_url("home/search") . '&pageno=1' ?>">&lt;&lt;</a></li>
+                <a class="page-link" href="<?php echo base_url("home/search&name={$name}") . '&pageno=1' ?>">&lt;&lt;</a></li>
             <li class="page-item <?php if ($pageno <= 1) echo 'disabled'; ?>">
                 <a class="page-link" href="<?php if ($pageno <= 1) echo '#';
-                                            else echo base_url("home/search") . '&pageno=' . ($pageno - 1); ?>">&lt;</a></li>
+                                            else echo base_url("home/search&name={$name}") . '&pageno=' . ($pageno - 1); ?>">&lt;</a></li>
             <li class="page-item <?php if ($pageno >= $total_pages) echo 'disabled'; ?>">
                 <a class="page-link" href="<?php if ($pageno >= $total_pages) echo '#';
-                                            else echo base_url("home/search") . '&pageno=' . ($pageno + 1); ?>">&gt;</a>
+                                            else echo base_url("home/search&name={$name}") . '&pageno=' . ($pageno + 1); ?>">&gt;</a>
             </li>
-            <li class="page-item"><a class="page-link" href="<?php echo base_url("home/search") . '&pageno=' . $total_pages; ?>">&gt;&gt;</a></li>
+            <li class="page-item"><a class="page-link" href="<?php echo base_url("home/search&name={$name}") . '&pageno=' . $total_pages; ?>">&gt;&gt;</a></li>
             <li class="page-item disabled"><a class="page-link"><? echo $pageno ?>/<? echo $total_pages ?></a></li>
         </ul>
     </nav>

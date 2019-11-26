@@ -19,7 +19,7 @@ class Home_Controller extends Base_Controller
 
 		// search products
 
-		$name = getPostParameter('name');
+		$name = getParameter('name');
 		$pageno = getParameter('pageno');
 
 		if (getParameter('pageno')) {
@@ -28,15 +28,19 @@ class Home_Controller extends Base_Controller
 			$pageno = 1;
 		}
 
-		$no_of_records_per_page = 12;
+		$no_of_records_per_page = 9;
 		$offset = ($pageno - 1) * $no_of_records_per_page;
-		
-		$products = $this->model->product->pagination($name,$offset, $no_of_records_per_page);
-		$total_pages = count($products);
+
+		$searchs = $this->model->product->search_products($name);
+		$total_rows = count($searchs);
+		$total_pages = ceil($total_rows / $no_of_records_per_page);
+		$products = $this->model->product->pagination($name, $offset, $no_of_records_per_page);
+
 		$this->view->load('home/search_product', [
 			'pageno' => $pageno,
 			'total_pages' => $total_pages,
-			'products' => $products
+			'products' => $products,
+			'name' => $name
 		]);
 	}
 }
