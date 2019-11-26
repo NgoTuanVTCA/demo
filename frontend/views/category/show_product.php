@@ -6,26 +6,42 @@
   </div>
 </div>
 <div class="container mt-5">
-  <?php
-  $numOfCols = 3;
-  $rowCount = 0;
-  $bootstrapColWidth = 12 / $numOfCols;
-  ?>
   <div class="row mb-5">
-      <?php foreach ($products as $product) : ?>
-        <?php if ($category['id'] == $product['categories_id']) : ?>
-          <div class="col-lg-4 col-md-4 item-entry mb-4">
-            <a href="<?php echo base_url("product/show?id={$product['id']}") ?>" class="item-entry">
-              <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
-              <h2 class="item-title"><?php echo $product['name']; ?></h2>
-              <p class="item-price"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></p>
-            </a>
-          </div>
-        <?php endif; ?>
-      <?php endforeach; ?>
-    <?php
-    $rowCount++;
-    if ($rowCount % $numOfCols == 0) echo '</div><div class="row">';
-    ?>
+    <?php foreach ($products as $product) : ?>
+      <?php if ($category['id'] == $product['categories_id']) : ?>
+        <div class="col-lg-4 col-md-4 item-entry mb-4">
+          <a href="<?php echo base_url("product/show?id={$product['id']}") ?>" class="item-entry">
+            <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
+            <h2 class="item-title"><?php echo $product['name']; ?></h2>
+            <p class="item-price"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></p>
+          </a>
+        </div>
+      <?php endif; ?>
+    <?php endforeach; ?>
   </div>
+  <? echo 'page' . $pageno ?>
+  <? echo 'category' . $category['id'] ?>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item"><a class="page-link" href="<?php echo base_url("category/show_product&id={$category['id']}") . '&pageno=1' ?>">
+          <<</a> </li> <li class="page-item <?php if ($pageno <= 1) {
+                                              echo base_url("category/show_product&id={$category['id']}") . 'disabled';
+                                            } ?>">
+            <a class="page-link" href="<?php if ($pageno <= 1) {
+                                          echo '#';
+                                        } else {
+                                          echo base_url("category/show_product&id={$category['id']}") . '&pageno=' . ($pageno - 1);
+                                        } ?>">
+              <</a> </li> <li class="page-item <?php if ($pageno >= $total_pages) {
+                                                  echo 'disabled';
+                                                } ?>">
+                <a class="page-link" href="<?php if ($pageno >= $total_pages) {
+                                              echo '#';
+                                            } else {
+                                              echo base_url("category/show_product&id={$category['id']}") . '&pageno=' . ($pageno + 1);
+                                            } ?>">></a>
+      </li>
+      <li class="page-item"><a class="page-link" href="<?php echo base_url("category/show_product&id={$category['id']}") . '&pageno=' . $total_pages; ?>">>></a></li>
+    </ul>
+  </nav>
 </div>
