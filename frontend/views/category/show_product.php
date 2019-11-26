@@ -19,29 +19,19 @@
       <?php endif; ?>
     <?php endforeach; ?>
   </div>
-  <? echo 'page' . $pageno ?>
-  <? echo 'category' . $category['id'] ?>
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-      <li class="page-item"><a class="page-link" href="<?php echo base_url("category/show_product&id={$category['id']}") . '&pageno=1' ?>">
-          <<</a> </li> <li class="page-item <?php if ($pageno <= 1) {
-                                              echo base_url("category/show_product&id={$category['id']}") . 'disabled';
-                                            } ?>">
-            <a class="page-link" href="<?php if ($pageno <= 1) {
-                                          echo '#';
-                                        } else {
-                                          echo base_url("category/show_product&id={$category['id']}") . '&pageno=' . ($pageno - 1);
-                                        } ?>">
-              <</a> </li> <li class="page-item <?php if ($pageno >= $total_pages) {
-                                                  echo 'disabled';
-                                                } ?>">
-                <a class="page-link" href="<?php if ($pageno >= $total_pages) {
-                                              echo '#';
-                                            } else {
-                                              echo base_url("category/show_product&id={$category['id']}") . '&pageno=' . ($pageno + 1);
-                                            } ?>">></a>
+      <li class="page-item">
+        <a class="page-link" href="<?php echo base_url("category/show_product&id={$category['id']}") . '&pageno=1' ?>">&lt;&lt;</a></li>
+      <li class="page-item <?php if ($pageno <= 1) echo 'disabled'; ?>">
+        <a class="page-link" href="<?php if ($pageno <= 1) echo '#';
+                                    else echo base_url("category/show_product&id={$category['id']}") . '&pageno=' . ($pageno - 1); ?>">&lt;</a></li>
+      <li class="page-item <?php if ($pageno >= $total_pages) echo 'disabled'; ?>">
+        <a class="page-link" href="<?php if ($pageno >= $total_pages) echo '#';
+                                    else echo base_url("category/show_product&id={$category['id']}") . '&pageno=' . ($pageno + 1); ?>">&gt;</a>
       </li>
-      <li class="page-item"><a class="page-link" href="<?php echo base_url("category/show_product&id={$category['id']}") . '&pageno=' . $total_pages; ?>">>></a></li>
+      <li class="page-item"><a class="page-link" href="<?php echo base_url("category/show_product&id={$category['id']}") . '&pageno=' . $total_pages; ?>">&gt;&gt;</a></li>
+      <li class="page-item disabled"><a class="page-link"><? echo $pageno ?>/<? echo $total_pages ?></a></li>
     </ul>
   </nav>
 </div>

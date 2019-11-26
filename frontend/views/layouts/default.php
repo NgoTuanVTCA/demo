@@ -27,8 +27,8 @@
             <div class="search-wrap">
                 <div class="container">
                     <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
-                    <form action="#" method="post">
-                        <input type="text" class="form-control" placeholder="Nhập tên sản phẩm...">
+                    <form action="<?php echo base_url('home/search')?>" method="post">
+                        <input name="name" type="text" class="form-control" placeholder="Nhập tên sản phẩm...">
                     </form>
                 </div>
             </div>

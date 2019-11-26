@@ -22,13 +22,13 @@ class Category_Controller extends Base_Controller
 			$pageno = 1;
 		}
 
-		$no_of_records_per_page = 12;
+		$no_of_records_per_page = 9;
 		$offset = ($pageno - 1) * $no_of_records_per_page;
 
 		$category = $this->model->category->find_by_id($id);
-		$total_pages = $this->model->product->count($no_of_records_per_page);
-		$products = $this->model->product->pagination($category['id'], $offset, $no_of_records_per_page);
-		// var_dump($products);
+		$total_pages = $this->model->product->count_by_category($category['id'],$no_of_records_per_page);
+		$products = $this->model->product->pagination_by_category($category['id'], $offset, $no_of_records_per_page);
+		
 		$this->view->load("category/show_product", [
 			'category' => $category,
 			'products' => $products,

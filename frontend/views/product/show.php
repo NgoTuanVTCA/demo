@@ -27,6 +27,7 @@
                 <h2 class="text-black"><?php echo $product['name'] ?></h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, vitae, explicabo? Incidunt facere, natus soluta dolores iusto! Molestiae expedita veritatis nesciunt doloremque sint asperiores fuga voluptas, distinctio, aperiam, ratione dolore.</p>
                 <p class="mb-4">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
+                <p><b>Loại sản phẩm : <?php echo $category['name'] ?></b></p>
                 <p><strong class="text-primary h4"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></strong></p>
                 <div id="label" class="mb-1 d-flex">
                     <?php foreach ($product_size as $product_size) : ?>
@@ -44,9 +45,9 @@
                         for (var i = 0; i < btns.length; i++) {
                             btns[i].addEventListener("click", function() {
                                 var current = document.getElementsByClassName("active");
-                                
+
                                 if (current.length > 0) {
-                                    
+
                                     current[1].className = current[1].className.replace(" active", "");
                                 }
                                 this.className += " active";

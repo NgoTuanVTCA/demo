@@ -9,6 +9,7 @@ class Base_Model
 		$this->db_connect();
 	}
 
+	// connect db
 	function db_connect()
 	{
 		if (!empty($this->db)) {
@@ -139,6 +140,8 @@ class Base_Model
 		}
 		return false;
 	}
+	
+	// delete a record
 	function destroy($id)
 	{
 		$query = "delete from `{$this->table}` where `id` = :id";
@@ -146,31 +149,5 @@ class Base_Model
 		$sth->execute([
 			':id' => $id
 		]);
-	}
-
-	function count($no_of_records_per_page)
-	{
-		$count_sql = "select count(*) as total from `{$this->table}`";
-		$sth = $this->db->prepare($count_sql);
-		$sth->execute();
-		$rows = $sth->fetchAll();
-		$sth->closeCursor();
-
-		$total_rows = $rows[0]['total'];
-
-		$total_pages = ceil($total_rows / $no_of_records_per_page);
-		return $total_pages;
-	}
-
-	function pagination($category_id, $offset, $no_of_records_per_page)
-	{
-		$query = "select * from `{$this->table}` where `categories_id`= :categories_id limit $no_of_records_per_page offset $offset";
-		$sth = $this->db->prepare($query);
-		$sth->execute([
-			':categories_id' => $category_id
-		]);
-		$data = $sth->fetchAll(PDO::FETCH_ASSOC);
-		$sth->closeCursor();
-		return $data;
 	}
 }

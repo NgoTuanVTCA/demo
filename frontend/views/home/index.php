@@ -41,20 +41,20 @@
             <div class="col-lg-8">
                 <div class="product-item sm-height full-height bg-gray">
                     <h1>Vest</h1>
-                    <a href="<?php echo base_url("category/show_product?id=1"); ?>" class="product-category"><span>Xem thêm</span></a>
+                    <a href="<?php echo base_url("category/show_product?id=1"); ?>" class="product-category"><span>Xem.thêm</span></a>
                     <img src="<?php echo IMG_URL . 'vest.png' ?>" alt="Image" class="img-fluid" id="vest">
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="product-item sm-height bg-gray mb-4">
                     <h1>Áo Da</h1>
-                    <a href="<?php echo base_url("category/show_product?id=7"); ?>" class="product-category"><span>Xem thêm</span></a>
-                    <img src="<?php echo IMG_URL . 'ao_da.png' ?>" alt="Image" >
+                    <a href="<?php echo base_url("category/show_product?id=7"); ?>" class="product-category"><span>Xem.thêm</span></a>
+                    <img src="<?php echo IMG_URL . 'ao_da.png' ?>" alt="Image" class="img-fluid" id="ao_da">
                 </div>
                 <div class="product-item sm-height bg-gray">
                     <h1>Sơ Mi</h1>
-                    <a href="<?php echo base_url("category/show_product?id=2"); ?>" class="product-category"><span>Xem thêm</span></a>
-                    <img src="<?php echo IMG_URL . 'so_mi.png' ?>" alt="Image" class="img-fluid">
+                    <a href="<?php echo base_url("category/show_product?id=2"); ?>" class="product-category"><span>Xem.thêm</span></a>
+                    <img src="<?php echo IMG_URL . 'so_mi.png' ?>" alt="Image" class="img-fluid" id="so_mi">
                 </div>
             </div>
         </div>
