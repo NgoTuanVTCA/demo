@@ -71,39 +71,44 @@
             <div class="col-md-6">
                 <br>
                 <form action="<? echo base_url("comment/store&id={$product['id']}") ?>" method="post">
-                    <div class="form-group comment">
+                    <div class="form-content">
                         <div>
                             <?php if (!$_SESSION['name']) : ?>
-                                <label for="form-href">Bình luận:</label>
-                                <input type="text" class="form-control" name="comment" id="form-href" disabled>
-                                <label>Hãy <a href="<?php echo base_url('user/login') ?>">Đăng nhập</a> để bình luận</label>
-                            <?php else : ?>
-                                <label for="form-href">Bình luận:</label>
-                                <input type="text" class="form-control" name="comment" id="form-href" placeholder="Bình luận......" require>
-                                <p><?php echo $_SESSION['name']; ?></p>
-                                <div class="buttoncomment">
-                                    <button class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary" type="submit">Bình luận</button>
+                                <div class="question">
+                                    <label>Bình luận:</label>
+                                    <input type="text" class="form-control border-0" name="comment" id="form-href" disabled>
+                                    <label>Hãy <a href="<?php echo base_url('user/login') ?>">Đăng nhập</a> để bình luận</label>
                                 </div>
+                                <br>
+                            <?php else : ?>
+                                <div class="question">
+                                    <label>Bình luận:</label>
+                                    <input type="text" name="comment" placeholder="Bình luận......" require>
+                                    <p><?php echo $_SESSION['name']; ?></p>
+                                    <div class="buttoncomment">
+                                        <button class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary" type="submit">Bình luận</button>
+                                    </div>
+                                </div>
+                                <br>
                             <?php endif; ?>
                         </div>
                     </div>
                 </form>
+                <?php foreach ($comments as $comment) : ?>
+                    <?php foreach ($users as $user) : ?>
+                        <?php if ($comment['product_id'] == $product['id']) : ?>
+                            <?php if ($comment['user_id'] == $user['id']) : ?>
+                                <div class="">
+                                    <p class=""><?php echo $user['name'] . ' : ' . $comment['content'] ?></p>
+                                    <p class=""><?php echo $comment['created_at']; ?></p>
+                                    <hr>
+                                </div>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
             </div>
             <br>
-        </div>
-        <div class="displaycomment">
-            <?php foreach ($comments as $comment) : ?>
-                <?php foreach ($users as $user) : ?>
-                    <?php if ($comment['product_id'] == $product['id']) : ?>
-                        <?php if ($comment['user_id'] == $user['id']) : ?>
-                            <div>
-                                <?php echo $user['name'] . ' : ' . $comment['content'] . '<br>' . $comment['created_at'];
-                                                echo '<hr>'; ?>
-                            </div>
-                        <?php endif; ?>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            <?php endforeach; ?>
         </div>
     </div>
 </div>

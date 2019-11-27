@@ -9,7 +9,7 @@
                         <input type="email" name="email" required />
                         <label>Email</label>
                         <?php echo $errors['email']; ?>
-                    </div>
+                    </div> 
                     <div class="question">
                         <input type="password" name="password" required />
                         <label>Mật khẩu</label>

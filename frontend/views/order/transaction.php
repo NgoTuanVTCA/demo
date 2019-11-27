@@ -25,9 +25,11 @@
 			<h3>Lịch sử giao dịch</h3>
 			<div class="border-bottom"></div>
 			<? if (count($orders) == 0) : ?>
+				<br>
 				<p class="text-center mt-4">------------------------------------------------------------------------------------</p>
 				<h3 class="text-center"><a href="<?php echo base_url("home/index"); ?>">Bạn chưa mua hàng lần nào</a></h3>
 				<p class="text-center">------------------------------------------------------------------------------------</p>
+				<br>
 			<? else : ?>
 				<table class="table table-bordered">
 					<thead>
