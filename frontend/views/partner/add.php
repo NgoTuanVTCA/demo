@@ -5,13 +5,13 @@
 </script>
 
 <div class="form-container">
-    <h2>Add a partner</h2>
+    <h2>Thêm đối tác giao hàng</h2>
 
     <form action="<?php echo base_url('partner/store') ?>" method="post" enctype="multipart/form-data">
         <form>
             <div class="form-row">
                 <div class="form-group col-md-2">
-                    <label for="Name">Name Partner</label>
+                    <label for="Name">Tên đối tác</label>
                     <input type="text" class="form-control" id="Name" name="name" placeholder="Name" required>
                 </div>
             </div>
@@ -26,14 +26,14 @@
 
             <div class="form-row">
                 <div class="form-group col-md-2">
-                    <label for="inputAddress">Address</label>
+                    <label for="inputAddress">Địa chỉ</label>
                     <input type="text" class="form-control" id="inputAddress" name="address" placeholder="Address" required>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-2">
-                    <label for="phone">Phone Number</label>
+                    <label for="phone">Số điện thoại</label>
                     <input type="number" class="form-control" id="phone" name="phone_number" placeholder="Phone Number" required>
                     <?php echo $errors['phone_err']?>
                 </div>

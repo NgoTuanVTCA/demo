@@ -1,10 +1,12 @@
-<div class="bg-light py-3">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 mb-0"><a href="<?php echo base_url("home/index") ?>">Trang chủ</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Thay đổi mật khẩu</strong></div>
+<?php if ($_SESSION['id'] == 2) : ?>
+	<div class="bg-light py-3">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 mb-0"><a href="<?php echo base_url("home/index") ?>">Trang chủ</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Thay đổi mật khẩu</strong></div>
+			</div>
 		</div>
 	</div>
-</div>
+<?php endif; ?>
 <div class="container mt-3 mb-3">
 	<div class="row">
 		<div class="col-sm-3 border-right">
@@ -16,9 +18,11 @@
 				<li class="list-group-item">
 					<a href="<?php echo base_url("user/password"); ?>">Thay đổi mật khẩu</a>
 				</li>
-				<li class="list-group-item">
-					<a href="<?php echo base_url('order/transaction_history'); ?>">Lịch sử giao dịch</a>
-				</li>
+				<?php if ($_SESSION['id'] != 1) : ?>
+					<li class="list-group-item">
+						<a href="<?php echo base_url('order/transaction_history'); ?>">Lịch sử giao dịch</a>
+					</li>
+				<?php endif; ?>
 			</ul>
 		</div>
 		<div class="col-sm-9">

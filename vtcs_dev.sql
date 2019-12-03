@@ -2,8 +2,8 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3208
--- Generation Time: Nov 22, 2019 at 07:34 AM
+-- Host: localhost:7888
+-- Generation Time: Nov 30, 2019 at 08:14 AM
 -- Server version: 5.7.24-log
 -- PHP Version: 7.2.10
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `test`
+-- Database: `vtcs_dev`
 --
 
 -- --------------------------------------------------------
@@ -84,6 +84,34 @@ CREATE TABLE `comments` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `user_id`, `product_id`, `content`, `created_at`, `updated_at`) VALUES
+(1, 17, 4, 'kjshdfkjdfshkjsd', '2019-11-22 16:56:37', '2019-11-22 16:56:37'),
+(2, 17, 93, 'ok', '2019-11-22 17:10:38', '2019-11-22 17:10:38'),
+(3, 17, 9, 'ok', '2019-11-22 17:10:46', '2019-11-22 17:10:46'),
+(4, 17, 1, 'asdasd', '2019-11-22 18:08:58', '2019-11-22 18:08:58'),
+(5, 17, 1, 'asljdalksdj', '2019-11-22 18:09:04', '2019-11-22 18:09:04'),
+(6, 17, 16, 'sdflksjfklsjf', '2019-11-24 18:27:44', '2019-11-24 18:27:44'),
+(7, 17, 16, 'lsdjflsdf', '2019-11-24 18:29:07', '2019-11-24 18:29:07'),
+(8, 17, 16, 'aaaaaa', '2019-11-24 19:54:33', '2019-11-24 19:54:33'),
+(9, 17, 16, 'sdfsdfsdf', '2019-11-24 20:06:31', '2019-11-24 20:06:31'),
+(10, 17, 1, 'ádasdasd', '2019-11-24 20:07:09', '2019-11-24 20:07:09'),
+(11, 17, 16, 'sdfsdf', '2019-11-24 20:07:32', '2019-11-24 20:07:32'),
+(12, 17, 16, 'sdfsdf', '2019-11-24 20:07:59', '2019-11-24 20:07:59'),
+(13, 17, 16, 'lfkjdslkfjslkdf', '2019-11-24 20:08:07', '2019-11-24 20:08:07'),
+(14, 17, 16, 'asdasd', '2019-11-24 23:58:44', '2019-11-24 23:58:44'),
+(15, 17, 16, 'aaaaaaaaaaaaaaa', '2019-11-24 23:58:53', '2019-11-24 23:58:53'),
+(16, 17, 2, 'aaaa', '2019-11-25 02:20:18', '2019-11-25 02:20:18'),
+(17, 17, 5, 'ahihi', '2019-11-25 14:15:31', '2019-11-25 14:15:31'),
+(18, 17, 31, 'đẹp đấy', '2019-11-27 03:27:53', '2019-11-27 03:27:53'),
+(19, 17, 2, 'uuuuuuuuuuuuu', '2019-11-27 03:35:18', '2019-11-27 03:35:18'),
+(20, 17, 92, 'kjasdkljaf', '2019-11-27 14:17:16', '2019-11-27 14:17:16'),
+(21, 17, 93, 'skdlfjdsklfjlksdjflsdjflksdjlkfjsdfjdslkfjksdjfklsdjfklsfd', '2019-11-27 14:25:01', '2019-11-27 14:25:01'),
+(22, 17, 93, 'ksdjfskldjfklsd', '2019-11-27 14:27:54', '2019-11-27 14:27:54');
+
 -- --------------------------------------------------------
 
 --
@@ -92,24 +120,23 @@ CREATE TABLE `comments` (
 
 CREATE TABLE `orders` (
   `id` bigint(20) NOT NULL,
-  `brand_id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `partner_id` bigint(20) NOT NULL,
   `status` varchar(50) NOT NULL,
   `created_at` datetime NOT NULL,
-  `update_at` datetime DEFAULT NULL
+  `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `brand_id`, `user_id`, `partner_id`, `status`, `created_at`, `update_at`) VALUES
-(1, 1, 17, 1, 'đang xử lí', '2019-11-22 14:32:03', NULL),
-(2, 2, 17, 2, 'đã xử lí', '2019-11-22 14:32:03', NULL),
-(3, 3, 17, 3, 'đang giao', '2019-11-22 14:32:03', NULL),
-(4, 4, 17, 4, 'đã giao', '2019-11-22 14:32:03', NULL),
-(5, 5, 17, 1, 'đã hủy', '2019-11-22 14:32:03', NULL);
+INSERT INTO `orders` (`id`, `user_id`, `partner_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 17, 1, 'đã xử lý', '2019-11-22 14:32:03', '2019-11-22 16:20:04'),
+(2, 17, 2, 'đã xử lí', '2019-11-22 14:32:03', '2019-11-22 16:20:04'),
+(3, 17, 3, 'đang giao', '2019-11-22 14:32:03', '2019-11-22 16:20:04'),
+(4, 17, 4, 'đã giao', '2019-11-22 14:32:03', '2019-11-22 16:20:04'),
+(5, 17, 1, 'đã hủy', '2019-11-22 14:32:03', '2019-11-22 16:20:04');
 
 -- --------------------------------------------------------
 
@@ -141,7 +168,7 @@ CREATE TABLE `partners` (
   `email` varchar(100) NOT NULL,
   `area` varchar(40) NOT NULL,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -149,7 +176,7 @@ CREATE TABLE `partners` (
 --
 
 INSERT INTO `partners` (`id`, `name`, `address`, `phone_number`, `email`, `area`, `created_at`, `updated_at`) VALUES
-(1, 'Công Ty Cổ Phần Giao Nhận & Vận Tải Quốc Tế LACCO', 'Số 19 Nguyễn Trãi, P. Khương Trung, Q. Thanh Xuân,Hà Nội', '0904871800', 'thang.nguyen@lacco.com.vn', 'Nội Thành', '2019-11-18 14:34:49', '2019-11-19 13:54:16'),
+(1, 'asdasd', 'Số 19 Nguyễn Trãi, P. Khương Trung, Q. Thanh Xuân,Hà Nội', '0904871800', 'thang.nguyen@lacco.com.vn', 'Nội Thành', '2019-11-18 14:34:49', '2019-11-22 15:46:08'),
 (2, 'Công Ty Cổ Phần Đầu Tư Thành Mỹ', 'Ngõ 79, Ngọc Hồi, Hoàng Mai,Hà Nội', ' 0986102166', 'thanhmyjsic@gmail.com', 'Ngoại Thành', '2019-11-18 14:34:49', '2019-11-18 14:34:49'),
 (3, ' Công Ty TNHH Vận Tải & Thương Mại Tuấn Mạnh', 'Tổ 21 Xóm Bãi , Phường Thanh Trì, Quận Hoàng Mai,Hà Nội', '0243645289', 'ctytuanmanh@gmail.com', 'Nội Thành', '2019-11-18 14:34:49', '2019-11-18 14:34:49'),
 (4, 'Công Ty TNHH Vận Tải Và Thương Mại Nhật Thiên Hương', '716 Nơ 22, Khu Đô Thị Pháp Vân, Hoàng Liệt, Hoàng Mai,Hà Nội', '0243683072', 'nhatthienhuonglogistics@gmail.com', 'Ngoại Thành', '2019-11-18 14:34:49', '2019-11-18 14:34:49');
@@ -169,7 +196,7 @@ CREATE TABLE `products` (
   `image` varchar(255) NOT NULL,
   `quantity` bigint(20) NOT NULL,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -210,48 +237,48 @@ INSERT INTO `products` (`id`, `categories_id`, `brand_id`, `name`, `price`, `ima
 (31, 2, 1, 'Áo Sơ Mi Nam Cao Cấp Họa Tiết', 650000, 'so_mi/AO SO MI NAM CAO CAP HOA TIET.jpg', 5, '2019-11-15 13:14:57', '2019-11-15 13:14:57'),
 (32, 2, 1, 'Áo Sơ Mi Nam Cao Cấp Kẻ Ghi Sáng', 700000, 'so_mi/AO SO MI NAM CAO CAP KE GHI SANG.jpg', 5, '2019-11-15 13:14:57', '2019-11-15 13:14:57'),
 (33, 3, 1, 'Cà Vạt Đẹp VTCV0013', 350000, 'caravat/CA VAT DEP VTCV0013.jpg', 1, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
-(34, 3, 1, 'Cà Vạt Đẹp VTCV0031', 350000, 'caravat/CA VAT DEP VTCV0031.jpg', 1, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
-(35, 3, 1, 'Cà Vạt Đẹp VTCV0034', 350000, 'caravat/CA VAT DEP VTCV0034.jpg', 1, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
-(36, 3, 1, 'Cà Vạt Đẹp VTCV0038', 350000, 'caravat/CA VAT DEP VTCV0038.jpg', 1, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
-(37, 3, 1, 'Cà Vạt Đẹp VTCV0039', 350000, 'caravat/CA VAT DEP VTCV0039.jpg', 1, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
-(38, 3, 1, 'Cà Vạt Đẹp VTCV0045', 350000, 'caravat/CA VAT DEP VTCV0045.jpg', 1, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
-(39, 3, 1, 'Cà Vạt Đẹp VTCV0046', 350000, 'caravat/CA VAT DEP VTCV0046.jpg', 1, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
-(40, 3, 1, 'Cà Vạt Nam VTCV0011', 350000, 'caravat/CA VAT NAM VTCV0011.jpg', 1, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
-(41, 3, 1, 'Cà Vạt Nam VTCV0012', 350000, 'caravat/CA VAT NAM VTCV0012.jpg', 1, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
-(42, 3, 1, 'Cà Vạt Nam VTCV0018', 350000, 'caravat/CA VAT NAM VTCV0018.jpg', 1, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
-(43, 3, 1, 'Cà Vạt Nam VTCV0027', 350000, 'caravat/CA VAT NAM VTCV0027.jpg', 1, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
-(44, 3, 1, 'Cà Vạt Nam VTCV0028', 350000, 'caravat/CA VAT NAM VTCV0028.jpg', 1, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
-(45, 3, 1, 'Cà Vạt Nam VTCV0041', 350000, 'caravat/CA VAT NAM VTCV0041.jpg', 1, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
-(46, 3, 1, 'Cà Vạt Nam VTCV0048', 350000, 'caravat/CA VAT NAM VTCV0048.jpg', 1, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
-(47, 3, 1, 'Cà Vạt Nam VTCV0049', 350000, 'caravat/CA VAT NAM VTCV0049.jpg', 1, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
-(48, 3, 1, 'Cà Vạt VTCV0038', 350000, 'caravat/CA VAT VTCV0038.jpg', 1, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
-(49, 4, 1, 'Nơ 250', 250000, 'no/NO 250.jpg', 1, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
-(50, 4, 1, 'Nơ Cài VEST VTN0039', 250000, 'no/NO CAI VEST VTN0039.jpg', 1, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
-(51, 4, 1, 'Nơ Cài VEST VTN0040', 250000, 'no/NO CAI VEST VTN0040.jpg', 1, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
-(52, 4, 1, 'Nơ Cài VEST VTN0041', 250000, 'no/NO CAI VEST VTN0041.jpg', 1, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
-(53, 4, 1, 'Nơ Cài VEST VTN0044', 250000, 'no/NO CAI VEST VTN0044.jpg', 1, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
-(54, 4, 1, 'Nơ Cài VEST VTN0045', 250000, 'no/NO CAI VEST VTN0045.jpg', 1, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
-(55, 4, 1, 'Nơ Cài VEST VTN0048', 250000, 'no/NO CAI VEST VTN0048.jpg', 1, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
-(56, 4, 1, 'Nơ Cài VEST VTN0051', 250000, 'no/NO CAI VEST VTN0051.jpg', 1, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
-(57, 4, 1, 'Nơ Cài VEST VTN0052', 250000, 'no/NO CAI VEST VTN0052.jpg', 1, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
-(58, 4, 1, 'Nơ Cài VEST VTN0053', 250000, 'no/NO CAI VEST VTN0053.jpg', 1, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
-(59, 4, 1, 'Nơ Cài VEST VTN0065', 250000, 'no/NO CAI VEST VTN0065.jpg', 1, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
-(60, 5, 1, 'Khăn Áo VEST VTK0025', 150000, 'khan_cai_vest/KHAN AO VEST VTK0025.jpg', 1, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
-(61, 5, 1, 'Khăn Áo VEST VTK0026', 150000, 'khan_cai_vest/KHAN AO VEST VTK0026.jpg', 1, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
-(62, 5, 1, 'Khăn Áo VEST VTK0027', 150000, 'khan_cai_vest/KHAN AO VEST VTK0027.jpg', 1, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
-(63, 5, 1, 'Khăn Áo VEST VTK0028', 150000, 'khan_cai_vest/KHAN AO VEST VTK0028.jpg', 1, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
-(64, 5, 1, 'Khăn Áo VEST VTK0031', 150000, 'khan_cai_vest/KHAN AO VEST VTK0031.jpg', 1, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
-(65, 5, 1, 'Khăn Áo VEST VTK0033', 150000, 'khan_cai_vest/KHAN AO VEST VTK0033.jpg', 1, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
-(66, 5, 1, 'Khăn Áo VEST VTK0034', 150000, 'khan_cai_vest/KHAN AO VEST VTK0034.jpg', 1, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
-(67, 5, 1, 'Khăn Áo VEST VTK0035', 150000, 'khan_cai_vest/KHAN AO VEST VTK0035.jpg', 1, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
-(68, 5, 1, 'Khăn Áo VEST VTK0038', 150000, 'khan_cai_vest/KHAN AO VEST VTK0038.jpg', 1, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
-(69, 5, 1, 'Khăn Áo VEST VTK0039', 150000, 'khan_cai_vest/KHAN AO VEST VTK0039.jpg', 1, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
-(70, 5, 1, 'Khăn Cài Túi Áo VEST VTK0008', 150000, 'khan_cai_vest/KHAN CAI TUI AO VEST VTK0008.jpg', 1, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
-(71, 5, 1, 'Khăn Cài Túi Áo VEST VTK0009', 150000, 'khan_cai_vest/KHAN CAI TUI AO VEST VTK0009.jpg', 1, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
-(72, 5, 1, 'Khăn Cài Túi Áo VEST VTK0011', 150000, 'khan_cai_vest/KHAN CAI TUI AO VEST VTK0011.jpg', 1, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
-(73, 5, 1, 'Khăn Cài Túi Áo VEST VTK0012', 150000, 'khan_cai_vest/KHAN CAI TUI AO VEST VTK0012.jpg', 1, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
-(74, 5, 1, 'Khăn Cài Túi Áo VEST VTK0013', 150000, 'khan_cai_vest/KHAN CAI TUI AO VEST VTK0013.jpg', 1, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
-(75, 5, 1, 'Khăn Cài Túi Áo VEST VTK0014', 150000, 'khan_cai_vest/KHAN CAI TUI AO VEST VTK0014.jpg', 1, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
+(34, 3, 1, 'Cà Vạt Đẹp VTCV0031', 350000, 'caravat/CA VAT DEP VTCV0031.jpg', 5, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
+(35, 3, 1, 'Cà Vạt Đẹp VTCV0034', 350000, 'caravat/CA VAT DEP VTCV0034.jpg', 5, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
+(36, 3, 1, 'Cà Vạt Đẹp VTCV0038', 350000, 'caravat/CA VAT DEP VTCV0038.jpg', 5, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
+(37, 3, 1, 'Cà Vạt Đẹp VTCV0039', 350000, 'caravat/CA VAT DEP VTCV0039.jpg', 5, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
+(38, 3, 1, 'Cà Vạt Đẹp VTCV0045', 350000, 'caravat/CA VAT DEP VTCV0045.jpg', 5, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
+(39, 3, 1, 'Cà Vạt Đẹp VTCV0046', 350000, 'caravat/CA VAT DEP VTCV0046.jpg', 5, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
+(40, 3, 1, 'Cà Vạt Nam VTCV0011', 350000, 'caravat/CA VAT NAM VTCV0011.jpg', 5, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
+(41, 3, 1, 'Cà Vạt Nam VTCV0012', 350000, 'caravat/CA VAT NAM VTCV0012.jpg', 5, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
+(42, 3, 1, 'Cà Vạt Nam VTCV0018', 350000, 'caravat/CA VAT NAM VTCV0018.jpg', 5, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
+(43, 3, 1, 'Cà Vạt Nam VTCV0027', 350000, 'caravat/CA VAT NAM VTCV0027.jpg', 5, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
+(44, 3, 1, 'Cà Vạt Nam VTCV0028', 350000, 'caravat/CA VAT NAM VTCV0028.jpg', 5, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
+(45, 3, 1, 'Cà Vạt Nam VTCV0041', 350000, 'caravat/CA VAT NAM VTCV0041.jpg', 5, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
+(46, 3, 1, 'Cà Vạt Nam VTCV0048', 350000, 'caravat/CA VAT NAM VTCV0048.jpg', 5, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
+(47, 3, 1, 'Cà Vạt Nam VTCV0049', 350000, 'caravat/CA VAT NAM VTCV0049.jpg', 5, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
+(48, 3, 1, 'Cà Vạt VTCV0038', 350000, 'caravat/CA VAT VTCV0038.jpg', 5, '2019-11-15 13:42:47', '2019-11-15 13:42:47'),
+(49, 4, 1, 'Nơ 250', 250000, 'no/NO 250.jpg', 5, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
+(50, 4, 1, 'Nơ Cài VEST VTN0039', 250000, 'no/NO CAI VEST VTN0039.jpg', 5, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
+(51, 4, 1, 'Nơ Cài VEST VTN0040', 250000, 'no/NO CAI VEST VTN0040.jpg', 5, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
+(52, 4, 1, 'Nơ Cài VEST VTN0041', 250000, 'no/NO CAI VEST VTN0041.jpg', 5, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
+(53, 4, 1, 'Nơ Cài VEST VTN0044', 250000, 'no/NO CAI VEST VTN0044.jpg', 5, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
+(54, 4, 1, 'Nơ Cài VEST VTN0045', 250000, 'no/NO CAI VEST VTN0045.jpg', 5, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
+(55, 4, 1, 'Nơ Cài VEST VTN0048', 250000, 'no/NO CAI VEST VTN0048.jpg', 5, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
+(56, 4, 1, 'Nơ Cài VEST VTN0051', 250000, 'no/NO CAI VEST VTN0051.jpg', 5, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
+(57, 4, 1, 'Nơ Cài VEST VTN0052', 250000, 'no/NO CAI VEST VTN0052.jpg', 5, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
+(58, 4, 1, 'Nơ Cài VEST VTN0053', 250000, 'no/NO CAI VEST VTN0053.jpg', 5, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
+(59, 4, 1, 'Nơ Cài VEST VTN0065', 250000, 'no/NO CAI VEST VTN0065.jpg', 5, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
+(60, 5, 1, 'Khăn Cài Túi Áo VEST VTK0025', 150000, 'khan_cai_vest/KHAN AO VEST VTK0025.jpg', 5, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
+(61, 5, 1, 'Khăn Cài Túi Áo VEST VTK0026', 150000, 'khan_cai_vest/KHAN AO VEST VTK0026.jpg', 5, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
+(62, 5, 1, 'Khăn Cài Túi Áo VEST VTK0027', 150000, 'khan_cai_vest/KHAN AO VEST VTK0027.jpg', 5, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
+(63, 5, 1, 'Khăn Cài Túi Áo VEST VTK0028', 150000, 'khan_cai_vest/KHAN AO VEST VTK0028.jpg', 5, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
+(64, 5, 1, 'Khăn Cài Túi Áo VEST VTK0031', 150000, 'khan_cai_vest/KHAN AO VEST VTK0031.jpg', 5, '2019-11-15 13:43:32', '2019-11-15 13:43:32'),
+(65, 5, 1, 'Khăn Cài Túi Áo VEST VTK0033', 150000, 'khan_cai_vest/KHAN AO VEST VTK0033.jpg', 5, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
+(66, 5, 1, 'Khăn Cài Túi Áo VEST VTK0034', 150000, 'khan_cai_vest/KHAN AO VEST VTK0034.jpg', 5, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
+(67, 5, 1, 'Khăn Cài Túi Áo VEST VTK0035', 150000, 'khan_cai_vest/KHAN AO VEST VTK0035.jpg', 5, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
+(68, 5, 1, 'Khăn Cài Túi Áo VEST VTK0038', 150000, 'khan_cai_vest/KHAN AO VEST VTK0038.jpg', 5, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
+(69, 5, 1, 'Khăn Cài Túi Áo VEST VTK0039', 150000, 'khan_cai_vest/KHAN AO VEST VTK0039.jpg', 5, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
+(70, 5, 1, 'Khăn Cài Túi Áo VEST VTK0008', 150000, 'khan_cai_vest/KHAN CAI TUI AO VEST VTK0008.jpg', 5, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
+(71, 5, 1, 'Khăn Cài Túi Áo VEST VTK0009', 150000, 'khan_cai_vest/KHAN CAI TUI AO VEST VTK0009.jpg', 5, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
+(72, 5, 1, 'Khăn Cài Túi Áo VEST VTK0011', 150000, 'khan_cai_vest/KHAN CAI TUI AO VEST VTK0011.jpg', 5, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
+(73, 5, 1, 'Khăn Cài Túi Áo VEST VTK0012', 150000, 'khan_cai_vest/KHAN CAI TUI AO VEST VTK0012.jpg', 5, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
+(74, 5, 1, 'Khăn Cài Túi Áo VEST VTK0013', 150000, 'khan_cai_vest/KHAN CAI TUI AO VEST VTK0013.jpg', 5, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
+(75, 5, 1, 'Khăn Cài Túi Áo VEST VTK0014', 150000, 'khan_cai_vest/KHAN CAI TUI AO VEST VTK0014.jpg', 5, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
 (76, 6, 1, 'Giày Âu Nam Chấm Nhỏ TAG GUCCI', 1650000, 'giay_da/GIAY AU NAM CHAM NHO TAG GUCCI.jpg', 10, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
 (77, 6, 1, 'Giày Âu Nam Đen TAG Trắng VTC STORE', 1650000, 'giay_da/GIAY AU NAM DEN TAG TRANG VTC STORE.jpg', 10, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
 (78, 6, 1, 'Giày Âu Nam Đen Thừng Kép', 1600000, 'giay_da/GIAY AU NAM DEN THUNG KEP.jpg', 10, '2019-11-15 13:43:37', '2019-11-15 13:43:37'),
@@ -268,19 +295,19 @@ INSERT INTO `products` (`id`, `categories_id`, `brand_id`, `name`, `price`, `ima
 (89, 6, 1, 'Giày Lười Da Nam Đen Sần TAG Vàng', 1600000, 'giay_da/GIAY LUOI DA NAM DEN SAN TAG VÀNG.jpg', 10, '2019-11-15 16:04:48', '2019-11-15 16:04:48'),
 (90, 6, 1, 'Giày Lười Nam Đen Bóng TAG Quai Sần', 1650000, 'giay_da/GIAY LUOI NAM DEN BONG TAG QUAI SẦN.jpg', 10, '2019-11-15 16:04:48', '2019-11-15 16:04:48'),
 (91, 6, 1, 'Giày Lười Nam Đen VTC STORE', 1800000, 'giay_da/GIAY LUOI NAM DEN VTC STORE.jpg', 10, '2019-11-15 16:04:48', '2019-11-15 16:04:48'),
-(92, 7, 1, 'Đen Cổ Lông', 1500000, 'ao_da/DEN CO LONG.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
-(93, 7, 1, 'Áo Đen TXVT7258D', 1500000, 'ao_da/DEN TXVT7258D.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
-(94, 7, 1, 'Áo Ghi AKBB909G', 1500000, 'ao_da/GHI AKBB909G.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
-(95, 7, 1, 'Áo Ghi VT9928G', 1500000, 'ao_da/GHI VT9928G.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
-(96, 7, 1, 'Màu Mận Cổ Lông', 1500000, 'ao_da/MAU MAN CO LONG.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
-(97, 7, 1, 'Màu Mận', 1500000, 'ao_da/MAU MAN.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
-(98, 7, 1, 'Áo Nâu VT9912N', 1500000, 'ao_da/NAU VT9912N.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
-(99, 7, 1, 'Áo Nâu VT9915N', 1500000, 'ao_da/NAU VT9915N.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
-(100, 7, 1, 'Áo Nâu VT9918N', 1500000, 'ao_da/NAU VT9918N.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
-(101, 7, 1, 'Áo Trắng AKBB909T', 1500000, 'ao_da/TRANG AKBB909T.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
-(102, 7, 1, 'Áo Trắng AKBB951T', 1500000, 'ao_da/TRANG AKBB951T.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
-(103, 7, 1, 'Áo Xanh 9920X', 1500000, 'ao_da/XANH 9920X.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
-(104, 7, 1, 'Áo Xanh VT9912X', 1500000, 'ao_da/XANH VT9912X.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
+(92, 7, 1, 'Áo Da Đen Cổ Lông', 1500000, 'ao_da/DEN CO LONG.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
+(93, 7, 1, 'Áo Da Đen TXVT7258D', 1500000, 'ao_da/DEN TXVT7258D.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
+(94, 7, 1, 'Áo Da Ghi AKBB909G', 1500000, 'ao_da/GHI AKBB909G.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
+(95, 7, 1, 'Áo Da Ghi VT9928G', 1500000, 'ao_da/GHI VT9928G.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
+(96, 7, 1, 'Áo Da Màu Mận Cổ Lông', 1500000, 'ao_da/MAU MAN CO LONG.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
+(97, 7, 1, 'Áo Da Màu Mận', 1500000, 'ao_da/MAU MAN.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
+(98, 7, 1, 'Áo Da Nâu VT9912N', 1500000, 'ao_da/NAU VT9912N.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
+(99, 7, 1, 'Áo Da Nâu VT9915N', 1500000, 'ao_da/NAU VT9915N.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
+(100, 7, 1, 'Áo Da Nâu VT9918N', 1500000, 'ao_da/NAU VT9918N.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
+(101, 7, 1, 'Áo Da Trắng AKBB909T', 1500000, 'ao_da/TRANG AKBB909T.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
+(102, 7, 1, 'Áo Da Trắng AKBB951T', 1500000, 'ao_da/TRANG AKBB951T.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
+(103, 7, 1, 'Áo Da Xanh 9920X', 1500000, 'ao_da/XANH 9920X.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
+(104, 7, 1, 'Áo Da Xanh VT9912X', 1500000, 'ao_da/XANH VT9912X.jpg', 10, '2019-11-15 17:01:34', '2019-11-15 17:01:34'),
 (105, 8, 1, 'Quần Âu Cao Cấp Kẻ Nhỏ', 700000, 'quan_au/QUAN AU CAO CAP KE NHO.jpg', 1, '2019-11-15 17:46:10', '2019-11-15 17:46:10'),
 (106, 8, 1, 'Quần Âu Cao Cấp Xanh Ánh', 700000, 'quan_au/QUAN AU CAO CAP XANH ANH.jpg', 1, '2019-11-15 17:46:10', '2019-11-15 17:46:10'),
 (107, 8, 1, 'Quần Âu Cao Cấp Xanh Rêu', 600000, 'quan_au/QUAN AU CAO CAP XANH REU.jpg', 1, '2019-11-15 17:46:10', '2019-11-15 17:46:10'),
@@ -713,7 +740,7 @@ INSERT INTO `sizes` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (7, '41', '2019-11-18 15:43:46', '2019-11-18 15:43:46'),
 (8, '42', '2019-11-18 15:43:46', '2019-11-18 15:43:46'),
 (9, '43', '2019-11-18 15:43:46', '2019-11-18 15:43:46'),
-(10, 'Only', '2019-11-21 15:09:35', '2019-11-21 15:09:38');
+(10, 'Only Size', '2019-11-21 15:09:35', '2019-11-21 15:09:38');
 
 -- --------------------------------------------------------
 
@@ -730,7 +757,7 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `role` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -739,7 +766,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `address`, `phone_number`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'HN', '0987654321', 'admin@gmail.com', '$2y$10$pF91OeFg/ZdNTWkrSBidhepdy3y2yjpvkeRGqiSGJk/MWzgPyF19K', 1, '2019-11-13 19:04:43', '2019-11-13 19:04:43'),
-(17, 'Ngô Đức Nam', 'HN', '0356969828', 'nam@gmail.com', '$2y$10$oe1/l6GuglSMjczkiVluA.VMoEEYguD9.DxIU7u06sOhn5mUWIoMS', 2, '2019-11-13 22:49:21', '2019-11-19 23:44:21');
+(17, 'Ngô Đức Nam', 'HN', '0356969828', 'nam@gmail.com', '$2y$10$oe1/l6GuglSMjczkiVluA.VMoEEYguD9.DxIU7u06sOhn5mUWIoMS', 2, '2019-11-13 22:49:21', '2019-11-19 23:44:21'),
+(18, 'nam', 'ádad', '0356969828', 'duc@gmail.com', '$2y$10$XO3GlOjjv19AOfG2yCiOmu7ckHZ6NFsAmHdWU2saDHPs9FWdI1E6u', 2, '2019-11-27 14:08:14', '2019-11-27 14:08:14');
 
 --
 -- Indexes for dumped tables
@@ -827,7 +855,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -869,7 +897,7 @@ ALTER TABLE `sizes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

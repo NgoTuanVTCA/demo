@@ -1,1 +1,65 @@
-<h1>User Page</h1>
+<script language="JavaScript" type="text/javascript">
+    function checkDelete() {
+        return confirm("Bạn Có Chắc Chắn Muốn Xoá Người Dùng Này");
+    }
+</script>
+
+
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="card">
+        <h5 class="card-header">Danh sách người dùng<a class="btn btn-dark float-right" href="<?php echo base_url('user/add') ?>">Thêm</a>
+        </h5>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered first">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Địa Chỉ</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Email</th>
+                            <th>Mật Khẩu</th>
+                            <th>Vai trò</th>
+                            <th>Action</th>
+                            <th>Xóa Người Dùng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($users as $user) : ?>
+                            <tr>
+                                <td><?php echo $user['name'] ?></td>
+                                <td><?php echo $user['address'] ?> </td>
+                                <td><?php echo $user['phone_number'] ?></td>
+                                <td><?php echo $user['email'] ?></td>
+                                <td><?php echo ($user['password']) ?></td>
+                                <td><?php echo $user['role'] ?></td>
+                                <td>
+                                    <button type="button" class="btn btn-dark">
+                                        <a style="color:white; text-decoration: none;" href="<?php echo base_url("user/edit?id={$user['id']}") ?>"> Cập Nhật</a>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-dark">
+                                        <a style="color:white; text-decoration: none;" href="<?php echo base_url("user/destroy?id={$user['id']}") ?>" onclick="return checkDelete()">Xóa</a>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

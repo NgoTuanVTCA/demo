@@ -44,15 +44,13 @@ class Partner_Controller extends Base_Controller
 		if (!$address) {
 			$errors['address_err'] = 'Vui long nhap địa chỉ';
 		}
-		if (!$phone_number || !preg_match('/^[0-9]{3}[0-9]{3}[0-9]{4}$/', $phone_number)) {
-			$errors['phone_err'] = 'Vui lòng nhập đúng số điện thoại';
-		} elseif($partner_phone){
+		if ($partner_phone) {
 			$errors['phone_err'] = "số điện thoại \"$phone_number\" đã tồn tại";
 		}
 		if ($partner_email) {
 			$errors['email_err'] = "email \"$email\" đã tồn tại";
 		}
-		if($area == 'Chọn khu vực...'){
+		if ($area == 'Chọn khu vực...') {
 			$errors['area_err'] = 'Vui lòng chọn khu vực hoạt động';
 		}
 		if (count($errors) > 0) {
@@ -101,8 +99,6 @@ class Partner_Controller extends Base_Controller
 		$phone_number = getParameter('phone_number');
 		$area = getParameter('area');
 
-		$partner_phone = $this->model->partner->get_by_phone($phone_number);
-
 		$errors = [];
 
 		// if (!$name) {
@@ -125,7 +121,7 @@ class Partner_Controller extends Base_Controller
 			]);
 			// redirect("partner/edit?id={$id}");
 		} else {
-			$partner = $this->model->partner->update_by_id($id,[
+			$partner = $this->model->partner->update_by_id($id, [
 				'name' => $name,
 				'address' => $address,
 				'phone_number' => $phone_number,
@@ -142,11 +138,4 @@ class Partner_Controller extends Base_Controller
 		}
 	}
 
-	// function destroy()
-	// {
-	// 	// xu li xoa san pham
-	// 	$id = getParameter('id');
-	// 	$this->model->product->destroy($id);
-	// 	redirect('product/index');
-	// }
 }

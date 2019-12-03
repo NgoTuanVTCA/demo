@@ -7,10 +7,13 @@ class User_Controller extends Base_Controller
 	{
 		parent::__construct();
 	}
-	public function index()
+	function index()
 	{
-		$this->view->load('auth/auth_layout');
-		$this->layout->set(null);
+		$users = $this->model->user->find();
+		$this->layout->set('auth_layout');
+		$this->view->load('user/index', [
+			'users' => $users
+		]);
 	}
 
 	public function profile()
@@ -19,6 +22,9 @@ class User_Controller extends Base_Controller
 
 		if (!$_SESSION['email']) {
 			redirect('user/login');
+		}
+		if ($_SESSION['id'] == 1) {
+			$this->layout->set('auth_layout');
 		}
 		$this->view->load('user/profile');
 	}
@@ -68,6 +74,9 @@ class User_Controller extends Base_Controller
 
 		if (!$_SESSION['email']) {
 			redirect('user/login');
+		}
+		if ($_SESSION['id'] == 1) {
+			$this->layout->set('auth_layout');
 		}
 		$this->view->load('user/password');
 	}
@@ -155,6 +164,8 @@ class User_Controller extends Base_Controller
 					$_SESSION['address'] = $user['address'];
 					redirect('home/index');
 				} elseif ($user['role'] == 1) {
+					$_SESSION['id'] = $user['id'];
+					$_SESSION['email'] = $user['email'];
 					$_SESSION['name'] = $user['name'];
 					$_SESSION['phone_number'] = $user['phone_number'];
 					$_SESSION['address'] = $user['address'];
@@ -251,66 +262,109 @@ class User_Controller extends Base_Controller
 	}
 
 	// view form
-	public function add()
+	function add()
 	{
-		$this->view->load('user/create');
-		$this->layout->set(null);
+		$this->layout->set('auth_layout');
+		$this->view->load('user/add');
+	}
+	function store()
+	{
+		// xu li them san pham
+
+		$name = getParameter('name');
+		$address = getParameter('address');
+		$phone = getParameter('phone_number');
+		$email = getParameter('email');
+		$password = getParameter('password');
+		$role = 2;
+
+		$user_email = $this->model->user->get_by_email($email);
+		$user_phone = $this->model->user->get_by_phone($phone);
+
+		$errors = [];
+
+
+		if (!$phone || !preg_match('/^[0-9]{3}[0-9]{3}[0-9]{4}$/', $phone)) {
+			$errors['phone_err'] = 'Vui lòng nhập đúng số điện thoại';
+		} elseif ($user_phone) {
+			$errors['phone_err'] = "số điện thoại \"$phone\" đã tồn tại!";
+		}
+
+		if (!$email) {
+			$errors['email_err'] = 'Vui lòng nhập email';
+		} elseif ($user_email) {
+			$errors['email_err'] = "email \"$email\" đã tồn tại!";
+		}
+
+
+		if (count($errors) > 0) {
+			$this->layout->set('auth_layout');
+			$this->view->load('user/add', [
+				'errors' => $errors
+			]);
+		} else {
+			$user = $this->model->user->create([
+				'name' => $name,
+				'address' => $address,
+				'phone_number' => $phone,
+				'email' => $email,
+				'password' => $password,
+				'role' => $role
+			]);
+			if ($user) {
+				redirect('user/index');
+				var_dump($user);
+			} else {
+				$this->view->load('user/add', [
+					'error_message' => 'Không thêm được user mới'
+				]);
+			}
+		}
+	}
+	function edit()
+	{
+		// trang sua san pham
+		// hien thi form sua san pham
+		$id = getGetParameter('id');
+		$user = $this->model->user->find_by_id($id);
+		$this->layout->set('auth_layout');
+		$this->view->load('user/edit', [
+			'user' => $user
+		]);
 	}
 
-	// insert
-	public function create()
+	function update()
 	{
 		$this->layout->set(null);
+		$id = getParameter('id');
+		$name = getPostParameter('name');
+		$address = getPostParameter('address');
+		$phone = getPostParameter('phone_number');
+		$role = 2;
 
-		$status = API_SUCCESS;
-		$message = 'Lỗi hệ thống!';
+		$user = $this->model->user->update_by_id($id, [
+			'name' => $name,
+			'address' => $address,
+			'phone_number' => $phone,
+			'role' => $role
+		]);
 
-		$phone_number	 = getPostParameter('phone_number');
-		$email	 = getPostParameter('email');
-		$name	 = getPostParameter('name');
-		$password	 = getPostParameter('password');
-		$repassword	 = getPostParameter('repassword');
-
-		$user = $this->model->user->get_by_email($email);
-
-		// Lỗi nhập lại password ko chính xác
-		// và thay đổi nội dung thông báo
-		if ($password != $repassword) {
-			$status = API_ERROR;
-			$message = 'Nhập lại mật khẩu không chính xác!';
-		} else if ($user) {
-			$status = API_ERROR;
-			$message = "email \"$email\" đã tồn tại!";
-		}
-
-		// neu ko co loi
-		if ($status === API_SUCCESS) {
-			$this->model->user->create([
-				'phone' => $phone_number,
-				'email' => $email,
-				'name' => $name,
-				'password' => hash_password($password)
+		if ($user) {
+			redirect('user/index');
+			// var_dump($user);
+		} else {
+			$this->layout->set('auth_layout');
+			$this->view->load('user/edit', [
+				'error_message' => 'Cập nhật không thành công'
 			]);
-
-			// Khi login cho user
-			// Bước 1: nhận post username & password của người dùng
-			// BƯớc 2: mã hóa lại username & password nhận được
-			// vd: $password = hash_password($username, $password);
-			// so sánh với password trong dabase
-			// select * from users where username = '$username' and password = '$password'
-			// anh ví dụ vậy nhưng em phải viết query theo mẫu trong model anh đã viết nhé: vd model user
-			// Bản chất hàm hash_password khi em truyền đúng username & password đã truyền khi đăng ký thì nó sẽ trả lại đúng chuỗi mã hóa giống với chuỗi mình lưu trong database
-			// bản chất của việc mã hóa này là để bảo mật, ko ai có thể biết đc pass vì chuỗi này ko mã hóa ngược (giải mã) đc. Ngay cả người phát minh ra PHP :D
-			// Và khi website bị hack, kẻ hack cũng ko đọc đc password.
-			// ok, em học thêm nhé, ngồi đọc lại code, ngẫm cho ra nhé ;:D
-			//e sẽ nghiên cứu lâu dài lun. a cao siêu quá :D, anh ko cao siêu đâu, nhưng yên tâm mà theo anh chắc chắn sớm pro hơn bạn bè :D
-			// thanks a trc.ok nhé
-			// có ngày e sẽ đích thân hậu tạ. oke hehe. bb em.bye a!
-
-			// truyen vao mang rong vi truong hop nay ko can tra lai data
-			$message = 'Đăng ký thành công!';
-			return to_api_json(API_SUCCESS, $message, []);
 		}
-		return to_api_json(API_ERROR, $message, []);
+	}
+
+	function destroy()
+	{
+		// xu li xoa san pham
+		$id = getParameter('id');
+		$this->model->user->destroy($id);
+		redirect('user/index');
 	}
 }

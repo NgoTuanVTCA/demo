@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>VTC Store &mdash; Colorlib e-Commerce Template</title>
+    <title>VTC Store &mdash; Phong cách phái mạnh</title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="<?php echo IMG_URL . 'logo2.png' ?>" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -84,9 +84,9 @@
                                         </ul>
                                     </li>
                                 <?php endif; ?>
-                                <li><a href="<?php echo base_url('product/cart') ?>" class="icons-btn d-inline-block bag">
+                                <li><a href="<?php echo base_url('cart/index') ?>" class="icons-btn d-inline-block bag">
                                         <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
-                                        <span class="number">2</span>
+                                        <span class="number"><?php echo count($_SESSION['cart']);?></span>
                                     </a></li>
 
                             </ul>

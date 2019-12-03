@@ -1,21 +1,47 @@
-<div class="container">
-    <?php echo $error_message ?>
-    <table class="table table-striped">
-        <tr>
-            <th scope="col">Mã đơn hàng</th>
-            <th scope="col">Trạng thái đơn hàng</th>
-            <th scope="col">Action</th>
-        </tr>
-        <?php foreach ($orders as $order) : ?>
-            <tr>
-                <td><?php echo $order['id'] ?></td>
-                <td><?php echo $order['status'] ?></td>
-                <td>
-                    <button type="button" class="btn btn-primary">
-                        <a style="color:white; text-decoration: none;" href="<? echo base_url("order/edit?id={$order['id']}") ?>">Update</a>
-                    </button>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
+<div class="row">
+    <!-- ============================================================== -->
+    <!-- basic table  -->
+    <!-- ============================================================== -->
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">Trạng thái đơn hàng</h5>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered first">
+                        <thead>
+                            <tr>
+                                <th>Mã đơn hàng<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                                <th>Trạng thái đơn hàng<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($orders as $order) : ?>
+                                <?php if ($order['status'] != "đang xử lí") : ?>
+                                    <tr>
+                                        <td><?php echo $order['id'] ?></td>
+                                        <td><?php echo $order['status'] ?></td>
+                                        <td>
+                                            <a class="btn btn-dark btn-block" href="<?php echo base_url("order/edit2?id={$order['id']}") ?>">Cập nhật</a>
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end basic table  -->
+    <!-- ============================================================== -->
 </div>

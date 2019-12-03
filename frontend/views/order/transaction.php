@@ -16,9 +16,11 @@
 				<li class="list-group-item">
 					<a href="<?php echo base_url("user/password"); ?>">Thay đổi mật khẩu</a>
 				</li>
-				<li class="list-group-item">
-					<a href="<?php echo base_url('order/transaction_history'); ?>">Lịch sử giao dịch</a>
-				</li>
+				<?php if ($_SESSION['id'] != 1) : ?>
+					<li class="list-group-item">
+						<a href="<?php echo base_url('order/transaction_history'); ?>">Lịch sử giao dịch</a>
+					</li>
+				<?php endif; ?>
 			</ul>
 		</div>
 		<div class="col-sm-9">
