@@ -18,9 +18,8 @@
                             <th>Địa Chỉ</th>
                             <th>Số Điện Thoại</th>
                             <th>Email</th>
-                            <th>Mật Khẩu</th>
                             <th>Vai trò</th>
-                            <th>Action</th>
+                            <th>Thao tác</th>
                             <th>Xóa Người Dùng</th>
                         </tr>
                     </thead>
@@ -31,8 +30,13 @@
                                 <td><?php echo $user['address'] ?> </td>
                                 <td><?php echo $user['phone_number'] ?></td>
                                 <td><?php echo $user['email'] ?></td>
-                                <td><?php echo ($user['password']) ?></td>
-                                <td><?php echo $user['role'] ?></td>
+                                <td>
+                                    <?php if ($user['role'] == 1) : ?>
+                                        <?php echo 'Quản trị' ?>
+                                    <?php elseif ($user['role'] == 2) : ?>
+                                        <?php echo 'Khách hàng' ?>
+                                    <? endif; ?>
+                                </td>
                                 <td>
                                     <button type="button" class="btn btn-dark">
                                         <a style="color:white; text-decoration: none;" href="<?php echo base_url("user/edit?id={$user['id']}") ?>"> Cập Nhật</a>
@@ -48,7 +52,6 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th scope="col"></th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                             <th scope="col"></th>

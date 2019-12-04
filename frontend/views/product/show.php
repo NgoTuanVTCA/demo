@@ -24,7 +24,7 @@
                         </a>
                     </div>
                     <a href="#1" class="lightbox trans" id="product_detail"><img src="<?php echo PRODUCT_URL . $product['image'] ?>"></a>
-                    <?php $_SESSION['product_images'] = $product['image']?>
+                    <?php $_SESSION['product_images'] = $product['image'] ?>
                 </div>
                 <div class="col-md-6">
                     <h2 class="text-black"><?php echo $product['name'] ?></h2>
@@ -117,9 +117,11 @@
                     <?php if ($comment['product_id'] == $product['id']) : ?>
                         <?php if ($comment['user_id'] == $user['id']) : ?>
                             <div class="">
-                                <p class=""><?php echo $user['name'] . ' : ' . $comment['content'] ?></p>
-                                <p class=""><?php echo $comment['created_at']; ?></p>
-                                <hr>
+                                <?php if ($comment['active'] == 'Bật') : ?>
+                                    <p class=""><?php echo $user['name'] . ' : ' . $comment['content'] ?></p>
+                                    <p class=""><?php echo $comment['created_at']; ?></p>
+                                    <hr>
+                                <?php endif ?>
                             </div>
                         <?php endif; ?>
                     <?php endif; ?>

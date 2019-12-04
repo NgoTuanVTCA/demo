@@ -66,6 +66,17 @@
                                 <?php endforeach; ?>
                             <?php endforeach; ?>
                         </tbody>
+                        <tfoot>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tfoot>
                     </table>
                 </div>
             </div>

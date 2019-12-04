@@ -182,8 +182,7 @@ class User_Controller extends Base_Controller
 	public function handle_logout()
 	{
 		// process logout
-
-		session_start();
+		
 		unset($_SESSION['name']);
 		session_destroy();
 		redirect('home/index');
