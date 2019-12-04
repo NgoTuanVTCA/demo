@@ -70,7 +70,7 @@
                                 <li> <a href="#" class="icons-btn d-inline-block js-search-open">
                                         <i class="fa fa-search fa-lg" aria-hidden="true"></i></a>
                                 </li>
-                                <?php if (!$_SESSION['name']) : ?>
+                                <?php if (empty($_SESSION['name'])) : ?>
                                     <a href="<?php echo base_url('user/login') ?>" class="icons-btn d-inline-block" style="color: black;"><i class="fa fa-user fa-lg" aria-hidden="true"></i></a>
                                 <?php else : ?>
                                     <li class="has-children ">
@@ -86,7 +86,12 @@
                                 <?php endif; ?>
                                 <li><a href="<?php echo base_url('cart/index') ?>" class="icons-btn d-inline-block bag">
                                         <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
-                                        <span class="number"><?php echo count($_SESSION['cart']);?></span>
+                                        <span class="number">
+                                            <?php if(empty($_SESSION['cart'])): echo 0 ?>
+                                            <?php else:?>
+                                            <?php echo count($_SESSION['cart']);?>
+                                            <?php endif;?>
+                                        </span>
                                     </a></li>
 
                             </ul>

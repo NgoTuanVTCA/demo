@@ -31,7 +31,7 @@
                                     else echo base_url("category/show_product&id={$category['id']}") . '&pageno=' . ($pageno + 1); ?>">&gt;</a>
       </li>
       <li class="page-item"><a class="page-link" href="<?php echo base_url("category/show_product&id={$category['id']}") . '&pageno=' . $total_pages; ?>">&gt;&gt;</a></li>
-      <li class="page-item disabled"><a class="page-link"><? echo $pageno ?>/<? echo $total_pages ?></a></li>
+      <li class="page-item disabled"><a class="page-link"><?php echo $pageno ?>/<?php echo $total_pages ?></a></li>
     </ul>
   </nav>
 </div>

@@ -80,8 +80,12 @@
                                     <p class="item-price"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></p>
                                 </a>
                             </div>
-                            <?php $count += 1; ?>
-                            <?php if ($count == 6) : ?>
+                            <?php if (empty($count_vest)) : ?>
+                                <?php $count_vest = 1; ?>
+                            <?php else:?>
+                            <?php $count_vest +=1?>
+                            <?php endif; ?>
+                            <?php if ($count_vest >= 6) : ?>
                                 <?php break; ?>
                             <?php endif; ?>
                         <?php endif; ?>
@@ -111,8 +115,12 @@
                                     <p class="item-price"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></p>
                                 </a>
                             </div>
-                            <?php $count_vest += 1; ?>
-                            <?php if ($count_vest == 6) : ?>
+                            <?php if (empty($count_aoda)) : ?>
+                                <?php $count_aoda = 1; ?>
+                            <?php else:?>
+                            <?php $count_aoda +=1?>
+                            <?php endif; ?>
+                            <?php if ($count_aoda >= 6) : ?>
                                 <?php break; ?>
                             <?php endif; ?>
                         <?php endif; ?>
@@ -142,8 +150,12 @@
                                     <p class="item-price"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></p>
                                 </a>
                             </div>
-                            <?php $count_sowmi += 1; ?>
-                            <?php if ($count_sowmi == 6) : ?>
+                            <?php if (empty($count_somi)) : ?>
+                                <?php $count_somi = 1; ?>
+                            <?php else:?>
+                            <?php $count_somi +=1?>
+                            <?php endif; ?>
+                            <?php if ($count_somi >= 6) : ?>
                                 <?php break; ?>
                             <?php endif; ?>
                         <?php endif; ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:7888
--- Generation Time: Nov 30, 2019 at 08:14 AM
+-- Generation Time: Dec 04, 2019 at 08:45 AM
 -- Server version: 5.7.24-log
 -- PHP Version: 7.2.10
 
@@ -80,6 +80,7 @@ CREATE TABLE `comments` (
   `user_id` bigint(20) NOT NULL,
   `product_id` bigint(20) NOT NULL,
   `content` varchar(255) NOT NULL,
+  `active` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -88,29 +89,29 @@ CREATE TABLE `comments` (
 -- Dumping data for table `comments`
 --
 
-INSERT INTO `comments` (`id`, `user_id`, `product_id`, `content`, `created_at`, `updated_at`) VALUES
-(1, 17, 4, 'kjshdfkjdfshkjsd', '2019-11-22 16:56:37', '2019-11-22 16:56:37'),
-(2, 17, 93, 'ok', '2019-11-22 17:10:38', '2019-11-22 17:10:38'),
-(3, 17, 9, 'ok', '2019-11-22 17:10:46', '2019-11-22 17:10:46'),
-(4, 17, 1, 'asdasd', '2019-11-22 18:08:58', '2019-11-22 18:08:58'),
-(5, 17, 1, 'asljdalksdj', '2019-11-22 18:09:04', '2019-11-22 18:09:04'),
-(6, 17, 16, 'sdflksjfklsjf', '2019-11-24 18:27:44', '2019-11-24 18:27:44'),
-(7, 17, 16, 'lsdjflsdf', '2019-11-24 18:29:07', '2019-11-24 18:29:07'),
-(8, 17, 16, 'aaaaaa', '2019-11-24 19:54:33', '2019-11-24 19:54:33'),
-(9, 17, 16, 'sdfsdfsdf', '2019-11-24 20:06:31', '2019-11-24 20:06:31'),
-(10, 17, 1, 'ádasdasd', '2019-11-24 20:07:09', '2019-11-24 20:07:09'),
-(11, 17, 16, 'sdfsdf', '2019-11-24 20:07:32', '2019-11-24 20:07:32'),
-(12, 17, 16, 'sdfsdf', '2019-11-24 20:07:59', '2019-11-24 20:07:59'),
-(13, 17, 16, 'lfkjdslkfjslkdf', '2019-11-24 20:08:07', '2019-11-24 20:08:07'),
-(14, 17, 16, 'asdasd', '2019-11-24 23:58:44', '2019-11-24 23:58:44'),
-(15, 17, 16, 'aaaaaaaaaaaaaaa', '2019-11-24 23:58:53', '2019-11-24 23:58:53'),
-(16, 17, 2, 'aaaa', '2019-11-25 02:20:18', '2019-11-25 02:20:18'),
-(17, 17, 5, 'ahihi', '2019-11-25 14:15:31', '2019-11-25 14:15:31'),
-(18, 17, 31, 'đẹp đấy', '2019-11-27 03:27:53', '2019-11-27 03:27:53'),
-(19, 17, 2, 'uuuuuuuuuuuuu', '2019-11-27 03:35:18', '2019-11-27 03:35:18'),
-(20, 17, 92, 'kjasdkljaf', '2019-11-27 14:17:16', '2019-11-27 14:17:16'),
-(21, 17, 93, 'skdlfjdsklfjlksdjflsdjflksdjlkfjsdfjdslkfjksdjfklsdjfklsfd', '2019-11-27 14:25:01', '2019-11-27 14:25:01'),
-(22, 17, 93, 'ksdjfskldjfklsd', '2019-11-27 14:27:54', '2019-11-27 14:27:54');
+INSERT INTO `comments` (`id`, `user_id`, `product_id`, `content`, `active`, `created_at`, `updated_at`) VALUES
+(1, 17, 4, 'kjshdfkjdfshkjsd', 'Bật', '2019-11-22 16:56:37', '2019-11-22 16:56:37'),
+(2, 17, 93, 'ok', 'Bật', '2019-11-22 17:10:38', '2019-12-03 22:45:59'),
+(3, 17, 9, 'ok', 'Bật', '2019-11-22 17:10:46', '2019-11-22 17:10:46'),
+(4, 17, 1, 'asdasd', 'Bật', '2019-11-22 18:08:58', '2019-11-22 18:08:58'),
+(5, 17, 1, 'asljdalksdj', 'Bật', '2019-11-22 18:09:04', '2019-11-22 18:09:04'),
+(6, 17, 16, 'sdflksjfklsjf', 'Bật', '2019-11-24 18:27:44', '2019-11-24 18:27:44'),
+(7, 17, 16, 'lsdjflsdf', 'Bật', '2019-11-24 18:29:07', '2019-11-24 18:29:07'),
+(8, 17, 16, 'aaaaaa', 'Bật', '2019-11-24 19:54:33', '2019-11-24 19:54:33'),
+(9, 17, 16, 'sdfsdfsdf', 'Bật', '2019-11-24 20:06:31', '2019-11-24 20:06:31'),
+(10, 17, 1, 'ádasdasd', 'Bật', '2019-11-24 20:07:09', '2019-11-24 20:07:09'),
+(11, 17, 16, 'sdfsdf', 'Bật', '2019-11-24 20:07:32', '2019-11-24 20:07:32'),
+(12, 17, 16, 'sdfsdf', 'Bật', '2019-11-24 20:07:59', '2019-11-24 20:07:59'),
+(13, 17, 16, 'lfkjdslkfjslkdf', 'Bật', '2019-11-24 20:08:07', '2019-11-24 20:08:07'),
+(14, 17, 16, 'asdasd', 'Bật', '2019-11-24 23:58:44', '2019-11-24 23:58:44'),
+(15, 17, 16, 'aaaaaaaaaaaaaaa', 'Bật', '2019-11-24 23:58:53', '2019-11-24 23:58:53'),
+(16, 17, 2, 'aaaa', 'Bật', '2019-11-25 02:20:18', '2019-11-25 02:20:18'),
+(17, 17, 5, 'ahihi', 'Bật', '2019-11-25 14:15:31', '2019-11-25 14:15:31'),
+(18, 17, 31, 'đẹp đấy', 'Bật', '2019-11-27 03:27:53', '2019-11-27 03:27:53'),
+(19, 17, 2, 'uuuuuuuuuuuuu', 'Bật', '2019-11-27 03:35:18', '2019-11-27 03:35:18'),
+(20, 17, 92, 'kjasdkljaf', 'Bật', '2019-11-27 14:17:16', '2019-12-04 15:36:24'),
+(21, 17, 93, 'skdlfjdsklfjlksdjflsdjflksdjlkfjsdfjdslkfjksdjfklsdjfklsfd', 'Bật', '2019-11-27 14:25:01', '2019-12-04 15:27:06'),
+(22, 17, 93, 'ksdjfskldjfklsd', 'Bật', '2019-11-27 14:27:54', '2019-12-04 15:27:14');
 
 -- --------------------------------------------------------
 
@@ -176,7 +177,7 @@ CREATE TABLE `partners` (
 --
 
 INSERT INTO `partners` (`id`, `name`, `address`, `phone_number`, `email`, `area`, `created_at`, `updated_at`) VALUES
-(1, 'asdasd', 'Số 19 Nguyễn Trãi, P. Khương Trung, Q. Thanh Xuân,Hà Nội', '0904871800', 'thang.nguyen@lacco.com.vn', 'Nội Thành', '2019-11-18 14:34:49', '2019-11-22 15:46:08'),
+(1, 'Giao hàng nhanh', 'Số 19 Nguyễn Trãi, P. Khương Trung, Q. Thanh Xuân,Hà Nội', '0904871800', 'thang.nguyen@lacco.com.vn', 'Nội Thành', '2019-11-18 14:34:49', '2019-12-04 02:49:38'),
 (2, 'Công Ty Cổ Phần Đầu Tư Thành Mỹ', 'Ngõ 79, Ngọc Hồi, Hoàng Mai,Hà Nội', ' 0986102166', 'thanhmyjsic@gmail.com', 'Ngoại Thành', '2019-11-18 14:34:49', '2019-11-18 14:34:49'),
 (3, ' Công Ty TNHH Vận Tải & Thương Mại Tuấn Mạnh', 'Tổ 21 Xóm Bãi , Phường Thanh Trì, Quận Hoàng Mai,Hà Nội', '0243645289', 'ctytuanmanh@gmail.com', 'Nội Thành', '2019-11-18 14:34:49', '2019-11-18 14:34:49'),
 (4, 'Công Ty TNHH Vận Tải Và Thương Mại Nhật Thiên Hương', '716 Nơ 22, Khu Đô Thị Pháp Vân, Hoàng Liệt, Hoàng Mai,Hà Nội', '0243683072', 'nhatthienhuonglogistics@gmail.com', 'Ngoại Thành', '2019-11-18 14:34:49', '2019-11-18 14:34:49');
@@ -765,7 +766,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `address`, `phone_number`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'HN', '0987654321', 'admin@gmail.com', '$2y$10$pF91OeFg/ZdNTWkrSBidhepdy3y2yjpvkeRGqiSGJk/MWzgPyF19K', 1, '2019-11-13 19:04:43', '2019-11-13 19:04:43'),
+(1, 'Admin', 'HN', '0987654321', 'admin@gmail.com', '$2y$10$1osan5eHLH12TJyJP5MEruOUXsY6PGp4hBdOdEv/LKkO4figw.mAu', 1, '2019-11-13 19:04:43', '2019-12-03 22:09:19'),
 (17, 'Ngô Đức Nam', 'HN', '0356969828', 'nam@gmail.com', '$2y$10$oe1/l6GuglSMjczkiVluA.VMoEEYguD9.DxIU7u06sOhn5mUWIoMS', 2, '2019-11-13 22:49:21', '2019-11-19 23:44:21'),
 (18, 'nam', 'ádad', '0356969828', 'duc@gmail.com', '$2y$10$XO3GlOjjv19AOfG2yCiOmu7ckHZ6NFsAmHdWU2saDHPs9FWdI1E6u', 2, '2019-11-27 14:08:14', '2019-11-27 14:08:14');
 

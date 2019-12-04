@@ -9,6 +9,9 @@ class User_Controller extends Base_Controller
 	}
 	function index()
 	{
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$users = $this->model->user->find();
 		$this->layout->set('auth_layout');
 		$this->view->load('user/index', [
@@ -127,7 +130,7 @@ class User_Controller extends Base_Controller
 	{
 		// show login
 
-		if ($_SESSION['email']) {
+		if (!empty($_SESSION['email'])) {
 			redirect('home/index');
 		}
 		$this->view->load('user/login');
@@ -155,20 +158,18 @@ class User_Controller extends Base_Controller
 			]);
 		} else {
 			$user = $this->model->user->get_by_email($email);
+
+			$_SESSION['id'] = $user['id'];
+			$_SESSION['email'] = $user['email'];
+			$_SESSION['name'] = $user['name'];
+			$_SESSION['phone_number'] = $user['phone_number'];
+			$_SESSION['address'] = $user['address'];
+			$_SESSION['role'] = $user['role'];
+
 			if ($email == $user['email'] && password_verify($password, $user['password']) == true) {
 				if ($user['role'] == 2) {
-					$_SESSION['id'] = $user['id'];
-					$_SESSION['email'] = $user['email'];
-					$_SESSION['name'] = $user['name'];
-					$_SESSION['phone_number'] = $user['phone_number'];
-					$_SESSION['address'] = $user['address'];
 					redirect('home/index');
 				} elseif ($user['role'] == 1) {
-					$_SESSION['id'] = $user['id'];
-					$_SESSION['email'] = $user['email'];
-					$_SESSION['name'] = $user['name'];
-					$_SESSION['phone_number'] = $user['phone_number'];
-					$_SESSION['address'] = $user['address'];
 					redirect('user/index');
 				}
 			} else {
@@ -182,8 +183,8 @@ class User_Controller extends Base_Controller
 	public function handle_logout()
 	{
 		// process logout
-		
-		unset($_SESSION['name']);
+
+		unset($_SESSION);
 		session_destroy();
 		redirect('home/index');
 	}
@@ -263,6 +264,9 @@ class User_Controller extends Base_Controller
 	// view form
 	function add()
 	{
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$this->layout->set('auth_layout');
 		$this->view->load('user/add');
 	}
@@ -312,7 +316,6 @@ class User_Controller extends Base_Controller
 			]);
 			if ($user) {
 				redirect('user/index');
-				var_dump($user);
 			} else {
 				$this->view->load('user/add', [
 					'error_message' => 'Không thêm được user mới'
@@ -324,6 +327,9 @@ class User_Controller extends Base_Controller
 	{
 		// trang sua san pham
 		// hien thi form sua san pham
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$id = getGetParameter('id');
 		$user = $this->model->user->find_by_id($id);
 		$this->layout->set('auth_layout');
@@ -350,7 +356,6 @@ class User_Controller extends Base_Controller
 
 		if ($user) {
 			redirect('user/index');
-			// var_dump($user);
 		} else {
 			$this->layout->set('auth_layout');
 			$this->view->load('user/edit', [

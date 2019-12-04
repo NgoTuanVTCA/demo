@@ -31,17 +31,25 @@
 			<div class="col-sm-9">
 				<h3>Thông tin cá nhân</h3>
 				<div class="border-bottom"></div>
+				<?php if(!empty($successfully)):?>
 				<?php echo $successfully; ?>
+				<?php endif;?>
 				<form style="width: 100%;" class="form-content mt-3 mb" action="<?php echo base_url('user/handle_update') ?>" method="post">
 					<input type="text" name="name" class="info" id="nme" placeholder="<?php echo $_SESSION['name'] ?>" required />
 					<label class="change-input" for="nme"><span class="change-name">Tên:</span></label>
+					<?php if(!empty($errors['name'])):?>
 					<?php echo $errors['name']; ?>
+					<?php endif;?>
 					<input type="text" name="address" class="info" id="nme" placeholder="<?php echo $_SESSION['address'] ?>" required />
 					<label class="change-input" for="nme"><span class="change-name">Địa chỉ:</span></label>
+					<?php if(!empty($errors['address'])):?>
 					<?php echo $errors['address']; ?>
+					<?php endif;?>
 					<input type="text" name="phone_number" class="info" id="nme" placeholder="<?php echo $_SESSION['phone_number'] ?>" required />
 					<label class="change-input" for="nme"><span class="change-name">Số điện thoại:</span></label>
+					<?php if(!empty($errors['phone_number'])):?>
 					<?php echo $errors['phone_number']; ?>
+					<?php endif;?>
 					<p class="button ml-auto"><button type="submit">Thay đổi</button></p>
 				</form>
 			</div>

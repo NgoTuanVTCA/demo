@@ -4,7 +4,6 @@
     }
 </script>
 
-
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
     <div class="card">
         <h5 class="card-header">Danh sách người dùng<a class="btn btn-dark float-right" href="<?php echo base_url('user/add') ?>">Thêm</a>
@@ -35,17 +34,13 @@
                                         <?php echo 'Quản trị' ?>
                                     <?php elseif ($user['role'] == 2) : ?>
                                         <?php echo 'Khách hàng' ?>
-                                    <? endif; ?>
+                                    <?php endif; ?>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-dark">
-                                        <a style="color:white; text-decoration: none;" href="<?php echo base_url("user/edit?id={$user['id']}") ?>"> Cập Nhật</a>
-                                    </button>
+                                        <a class="btn btn-dark btn-block" href="<?php echo base_url("user/edit?id={$user['id']}") ?>"> Cập Nhật</a>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-dark">
-                                        <a style="color:white; text-decoration: none;" href="<?php echo base_url("user/destroy?id={$user['id']}") ?>" onclick="return checkDelete()">Xóa</a>
-                                    </button>
+                                        <a class="btn btn-dark btn-block" href="<?php echo base_url("user/destroy?id={$user['id']}") ?>" onclick="return checkDelete()">Xóa</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

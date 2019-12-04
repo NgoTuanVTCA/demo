@@ -9,6 +9,9 @@ class Brand_Controller extends Base_Controller
 
 	function index()
 	{
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$this->layout->set('auth_layout');
 		$brands = $this->model->brand->find();
 		$this->view->load('brand/index', [
@@ -18,6 +21,9 @@ class Brand_Controller extends Base_Controller
 
 	function add()
 	{
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$brands = $this->model->brand->find();
 		$this->layout->set('auth_layout');
 		$this->view->load('brand/add', [
@@ -55,6 +61,9 @@ class Brand_Controller extends Base_Controller
 	{
 		// trang sua san pham
 		// hien thi form sua san pham
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$id = getParameter('id');
 		$this->layout->set('auth_layout');
 		$brand = $this->model->brand->find_by_id($id);
@@ -69,7 +78,7 @@ class Brand_Controller extends Base_Controller
 		$id = getParameter('id');
 		$name = getParameter('name');
 
-		$brand = $this->model->brand->update($id, [
+		$brand = $this->model->brand->update_by_id($id, [
 			'name' => $name,
 		]);
 

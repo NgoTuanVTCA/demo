@@ -8,10 +8,7 @@
     <h2>Cập nhật trạng thái</h2>
     <form action="<?php echo base_url("comment/update&id={$comment['id']}") ?>" method="post" enctype="multipart/form-data">
         <form>
-            <?php
-            session_start();
-            $_SESSION['product'] = $comment['product_id'];
-            ?>
+            <?php $_SESSION['product'] = $comment['product_id']; ?>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputActive"></label>

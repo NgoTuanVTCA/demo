@@ -9,6 +9,9 @@ class Category_Controller extends Base_Controller
 
 	function index()
 	{
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$this->layout->set('auth_layout');
 		// trang danh sach san pham
 
@@ -43,6 +46,9 @@ class Category_Controller extends Base_Controller
 	{
 		// trang them san pham
 		// hien thi form them san pham
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$id = getParameter('id');
 		$categories = $this->model->category->find();
 		$this->layout->set('auth_layout');
@@ -81,6 +87,9 @@ class Category_Controller extends Base_Controller
 	{
 		// trang sua san pham
 		// hien thi form sua san pham
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$id = getParameter('id');
 		$this->layout->set('auth_layout');
 		$category = $this->model->category->find_by_id($id);
@@ -95,7 +104,7 @@ class Category_Controller extends Base_Controller
 		$id = getParameter('id');
 		$name = getParameter('name');
 
-		$category = $this->model->category->update($id, [
+		$category = $this->model->category->update_by_id($id, [
 			'name' => $name,
 		]);
 

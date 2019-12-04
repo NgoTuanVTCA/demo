@@ -25,7 +25,7 @@
                                 <td><?php echo $partner['area'] ?></td>
                                 <td>
                                     <button type="button" class="btn btn-primary">
-                                        <a style="color:white; text-decoration: none;" href="<? echo base_url("partner/edit?id={$partner['id']}") ?>">Cập nhật</a>
+                                        <a style="color:white; text-decoration: none;" href="<?php echo base_url("partner/edit?id={$partner['id']}") ?>">Cập nhật</a>
                                     </button>
                                 </td>
                             </tr>

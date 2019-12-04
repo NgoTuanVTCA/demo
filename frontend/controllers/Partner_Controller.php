@@ -8,6 +8,10 @@ class Partner_Controller extends Base_Controller
 
 	function index()
 	{
+	    
+	    if(empty($_SESSION['role']) || $_SESSION['role'] != 1){
+	        redirect('home/index');
+	    }
 		$partners = $this->model->partner->find();
 		$this->layout->set('auth_layout');
 		$this->view->load('partner/index', [
@@ -19,6 +23,10 @@ class Partner_Controller extends Base_Controller
 	{
 		// trang them san pham
 		// hien thi form them san pham
+		
+	    if(empty($_SESSION['role']) || $_SESSION['role'] != 1){
+	        redirect('home/index');
+	    }
 		$this->layout->set('auth_layout');
 		$this->view->load('partner/add');
 	}
@@ -82,6 +90,10 @@ class Partner_Controller extends Base_Controller
 	{
 		// trang sua san pham
 		// hien thi form sua san pham
+		
+	    if(empty($_SESSION['role']) || $_SESSION['role'] != 1){
+	        redirect('home/index');
+	    }
 		$id = getGetParameter('id');
 		$partner = $this->model->partner->find_by_id($id);
 		$this->layout->set('auth_layout');

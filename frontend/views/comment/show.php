@@ -32,9 +32,7 @@
                                                     <td><?php echo $comment['content'] ?> </td>
                                                     <td><?php echo $comment['active'] ?> </td>
                                                     <td>
-                                                        <button type="button" class="btn btn-primary">
-                                                            <a style="color:white; text-decoration: none;" href="<?php echo base_url("comment/edit?id={$comment['id']}") ?>">Cập nhật</a>
-                                                        </button>
+                                                        <a class="btn btn-dark btn-block" href="<?php echo base_url("comment/edit?id={$comment['id']}") ?>">Cập nhật</a>
                                                     </td>
                                                 </tr>
                                             <?php endif ?>

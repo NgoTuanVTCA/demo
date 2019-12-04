@@ -8,8 +8,12 @@ class Product_Controller extends Base_Controller
 
 	function index()
 	{
-		$this->layout->set('auth_layout');
 		// trang danh sach san pham
+		
+	    if(empty($_SESSION['role']) || $_SESSION['role'] != 1){
+	        redirect('home/index');
+	    }
+		$this->layout->set('auth_layout');
 		$products = $this->model->product->find();
 		$categories = $this->model->category->find();
 		$brands = $this->model->brand->find();
@@ -51,6 +55,11 @@ class Product_Controller extends Base_Controller
 	{
 		// trang them san pham
 		// hien thi form them san pham
+		
+	    if(empty($_SESSION['role']) || $_SESSION['role'] != 1){
+	        redirect('home/index');
+	    }
+	    
 		$id = getParameter('id');
 		$categories = $this->model->category->find();
 		$brands = $this->model->brand->find();
@@ -72,7 +81,6 @@ class Product_Controller extends Base_Controller
 		$brand = getPostParameter('brand');
 		$category_id = $category[0];
 		$brand_id = $brand[0];
-		// echo $brand_id . "<br>" . $category_id;
 		$target_dir = "";
 		if ($category_id == 1) {
 			$target_dir = "vest";
@@ -129,6 +137,10 @@ class Product_Controller extends Base_Controller
 	}
 	function edit_size()
 	{
+
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$this->layout->set('auth_layout');
 		$data = $this->model->product->find_last_product_inserted();
 		$product = $this->model->product->find_by_id($data[0]['id']);
@@ -138,7 +150,6 @@ class Product_Controller extends Base_Controller
 	}
 	function update_size()
 	{
-		session_start();
 		$product_id = $_SESSION['id'];
 		$size_id = getPostParameter('size_name');
 		$quantity_stock = getPostParameter('quantity');
@@ -155,7 +166,7 @@ class Product_Controller extends Base_Controller
 				'quantity_stock' =>  $quantity_stock
 			]);
 
-			$product = $this->model->product->update($product_id, [
+			$product = $this->model->product->update_by_id($product_id, [
 				'quantity' => $quantity_stock
 			]);
 			if ($product_size && $product) {
@@ -171,6 +182,10 @@ class Product_Controller extends Base_Controller
 	{
 		// trang sua san pham
 		// hien thi form sua san pham
+
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$id = getParameter('id');
 		$product = $this->model->product->find_by_id($id);
 		$categories = $this->model->category->find();
@@ -225,7 +240,7 @@ class Product_Controller extends Base_Controller
 				'errors' => $errors
 			]);
 		} else {
-			$product = $this->model->product->update($id, [
+			$product = $this->model->product->update_by_id($id, [
 				'name' => $name,
 				'price' => $price,
 				'image' => $target_file,

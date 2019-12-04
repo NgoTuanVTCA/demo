@@ -18,9 +18,7 @@
                                         <tr>
                                             <td><?php echo $product['name'] ?> </td>
                                             <td class="">
-                                                <button type="button" class="btn btn-primary justify-content-start">
-                                                    <a style="color:white; text-decoration: none;" href="<?php echo base_url("comment/show&id={$comment['product_id']}") ?>">Xem Bình Luận</a>
-                                                </button>
+                                                <a class="btn btn-dark btn-block" href="<?php echo base_url("comment/show&id={$comment['product_id']}") ?>">Xem Bình Luận</a>
                                             </td>
                                         </tr>
                                     <?php endif ?>

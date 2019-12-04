@@ -9,6 +9,9 @@ class Order_Controller extends Base_Controller
 	function index()
 	{
 		// trang danh sach san pham
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$orders = $this->model->order->find();
 		$this->layout->set('auth_layout');
 		$this->view->load('order/index', [
@@ -18,6 +21,9 @@ class Order_Controller extends Base_Controller
 
 	function show()
 	{
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$this->layout->set('auth_layout');
 		$id = getParameter('id');
 		$data = [
@@ -29,6 +35,9 @@ class Order_Controller extends Base_Controller
 	{
 		// trang sua san pham
 		// hien thi form sua san pham
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$id = getGetParameter('id');
 		$orders = $this->model->order->find_by_id($id);
 		$this->layout->set('auth_layout');
@@ -50,7 +59,7 @@ class Order_Controller extends Base_Controller
 				'errors' => $errors
 			]);
 		} else {
-			$order = $this->model->order->update($id, [
+			$order = $this->model->order->update_by_id($id, [
 				'status' => $status
 			]);
 
@@ -67,6 +76,9 @@ class Order_Controller extends Base_Controller
 
 	function index2()
 	{
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$orders = $this->model->order->find();
 		$partners = $this->model->partner->find();
 		$this->layout->set('auth_layout');
@@ -78,6 +90,9 @@ class Order_Controller extends Base_Controller
 
 	function check()
 	{
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$orders = $this->model->order->find();
 		$this->layout->set('auth_layout');
 		$this->view->load('order/check', [
@@ -113,5 +128,15 @@ class Order_Controller extends Base_Controller
 				'error_message' => 'Cập nhật không thành công'
 			]);
 		}
+	}
+	
+	public function transaction_history()
+	{
+		$orders = $this->model->order->get_order_by_user($_SESSION['id']);
+		$partners = $this->model->partner->find();
+		$this->view->load('order/transaction', [
+			'orders' => $orders,
+			'partners' => $partners
+		]);
 	}
 }

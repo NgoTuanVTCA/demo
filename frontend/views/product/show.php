@@ -40,7 +40,6 @@
                                 <?php if ($product_size['size_id'] == $size['id']) : ?>
                                     <label for="option-sm" class="d-flex mr-3 mb-3">
                                         <input type="button" class="btn btn-outline-primary js-btn-plus a" onclick="loaddata(event)" value="<?php echo $size['name']; ?>">
-
                                     </label>
                                 <?php endif; ?>
                             <?php endforeach; ?>
@@ -88,7 +87,7 @@
         </form>
         <div class="col-md-6">
             <br>
-            <form action="<? echo base_url("comment/store&id={$product['id']}") ?>" method="post">
+            <form action="<?php echo base_url("comment/store&id={$product['id']}") ?>" method="post">
                 <div class="form-content">
                     <div>
                         <?php if (!$_SESSION['name']) : ?>

@@ -8,13 +8,13 @@
 
 <div class="container mt-5">
     <div class="row mb-5">
-        <?php if ($products == null) : ?>
+        <?php if (empty($products)) : ?>
             <div class="col-lg">
                 <br><br>
                 <h3 class="text-center">Không tìm thấy sản phẩm</h3>
                 <br><br>
             </div>
-        <? else : ?>
+        <?php else : ?>
             <?php foreach ($products as $product) : ?>
                 <div class="col-lg-4 col-md-4 mb-4">
                     <a href="<?php echo base_url("product/show?id={$product['id']}") ?>" class="item-entry">
@@ -38,7 +38,7 @@
                                             else echo base_url("home/search&name={$name}") . '&pageno=' . ($pageno + 1); ?>">&gt;</a>
             </li>
             <li class="page-item"><a class="page-link" href="<?php echo base_url("home/search&name={$name}") . '&pageno=' . $total_pages; ?>">&gt;&gt;</a></li>
-            <li class="page-item disabled"><a class="page-link"><? echo $pageno ?>/<? echo $total_pages ?></a></li>
+            <li class="page-item disabled"><a class="page-link"><?php echo $pageno ?>/<?php echo $total_pages ?></a></li>
         </ul>
     </nav>
 </div>

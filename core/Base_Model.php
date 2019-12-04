@@ -30,7 +30,7 @@ class Base_Model
 		$db_password = $config['db_password'];
 
 		try {
-			$this->db = new PDO("mysql:host={$db_host}:{$db_port};dbname=$db_name", $db_username, $db_password);
+			$this->db = new PDO("mysql:host={$db_host};dbname=$db_name", $db_username, $db_password);
 			$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$this->db->exec("set names utf8");
 		} catch (PDOException $e) {
@@ -117,13 +117,10 @@ class Base_Model
 	// update a record by id
 	function update_by_id($id, $data = [])
 	{
-		var_dump($id);
-		var_dump($data);
 		if (!$id || count($data) == 0) {
 			return;
 		}
 		$data += get_update_time();
-		var_dump($data);
 		// auto gen values and fiels from a array
 		$result = gen_update_fields_form_array($data);
 		$query = "update `{$this->table}` set {$result->field_string} where `id` = {$id} ";
@@ -131,7 +128,6 @@ class Base_Model
 			$this->db->beginTransaction();
 			$sth = $this->db->prepare($query);
 			$sth->execute($result->bind_values);
-			var_dump($result);
 			$this->db->commit();
 			return true;
 		} catch (PDOExecption $e) {
