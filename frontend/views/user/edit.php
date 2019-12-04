@@ -6,7 +6,6 @@
 <a href="<?php echo base_url('user/index') ?>" class="btn btn-success"><i class="fa fa-backward"></i> Trở về</a>
 <div class="card card-body bg-light mt-5">
     <h3>Cập nhật thông tin người dùng</h3>
-    <p>Cập nhật một người dùng</p>
     <form action="<?php echo base_url("user/update&id={$user['id']}") ?>" method="post" enctype="multipart/form-data">
         <form>
             <div class="form-group">
