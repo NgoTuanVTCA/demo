@@ -5,9 +5,11 @@ class Product_Size_Model extends Base_Model
 
 	function update_product_quantity($id)
 	{
-		$query = "SELECT SUM(quantity_stock) FROM `{$this->table}` WHERE `product_id` = $id;";
+		$query = "SELECT SUM(quantity_stock) FROM `{$this->table}` WHERE `product_id` = :id;";
 		$sth = $this->db->prepare($query);
-		$sth->execute();
+		$sth->execute([
+			':id' => $id
+		]);
 	}
 
 	function delete_by_product_id($product_id)
