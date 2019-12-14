@@ -33,12 +33,12 @@
             <li class="page-item <?php if ($pageno <= 1) echo 'disabled'; ?>">
                 <a class="page-link" href="<?php if ($pageno <= 1) echo '#';
                                             else echo base_url("home/search&name={$name}") . '&pageno=' . ($pageno - 1); ?>">&lt;</a></li>
+            <li class="page-item disabled"><a class="page-link"><?php echo $pageno ?>/<?php echo $total_pages ?></a></li>
             <li class="page-item <?php if ($pageno >= $total_pages) echo 'disabled'; ?>">
                 <a class="page-link" href="<?php if ($pageno >= $total_pages) echo '#';
                                             else echo base_url("home/search&name={$name}") . '&pageno=' . ($pageno + 1); ?>">&gt;</a>
             </li>
             <li class="page-item"><a class="page-link" href="<?php echo base_url("home/search&name={$name}") . '&pageno=' . $total_pages; ?>">&gt;&gt;</a></li>
-            <li class="page-item disabled"><a class="page-link"><?php echo $pageno ?>/<?php echo $total_pages ?></a></li>
         </ul>
     </nav>
 </div>

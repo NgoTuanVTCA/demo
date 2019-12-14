@@ -9,9 +9,9 @@
                         <tr>
                             <th>Tên</th>
                             <th>Email</th>
-                            <th>Địa Chỉ</th>
-                            <th>Số Điện Thoại</th>
-                            <th>Khu vực</th>
+                            <th>Địa chỉ</th>
+                            <th>Số điện thoại</th>
+                            <th>Giá vận chuyển</th>
                             <th>Thao tác</th>
                         </tr>
                     </thead>
@@ -22,7 +22,7 @@
                                 <td><?php echo $partner['email'] ?></td>
                                 <td><?php echo $partner['address'] ?> </td>
                                 <td><?php echo $partner['phone_number'] ?></td>
-                                <td><?php echo $partner['area'] ?></td>
+                                <td><?php echo $partner['price'] ?></td>
                                 <td>
                                     <button type="button" class="btn btn-primary">
                                         <a style="color:white; text-decoration: none;" href="<?php echo base_url("partner/edit?id={$partner['id']}") ?>">Cập nhật</a>

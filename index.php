@@ -3,7 +3,7 @@
 
 define('BASE_PATH', __DIR__);
 define('APP_PATH', BASE_PATH . '/frontend');
-define('BASE_URL', 'https://vtcstore.000webhostapp.com');
+define('BASE_URL', 'http://localhost:8889/ProjectSEM2/');
 define('CSS_URL', BASE_URL . '/public/css/');
 define('JS_URL', BASE_URL . '/public/js/');
 define('FONTS_URL', BASE_URL . '/public/fonts/');

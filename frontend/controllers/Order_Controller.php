@@ -1,14 +1,13 @@
 <?php
 class Order_Controller extends Base_Controller
 {
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	function index()
+	public function index()
 	{
-		// trang danh sach san pham
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
 		}
@@ -19,22 +18,27 @@ class Order_Controller extends Base_Controller
 		]);
 	}
 
-	function show()
+	public function show()
 	{
-		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
-			redirect('home/index');
-		}
-		$this->layout->set('auth_layout');
 		$id = getParameter('id');
-		$data = [
-			'order' => $this->model->order->find_by_id($id)
-		];
-		$this->view->load('order/show', $data);
+		if (empty($_SESSION['role'])) {
+			redirect('home/index');
+		} elseif ($_SESSION['role'] == 1) {
+			$this->layout->set('auth_layout');
+		}
+		$order = $this->model->order->find_by_id($id);
+		$products = $this->model->product->find();
+		$partners = $this->model->partner->find();
+		$order_details = $this->model->order_details->find_order_by_order_id($order['id']);
+		$this->view->load('order/show', [
+			'order' => $order,
+			'products' => $products,
+			'partners' => $partners,
+			'order_details' => $order_details
+		]);
 	}
-	function edit()
+	public function edit()
 	{
-		// trang sua san pham
-		// hien thi form sua san pham
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
 		}
@@ -45,7 +49,7 @@ class Order_Controller extends Base_Controller
 			'orders' => $orders
 		]);
 	}
-	function update()
+	public function update()
 	{
 		$this->layout->set(null);
 
@@ -74,7 +78,7 @@ class Order_Controller extends Base_Controller
 		}
 	}
 
-	function index2()
+	public function delivery_status()
 	{
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
@@ -82,37 +86,35 @@ class Order_Controller extends Base_Controller
 		$orders = $this->model->order->find();
 		$partners = $this->model->partner->find();
 		$this->layout->set('auth_layout');
-		$this->view->load('order/index2', [
+		$this->view->load('order/delivery_status', [
 			'orders' => $orders,
 			'partners' => $partners
 		]);
 	}
 
-	function check()
+	public function checking()
 	{
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
 		}
 		$orders = $this->model->order->find();
 		$this->layout->set('auth_layout');
-		$this->view->load('order/check', [
+		$this->view->load('order/checking', [
 			'orders' => $orders,
 		]);
 	}
 
-	function edit2()
+	public function edit_checking()
 	{
-		// trang sua san pham
-		// hien thi form sua san pham
 		$id = getGetParameter('id');
 		$order = $this->model->order->find_by_id($id);
 		$this->layout->set('auth_layout');
-		$this->view->load('order/edit2', [
+		$this->view->load('order/edit_checking', [
 			'order' => $order
 		]);
 	}
 
-	function update2()
+	public function update_checking()
 	{
 		$this->layout->set(null);
 		$id = getParameter('id');
@@ -121,15 +123,15 @@ class Order_Controller extends Base_Controller
 			'status' => $status
 		]);
 		if ($order) {
-			redirect('order/check');
+			redirect('order/checking');
 		} else {
 			$this->layout->set('auth_layout');
-			$this->view->load('order/edit2', [
+			$this->view->load('order/edit_checking', [
 				'error_message' => 'Cập nhật không thành công'
 			]);
 		}
 	}
-	
+
 	public function transaction_history()
 	{
 		$orders = $this->model->order->get_order_by_user($_SESSION['id']);
@@ -138,5 +140,19 @@ class Order_Controller extends Base_Controller
 			'orders' => $orders,
 			'partners' => $partners
 		]);
+	}
+	public function store()
+	{
+
+		$this->layout->set(null);
+		$id = $_SESSION['id'];
+		$partner_id = getPostParameter('partner');
+		$status = 'Đang xử lý';
+		$order = $this->model->order->create([
+			'user_id' => $id,
+			'partner_id' => $partner_id,
+			'status' => $status
+		]);
+		redirect("order_details/store?id={$order['id']}");
 	}
 }

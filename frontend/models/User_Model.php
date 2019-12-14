@@ -16,7 +16,7 @@ class User_Model extends Base_Model
 		return $data;
 	}
 
-	function get_by_phone($phone)
+	public function get_by_phone($phone)
 	{
 		$query = "select * from `{$this->table}` where phone_number = " . ':phone_number' . "";
 		$sth = $this->db->prepare($query);

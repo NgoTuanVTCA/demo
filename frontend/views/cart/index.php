@@ -1,22 +1,3 @@
-<?php
-session_start();
-$itemcart = array();
-array_push($itemcart, $_SESSION['product_images'], $_SESSION['product_name'], $_SESSION['size'], $_SESSION['product_price'],  $_POST['vl']);
-if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = array();
-    $_SESSION['cart'][$_SESSION['product_id']] = $itemcart;
-} else {
-    if (array_key_exists($_SESSION['product_id'], $_SESSION['cart'])) {
-        $_SESSION['cart'][$_SESSION['product_id']][4] = $_SESSION['cart'][$_SESSION['product_id']][4] + $_POST['quantity'];
-    } else {
-        $_SESSION['cart'][$_SESSION['product_id']] = $itemcart;
-    }
-}
-// unset($_SESSION['cart']);
-// unset($itemcart);
-var_dump($_SESSION['cart']);
-?>
-
 <div class="bg-light py-3">
     <div class="container">
         <div class="row">
@@ -24,71 +5,96 @@ var_dump($_SESSION['cart']);
         </div>
     </div>
 </div>
-
 <div class="site-section">
     <div class="container">
         <div class="row mb-5">
-            <form class="col-md-12" method="post">
-                <div class="site-blocks-table">
+            <div class="site-blocks-table">
+                <?php if (empty($carts)) : ?>
+                    <div class="text-center">
+                        <h3 class="ml-3">Giỏ hàng chưa có sản phẩm</h3>
+                    </div>
+
+                <?php else : ?>
+                <?php echo $error_message ?>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th class="product-thumbnail">Ảnh sản phẩm</th>
-                                <th class="product-name">Tên sản phẩm</th>
-                                <th class="product-size">Kích thước</th>
-                                <th class="product-price">Giá</th>
-                                <th class="product-quantity">Số lượng</th>
-                                <th class="product-total">Tổng giá</th>
-                                <th class="product-remove">Xóa</th>
+                                <th>Mã sản phẩm</th>
+                                <th>Ảnh sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Kích thước</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Tổng giá</th>
+                                <th>Cập nhật</th>
+                                <th>Xóa</th>
                             </tr>
                         </thead>
-                        <?php foreach ($_SESSION['cart'] as $key => $value) : ?>
-                            <tbody>
-                                <tr>
-                                    <td class="product-thumbnail">
-                                        <img src="<?php echo PRODUCT_URL . $_SESSION['cart'][$key][0] ?>" alt="Image" class="img-fluid">
-                                    </td>
-                                    <td class="product-name">
-                                        <h2 class="h5 text-black"><?php echo $_SESSION['cart'][$key][1] ?></h2>
-                                    </td>
-                                    <td><?php echo $_SESSION['cart'][$key][2] ?></td>
-                                    <td><?php echo $_SESSION['cart'][$key][3] ?></td>
-                                    <td>
-                                        <div class="input-group" style="max-width: 120px;">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                                            </div>
-                                            <input type="text" class="form-control text-center" value="<?php echo $_SESSION['cart'][$key][4] ?>" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <?php $total =((double)$_SESSION['cart'][$key][3]) * $_SESSION['cart'][$key][4] ?>
-                                    <td><?php echo $total ?></td>
-                                    <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
-                                </tr>
-                            </tbody>
+                        <?php $total_price = 0 ?>
+                        <?php foreach ($carts as $cart) : ?>
+                            <?php foreach ($products as $product) : ?>
+                                <?php foreach ($sizes as $size) : ?>
+                                    <?php if ($cart['user_id'] == $_SESSION['id']) : ?>
+                                        <?php if ($cart['product_id'] == $product['id']) : ?>
+                                            <?php if ($cart['size_id'] == $size['id']) : ?>
+                                                <tbody>
+                                                    <tr>
+                                                        <form action="<?php echo base_url("cart/update_to_cart") ?>" method="post">
+                                                            <td><input type="hidden" class="form-control text-center" name="product_id" value="<?php echo $product['id']; ?>"><?php echo $product['id']; ?></td>
+                                                            <td>
+                                                                <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
+                                                            </td>
+                                                            <td>
+                                                                <h2 class="h5 text-black"><?php echo $product['name']; ?></h2>
+                                                            </td>
+                                                            <td><input class="form-control text-center" type="hidden" name="size_id" value=" <?php echo $size['id']; ?>"><?php echo $size['name']; ?></td>
+                                                            <td><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></td>
+                                                            <td>
+                                                                <input type="text" class="form-control text-center" name="quantity" value="<?php echo $cart['quantity']; ?>">
+                                                            </td>
+                                                            <?php $total = ((float) $cart['quantity']) *  $product['price'] ?>
+                                                            <td><?php echo number_format($total, 0, '.', ',') . ' VNĐ' ?></td>
+                                                            <?php $total_price += $total; ?>
+                                                            <td>
+                                                                <button type="submit" class="btn btn-primary height-auto btn-sm">Cập nhật</button>
+                                                            </td>
+                                                        </form>
+                                                        <td>
+                                                            <form action="<?php echo base_url("cart/destroy_a_product_cart") ?>" method="post">
+                                                                <input type="hidden" class="form-control text-center" name="product_id" value="<?php echo $product['id']; ?>">
+                                                                <input class="form-control text-center" type="hidden" name="size_id" value=" <?php echo $size['id']; ?>">
+                                                                <button type="submit" class="btn btn-primary height-auto btn-sm">X</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            <?php endforeach; ?>
                         <?php endforeach; ?>
+                    <?php endif; ?>
                     </table>
-                </div>
-            </form>
+            </div>
         </div>
 
         <div class="row">
             <div class="col-md-6">
                 <div class="row mb-5">
                     <div class="col-md-6 mb-3 mb-md-0">
-                        <button class="btn btn-primary btn-sm btn-block">Cập nhật</button>
+                        <form action="<?php echo base_url("cart/destroy_to_cart") ?>" method="post">
+                            <button type="submit" class="btn btn-outline-primary btn-sm btn-block">Xóa giỏ hàng</button>
+                        </form>
                     </div>
                     <div class="col-md-6">
-                        <button class="btn btn-outline-primary btn-sm btn-block">Tiếp tục mua hàng</button>
+                        <a href="<?php echo base_url("home/index") ?>" class="btn btn-outline-primary btn-sm btn-block pt-lg-2">Tiếp tục mua hàng</a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <label class="text-black h4" for="coupon">Khuyến mại</label>
-                        <p>Nhập phiếu giảm giá nếu có.</p>
+                        <p>Nhập mã phiếu giảm giá nếu có.</p>
                     </div>
                     <div class="col-md-8 mb-3 mb-md-0">
                         <input type="text" class="form-control py-3" id="coupon" placeholder="Mã giảm giá">
@@ -111,21 +117,15 @@ var_dump($_SESSION['cart']);
                                 <span class="text-black">Giá tạm tính</span>
                             </div>
                             <div class="col-md-6 text-right">
-                                <strong class="text-black">$230.00</strong>
-                            </div>
-                        </div>
-                        <div class="row mb-5">
-                            <div class="col-md-6">
-                                <span class="text-black">Thành tiền</span>
-                            </div>
-                            <div class="col-md-6 text-right">
-                                <strong class="text-black">$230.00</strong>
+                                <strong class="text-black">
+                                    <?php echo number_format($total_price, 0, '.', ',') . ' VNĐ' ?>
+                                </strong>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-12">
-                                <button class="btn btn-primary btn-lg btn-block" onclick="window.location='checkout.html'">Xác nhận đơn hàng</button>
+                                <a href="<?php echo base_url("cart/checkprofile") ?>" class="btn btn-primary btn-lg btn-block" onclick="window.location='checkout.html'">Xác nhận đơn hàng</a>
                             </div>
                         </div>
                     </div>

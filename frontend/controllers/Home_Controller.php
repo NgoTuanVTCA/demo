@@ -8,7 +8,6 @@ class Home_Controller extends Base_Controller
 
 	public function index()
 	{
-		// show home
 		$products = $this->model->product->find_by_new_products();
 		$this->view->load('home/index', [
 			'products' => $products
@@ -16,9 +15,6 @@ class Home_Controller extends Base_Controller
 	}
 	public function search()
 	{
-
-		// search products
-
 		$name = getParameter('name');
 		$pageno = getParameter('pageno');
 

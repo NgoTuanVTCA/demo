@@ -8,7 +8,7 @@
 <div class="container mt-5">
   <div class="row mb-5">
     <?php foreach ($products as $product) : ?>
-      <?php if ($category['id'] == $product['categories_id']) : ?>
+      <?php if ($category['id'] == $product['category_id']) : ?>
         <div class="col-lg-4 col-md-4 item-entry mb-4">
           <a href="<?php echo base_url("product/show?id={$product['id']}") ?>" class="item-entry">
             <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
@@ -26,12 +26,12 @@
       <li class="page-item <?php if ($pageno <= 1) echo 'disabled'; ?>">
         <a class="page-link" href="<?php if ($pageno <= 1) echo '#';
                                     else echo base_url("category/show_product&id={$category['id']}") . '&pageno=' . ($pageno - 1); ?>">&lt;</a></li>
+      <li class="page-item disabled"><a class="page-link"><?php echo $pageno ?>/<?php echo $total_pages ?></a></li>
       <li class="page-item <?php if ($pageno >= $total_pages) echo 'disabled'; ?>">
         <a class="page-link" href="<?php if ($pageno >= $total_pages) echo '#';
                                     else echo base_url("category/show_product&id={$category['id']}") . '&pageno=' . ($pageno + 1); ?>">&gt;</a>
       </li>
       <li class="page-item"><a class="page-link" href="<?php echo base_url("category/show_product&id={$category['id']}") . '&pageno=' . $total_pages; ?>">&gt;&gt;</a></li>
-      <li class="page-item disabled"><a class="page-link"><?php echo $pageno ?>/<?php echo $total_pages ?></a></li>
     </ul>
   </nav>
 </div>

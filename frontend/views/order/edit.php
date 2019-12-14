@@ -6,8 +6,8 @@
         <div class="form-group">
             <label for="status">Trạng thái <span class="red">*</span></label>
             <select name="" id="status" class="form-control">
-                <option value="">Chưa xử lí</option>
-                <option value="">Đã xử lí</option>
+                <option value="">Đang xử lý</option>
+                <option value="">Đã xử lý</option>
             </select>
         </div>
         <input type="submit" class="btn btn-dark" value="Cập nhật" />

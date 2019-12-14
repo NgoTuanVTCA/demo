@@ -4,13 +4,13 @@ class Base_Model
 
 	protected $db;
 
-	function __construct()
+	public function __construct()
 	{
 		$this->db_connect();
 	}
 
 	// connect db
-	function db_connect()
+	public function db_connect()
 	{
 		if (!empty($this->db)) {
 			return;
@@ -18,9 +18,9 @@ class Base_Model
 
 		$db_config_path = BASE_PATH . '/config/database.php';
 
-		if (!file_exists($db_config_path)) {
-			exit("File not found $db_config_path");
-		}
+		// if (!file_exists($db_config_path)) {
+		// 	exit("File not found $db_config_path");
+		// }
 
 		$config = require $db_config_path;
 		$db_host = $config['db_host'];
@@ -30,7 +30,7 @@ class Base_Model
 		$db_password = $config['db_password'];
 
 		try {
-			$this->db = new PDO("mysql:host={$db_host};dbname=$db_name", $db_username, $db_password);
+			$this->db = new PDO("mysql:host={$db_host}:{$db_port};dbname=$db_name", $db_username, $db_password);
 			$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$this->db->exec("set names utf8");
 		} catch (PDOException $e) {
@@ -39,7 +39,7 @@ class Base_Model
 	}
 
 	// find all record
-	function find()
+	public function find()
 	{
 		$query = "select * from `{$this->table}`";
 		$sth = $this->db->prepare($query);
@@ -50,7 +50,7 @@ class Base_Model
 	}
 
 	// find a record by id
-	function find_by_id($id)
+	public function find_by_id($id)
 	{
 		$query = "select * from `{$this->table}` where id = :id";
 		$sth = $this->db->prepare($query);
@@ -63,7 +63,7 @@ class Base_Model
 	}
 
 	// create a record
-	function create($data = [])
+	public function create($data = [])
 	{
 		if (count($data) == 0) {
 			return;
@@ -83,14 +83,14 @@ class Base_Model
 			$insert_id = $this->db->lastInsertId();
 			$this->db->commit();
 			return $this->find_by_id($insert_id);
-		} catch (PDOExecption $e) {
+		} catch (PDOException $e) {
 			$this->db->rollback();
 			exit("Error!: " . $e->getMessage());
 		}
 	}
 
 	// update record
-	function update($id, $data = [])
+	public function update($id, $data = [])
 	{
 		if (!$id || count($data) == 0) {
 			return;
@@ -107,7 +107,7 @@ class Base_Model
 			$sth->execute($result->bind_values);
 			$this->db->commit();
 			return true;
-		} catch (PDOExecption $e) {
+		} catch (PDOException $e) {
 			$this->db->rollback();
 			exit("Error!: " . $e->getMessage());
 		}
@@ -115,7 +115,7 @@ class Base_Model
 	}
 
 	// update a record by id
-	function update_by_id($id, $data = [])
+	public function update_by_id($id, $data = [])
 	{
 		if (!$id || count($data) == 0) {
 			return;
@@ -130,7 +130,7 @@ class Base_Model
 			$sth->execute($result->bind_values);
 			$this->db->commit();
 			return true;
-		} catch (PDOExecption $e) {
+		} catch (PDOException $e) {
 			$this->db->rollback();
 			exit("Error!: " . $e->getMessage());
 		}
@@ -138,7 +138,7 @@ class Base_Model
 	}
 	
 	// delete a record
-	function destroy($id)
+	public function destroy($id)
 	{
 		$query = "delete from `{$this->table}` where `id` = :id";
 		$sth = $this->db->prepare($query);

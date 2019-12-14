@@ -1,17 +1,17 @@
 <?php
 class Partner_Controller extends Base_Controller
 {
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	function index()
+	public function index()
 	{
-	    
-	    if(empty($_SESSION['role']) || $_SESSION['role'] != 1){
-	        redirect('home/index');
-	    }
+
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$partners = $this->model->partner->find();
 		$this->layout->set('auth_layout');
 		$this->view->load('partner/index', [
@@ -19,22 +19,17 @@ class Partner_Controller extends Base_Controller
 		]);
 	}
 
-	function add()
+	public function add()
 	{
-		// trang them san pham
-		// hien thi form them san pham
-		
-	    if(empty($_SESSION['role']) || $_SESSION['role'] != 1){
-	        redirect('home/index');
-	    }
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$this->layout->set('auth_layout');
 		$this->view->load('partner/add');
 	}
 
-	function store()
+	public function store()
 	{
-		// xu li them san pham
-
 		$name = getParameter('name');
 		$address = getParameter('address');
 		$phone_number = getParameter('phone_number');
@@ -86,14 +81,11 @@ class Partner_Controller extends Base_Controller
 		}
 	}
 
-	function edit()
+	public function edit()
 	{
-		// trang sua san pham
-		// hien thi form sua san pham
-		
-	    if(empty($_SESSION['role']) || $_SESSION['role'] != 1){
-	        redirect('home/index');
-	    }
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$id = getGetParameter('id');
 		$partner = $this->model->partner->find_by_id($id);
 		$this->layout->set('auth_layout');
@@ -102,7 +94,7 @@ class Partner_Controller extends Base_Controller
 		]);
 	}
 
-	function update()
+	public function update()
 	{
 		$this->layout->set(null);
 		$id = getParameter('id');
@@ -113,25 +105,11 @@ class Partner_Controller extends Base_Controller
 
 		$errors = [];
 
-		// if (!$name) {
-		// 	$errors['name_err'] = 'Vui lòng nhập tên đối tác';
-		// }
-		// if (!$address) {
-		// 	$errors['address_err'] = 'Vui long nhap địa chỉ';
-		// }
-		// // if (!$email) {
-		// // 	$errors['email_err'] = 'Vui lòng nhập email';
-		// // }
-		// if (!$area) {
-		// 	$errors['area_err'] = 'Vui lòng chọn khu vực hoạt động';
-		// }
-
 		if (count($errors) > 0) {
 			$this->layout->set('auth_layout');
-			$this->view->load(('partner/edit'), [
+			$this->view->load('partner/edit', [
 				'errors' => $errors
 			]);
-			// redirect("partner/edit?id={$id}");
 		} else {
 			$partner = $this->model->partner->update_by_id($id, [
 				'name' => $name,
@@ -149,5 +127,4 @@ class Partner_Controller extends Base_Controller
 			}
 		}
 	}
-
 }

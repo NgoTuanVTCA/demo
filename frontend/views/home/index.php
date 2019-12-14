@@ -72,7 +72,7 @@
             <div class="col-md-12 block-3">
                 <div class="nonloop-block-3 owl-carousel">
                     <?php foreach ($products as $product) : ?>
-                        <?php if ($product['categories_id'] == 1) : ?>
+                        <?php if ($product['category_id'] == 1) : ?>
                             <div class="item">
                                 <a href="<?php echo base_url("product/show?id={$product['id']}") ?>" class="item-entry">
                                     <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid"> <br>
@@ -107,7 +107,7 @@
             <div class="col-md-12 block-3">
                 <div class="nonloop-block-3 owl-carousel">
                     <?php foreach ($products as $product) : ?>
-                        <?php if ($product['categories_id'] == 7) : ?>
+                        <?php if ($product['category_id'] == 7) : ?>
                             <div class="item">
                                 <a href="<?php echo base_url("product/show?id={$product['id']}") ?>" class="item-entry">
                                     <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid"> <br>
@@ -142,7 +142,7 @@
             <div class="col-md-12 block-3">
                 <div class="nonloop-block-3 owl-carousel">
                     <?php foreach ($products as $product) : ?>
-                        <?php if ($product['categories_id'] == 2) : ?>
+                        <?php if ($product['category_id'] == 2) : ?>
                             <div class="item">
                                 <a href="<?php echo base_url("product/show?id={$product['id']}") ?>" class="item-entry">
                                     <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid"> <br>

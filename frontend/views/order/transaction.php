@@ -40,6 +40,7 @@
 							<th scope="col" style="text-align: center;">Đối tác giao hàng</th>
 							<th scope="col" style="text-align: center;">Trạng thái</th>
 							<th scope="col" style="text-align: center;">Ngày tạo</th>
+							<th scope="col" style="text-align: center;">Thao tác</th>
 						</tr>
 					</thead>
 					<?php foreach ($orders as $order) : ?>
@@ -51,6 +52,11 @@
 										<td> <?php echo $partner['name'] ?></td>
 										<td> <?php echo $order['status'] ?> </td>
 										<td> <?php echo $order['created_at'] ?> </td>
+										<td>
+											<form action="<?php echo base_url("order/show?id={$order['id']}");?>" method="post">
+												<button type="submit" class="btn btn-sm btn-primary">Chi tiết</button>
+											</form>
+										</td>
 									<?php endif; ?>
 							</tr>
 						<?php endif; ?>

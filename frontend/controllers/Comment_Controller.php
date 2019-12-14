@@ -5,7 +5,7 @@ class Comment_Controller extends Base_Controller
 	{
 		parent::__construct();
 	}
-	function index()
+	public function index()
 	{
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
@@ -15,14 +15,14 @@ class Comment_Controller extends Base_Controller
 		$comments = $this->model->comment->find_group_by();
 		$users = $this->model->user->find();
 		$products = $this->model->product->find();
-		
+
 		$this->view->load('comment/index', [
 			'comments' => $comments,
 			'users' => $users,
 			'products' => $products
 		]);
 	}
-	function show()
+	public function show()
 	{
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
@@ -33,7 +33,7 @@ class Comment_Controller extends Base_Controller
 		$comments = $this->model->comment->find_product_by_comment($id);
 		$users = $this->model->user->find();
 		$products = $this->model->product->find();
-		
+
 		$this->view->load('comment/show', [
 			'comments' => $comments,
 			'users' => $users,
@@ -41,7 +41,7 @@ class Comment_Controller extends Base_Controller
 		]);
 	}
 
-	function edit()
+	public function edit()
 	{
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
@@ -49,13 +49,13 @@ class Comment_Controller extends Base_Controller
 		$id = getParameter('id');
 		$this->layout->set('auth_layout');
 		$comment = $this->model->comment->find_by_id($id);
-		
+
 		$this->view->load('comment/edit', [
 			'comment' => $comment
 		]);
 	}
 
-	function update()
+	public function update()
 	{
 		$this->layout->set(null);
 		$id = getParameter('id');
@@ -75,7 +75,6 @@ class Comment_Controller extends Base_Controller
 	}
 	public function store()
 	{
-		// process comment
 		$product_id = getParameter('id');
 		$userid = $_SESSION['id'];
 		$comment = getParameter('comment');
@@ -87,7 +86,7 @@ class Comment_Controller extends Base_Controller
 		if (count($errors) > 0) {
 			redirect("product/show&id={$product_id}");
 		} else {
-		    $active = 'Tắt';
+			$active = 'Tắt';
 			$this->model->comment->create([
 				'user_id' => $userid,
 				'product_id' => $product_id,

@@ -9,9 +9,9 @@ function load_app() {
 	$controller = ucfirst($module) . '_Controller';
 
 	$controller_path = APP_PATH . "/controllers/{$controller}.php";
-	if (!file_exists($controller_path)) {
-		exit("File not found $controller_path");
-	}
+	// if (!file_exists($controller_path)) {
+	// 	exit("File not found $controller_path");
+	// }
 
 	// require core, base controllers
 	require BASE_PATH . '/core/Core_Controller.php';
@@ -22,15 +22,15 @@ function load_app() {
 
 	require $controller_path;
 
-	if (!class_exists($controller)) {
-		exit("Class not found $controller");
-	}
+	// if (!class_exists($controller)) {
+	// 	exit("Class not found $controller");
+	// }
 
 	$object = new $controller;
 
-	if (!method_exists($object, $action)) {
-		exit("Method not found $action");
-	}
+	// if (!method_exists($object, $action)) {
+	// 	exit("Method not found $action");
+	// }
 
 	$object->$action();
 }

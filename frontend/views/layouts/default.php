@@ -27,7 +27,7 @@
             <div class="search-wrap">
                 <div class="container">
                     <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
-                    <form action="<?php echo base_url('home/search')?>" method="post">
+                    <form action="<?php echo base_url('home/search') ?>" method="post">
                         <input name="name" type="text" class="form-control" placeholder="Nhập tên sản phẩm...">
                     </form>
                 </div>
@@ -86,12 +86,12 @@
                                 <?php endif; ?>
                                 <li><a href="<?php echo base_url('cart/index') ?>" class="icons-btn d-inline-block bag">
                                         <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
-                                        <span class="number">
-                                            <?php if(empty($_SESSION['cart'])): echo 0 ?>
-                                            <?php else:?>
-                                            <?php echo count($_SESSION['cart']);?>
-                                            <?php endif;?>
-                                        </span>
+                                        <!-- <span class="number"> -->
+                                            <?php if (empty($carts)) :  0 ?>
+                                            <?php else : ?>
+                                                <?php  count($cart); ?>
+                                            <?php endif; ?>
+                                        <!-- </span> -->
                                     </a></li>
 
                             </ul>

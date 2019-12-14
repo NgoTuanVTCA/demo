@@ -2,12 +2,12 @@
 class Brand_Controller extends Base_Controller
 {
 
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	function index()
+	public function index()
 	{
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
@@ -19,7 +19,7 @@ class Brand_Controller extends Base_Controller
 		]);
 	}
 
-	function add()
+	public function add()
 	{
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
@@ -31,13 +31,11 @@ class Brand_Controller extends Base_Controller
 		]);
 	}
 
-	function store()
+	public function store()
 	{
-
-		// xu li them san pham
 		$name = getPostParameter('name');
 		$errors = [];
-		
+
 		if (count($errors) > 0) {
 			$this->view->load('product/add', [
 				'errors' => $errors
@@ -57,10 +55,8 @@ class Brand_Controller extends Base_Controller
 		}
 	}
 
-	function edit()
+	public function edit()
 	{
-		// trang sua san pham
-		// hien thi form sua san pham
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
 		}
@@ -72,9 +68,8 @@ class Brand_Controller extends Base_Controller
 		]);
 	}
 
-	function update()
+	public function update()
 	{
-		// xu li sua san pham
 		$id = getParameter('id');
 		$name = getParameter('name');
 
@@ -92,9 +87,8 @@ class Brand_Controller extends Base_Controller
 		}
 	}
 
-	function destroy()
+	public function destroy()
 	{
-		// xu li xoa san pham
 		$id = getParameter('id');
 		$brand = $this->model->brand->destroy($id);
 		redirect('brand/index');

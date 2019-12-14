@@ -4,11 +4,11 @@ class Layout_Loader {
     
     private $_layout = 'default';
     
-    function set($layout) {
+    public function set($layout) {
         $this->_layout = $layout;
     }
     
-    function load($data) {
+    public function load($data) {
         
         extract($data);
 
@@ -18,9 +18,9 @@ class Layout_Loader {
         }
         
         $layout_path = APP_PATH . "/views/layouts/{$this->_layout}.php";
-        if (!file_exists($layout_path)) {
-            exit("File not found $layout_path");
-        }
+        // if (!file_exists($layout_path)) {
+        //     exit("File not found $layout_path");
+        // }
         
         require_once $layout_path;
     }

@@ -2,24 +2,25 @@
 class Category_Controller extends Base_Controller
 {
 
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	function index()
+	public function index()
 	{
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
 		}
 		$this->layout->set('auth_layout');
-		// trang danh sach san pham
 
 		$categories = $this->model->category->find();
+
 		$this->view->load('category/index', [
 			'categories' => $categories
 		]);
 	}
+
 	public function show_product()
 	{
 		$id = getParameter('id');
@@ -42,10 +43,9 @@ class Category_Controller extends Base_Controller
 			'pageno' => $pageno
 		]);
 	}
-	function add()
+
+	public function add()
 	{
-		// trang them san pham
-		// hien thi form them san pham
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
 		}
@@ -57,13 +57,11 @@ class Category_Controller extends Base_Controller
 		]);
 	}
 
-	function store()
+	public function store()
 	{
 
 		$name = getPostParameter('name');
 		$errors = [];
-
-		// echo($target_file);
 		if (count($errors) > 0) {
 			$this->view->load('product/add', [
 				'errors' => $errors
@@ -83,10 +81,8 @@ class Category_Controller extends Base_Controller
 		}
 	}
 
-	function edit()
+	public function edit()
 	{
-		// trang sua san pham
-		// hien thi form sua san pham
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
 		}
@@ -98,9 +94,8 @@ class Category_Controller extends Base_Controller
 		]);
 	}
 
-	function update()
+	public function update()
 	{
-		// xu li sua san pham
 		$id = getParameter('id');
 		$name = getParameter('name');
 
@@ -118,12 +113,10 @@ class Category_Controller extends Base_Controller
 		}
 	}
 
-	function destroy()
+	public function destroy()
 	{
-		// xu li xoa san pham
-		// xu li xoa san pham
 		$id = getParameter('id');
-		$category = $this->model->category->destroy($id);
+		$this->model->category->destroy($id);
 		redirect('category/index');
 	}
 }

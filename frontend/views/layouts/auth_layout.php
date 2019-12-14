@@ -149,10 +149,10 @@
                                 <div id="submenu-6" class="collapse submenu"">
                                     <ul class=" nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="<?php echo base_url("order/index2") ?>">Tình trạng giao hàng</a>
+                                <a class="nav-link" href="<?php echo base_url("order/delivery_status") ?>">Tình trạng giao hàng</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?php echo base_url("order/check") ?>">Kiểm tra giao hàng</a>
+                                <a class="nav-link" href="<?php echo base_url("order/checking") ?>">Kiểm tra giao hàng</a>
 
                             </li>
                             <li class="nav-item">

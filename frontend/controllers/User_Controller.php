@@ -7,7 +7,7 @@ class User_Controller extends Base_Controller
 	{
 		parent::__construct();
 	}
-	function index()
+	public function index()
 	{
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
@@ -154,22 +154,26 @@ class User_Controller extends Base_Controller
 
 		if (count($errors) > 0) {
 			$this->view->load('home/login', [
-				'errors' => $errors
+				'errors' => $errors 
 			]);
 		} else {
 			$user = $this->model->user->get_by_email($email);
-
-			$_SESSION['id'] = $user['id'];
-			$_SESSION['email'] = $user['email'];
-			$_SESSION['name'] = $user['name'];
-			$_SESSION['phone_number'] = $user['phone_number'];
-			$_SESSION['address'] = $user['address'];
-			$_SESSION['role'] = $user['role'];
-
 			if ($email == $user['email'] && password_verify($password, $user['password']) == true) {
 				if ($user['role'] == 2) {
+					$_SESSION['id'] = $user['id'];
+					$_SESSION['email'] = $user['email'];
+					$_SESSION['name'] = $user['name'];
+					$_SESSION['phone_number'] = $user['phone_number'];
+					$_SESSION['address'] = $user['address'];
+					$_SESSION['role'] = $user['role'];
 					redirect('home/index');
 				} elseif ($user['role'] == 1) {
+					$_SESSION['id'] = $user['id'];
+					$_SESSION['email'] = $user['email'];
+					$_SESSION['name'] = $user['name'];
+					$_SESSION['phone_number'] = $user['phone_number'];
+					$_SESSION['address'] = $user['address'];
+					$_SESSION['role'] = $user['role'];
 					redirect('user/index');
 				}
 			} else {
@@ -262,7 +266,7 @@ class User_Controller extends Base_Controller
 	}
 
 	// view form
-	function add()
+	public function add()
 	{
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
@@ -270,7 +274,7 @@ class User_Controller extends Base_Controller
 		$this->layout->set('auth_layout');
 		$this->view->load('user/add');
 	}
-	function store()
+	public function store()
 	{
 		// xu li them san pham
 
@@ -323,7 +327,7 @@ class User_Controller extends Base_Controller
 			}
 		}
 	}
-	function edit()
+	public function edit()
 	{
 		// trang sua san pham
 		// hien thi form sua san pham
@@ -338,7 +342,7 @@ class User_Controller extends Base_Controller
 		]);
 	}
 
-	function update()
+	public function update()
 	{
 		$this->layout->set(null);
 		$id = getParameter('id');
@@ -364,7 +368,7 @@ class User_Controller extends Base_Controller
 		}
 	}
 
-	function destroy()
+	public function destroy()
 	{
 		// xu li xoa san pham
 		$id = getParameter('id');

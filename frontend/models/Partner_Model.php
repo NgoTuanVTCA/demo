@@ -4,7 +4,7 @@ class Partner_Model extends Base_Model
 	protected $table = 'partners';
 
 	// lấy partner theo email
-	function get_by_email($email)
+	public function get_by_email($email)
 	{
 		$query = "select * from `{$this->table}` where email = " . ':email' . "";
 		$sth = $this->db->prepare($query);
@@ -16,7 +16,7 @@ class Partner_Model extends Base_Model
 		return $data;
 	}
 
-	function get_by_phone($phone_number)
+	public function get_by_phone($phone_number)
 	{
 		$query = "select * from `{$this->table}` where phone_number = " . ':phone_number' . "";
 		$sth = $this->db->prepare($query);

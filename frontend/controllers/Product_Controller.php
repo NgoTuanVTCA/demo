@@ -6,13 +6,11 @@ class Product_Controller extends Base_Controller
 		parent::__construct();
 	}
 
-	function index()
+	public function index()
 	{
-		// trang danh sach san pham
-		
-	    if(empty($_SESSION['role']) || $_SESSION['role'] != 1){
-	        redirect('home/index');
-	    }
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
 		$this->layout->set('auth_layout');
 		$products = $this->model->product->find();
 		$categories = $this->model->category->find();
@@ -30,12 +28,10 @@ class Product_Controller extends Base_Controller
 
 	public function show()
 	{
-		// trang chi tiet san pham
-
 		$id = getGetParameter('id');
 
 		$product = $this->model->product->find_by_id($id);
-		$category = $this->model->category->find_by_id($product['categories_id']);
+		$category = $this->model->category->find_by_id($product['category_id']);
 		$product_size = $this->model->product_size->find_by_product_size_id($product['id']);
 		$sizes = $this->model->size->find();
 		$comments = $this->model->comment->find();
@@ -51,15 +47,12 @@ class Product_Controller extends Base_Controller
 		]);
 	}
 
-	function add()
+	public function add()
 	{
-		// trang them san pham
-		// hien thi form them san pham
-		
-	    if(empty($_SESSION['role']) || $_SESSION['role'] != 1){
-	        redirect('home/index');
-	    }
-	    
+		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
+			redirect('home/index');
+		}
+
 		$id = getParameter('id');
 		$categories = $this->model->category->find();
 		$brands = $this->model->brand->find();
@@ -70,13 +63,10 @@ class Product_Controller extends Base_Controller
 		]);
 	}
 
-	function store()
+	public function store()
 	{
-
-		// xu li them san pham
 		$name = getPostParameter('name');
 		$price = getPostParameter('price');
-		$ImageName = getPostParameter('image');
 		$category  = getPostParameter('category');
 		$brand = getPostParameter('brand');
 		$category_id = $category[0];
@@ -100,30 +90,24 @@ class Product_Controller extends Base_Controller
 			$target_dir = "quan_au";
 		}
 
-		$target_file = $target_dir . '/' . $ImageName;
-		$uploadOk = 0;
-
-
-		if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-			echo "<p>FILE UPLOADED TO: $target_file</p>";
+		$target_file = $target_dir . '/' . basename($_FILES["image"]["name"]);
+		if (move_uploaded_file($_FILES["image"]["tmp_name"], 'public/uploads/' . $target_file)) {
+			echo "The file " . basename($_FILES["image"]["name"]) . " has been uploaded.";
+			echo $_FILES["image"]["tmp_name"];
 		} else {
-			echo "<p>MOVE UPLOADED FILE FAILED!</p>";
-			var_dump(error_get_last());
+			echo "Sorry, there was an error uploading your file.";
 		}
 		$errors = [];
-
-		// echo($target_file);
 		if (count($errors) > 0) {
 			$this->view->load('product/add', [
 				'errors' => $errors
 			]);
 		} else {
-
 			$product = $this->model->product->create([
 				'name' => $name,
 				'price' => $price,
 				'image' => $target_file,
-				'categories_id' => $category_id,
+				'category_id' => $category_id,
 				'brand_id' =>  $brand_id
 			]);
 			if ($product) {
@@ -135,7 +119,8 @@ class Product_Controller extends Base_Controller
 			}
 		}
 	}
-	function edit_size()
+
+	public function edit_size()
 	{
 
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
@@ -148,41 +133,33 @@ class Product_Controller extends Base_Controller
 			'product' => $product
 		]);
 	}
-	function update_size()
+
+	public function update_size()
 	{
-		$product_id = $_SESSION['id'];
+		session_start();
+		$product_id = $_SESSION['product_id'];
 		$size_id = getPostParameter('size_name');
 		$quantity_stock = getPostParameter('quantity');
-		echo $product_id;
-		$errors = [];
-		if (count($errors) > 0) {
-			$this->view->load('product/add', [
-				'errors' => $errors
+		$product = $this->model->product->find_by_id($product_id);
+		$product_sizes = $this->model->product_size->find_by_product_id($product_id);
+		echo $size_id . '<br>';
+		var_dump($product_sizes);
+		if ($size_id == $product_sizes['size_id']) {
+			$this->model->product_size->update_product_quantity($product_id, $size_id, [
+				'quantity_stock' =>  $quantity_stock
 			]);
 		} else {
-			$product_size = $this->model->product_size->create([
+			$this->model->product_size->create([
 				'product_id' => $product_id,
 				'size_id' => $size_id,
 				'quantity_stock' =>  $quantity_stock
 			]);
-
-			$product = $this->model->product->update_by_id($product_id, [
-				'quantity' => $quantity_stock
-			]);
-			if ($product_size && $product) {
-				redirect('product/index');
-			} else {
-				$this->view->load('product/edit_size', [
-					'error_message' => 'Khong them duoc'
-				]);
-			}
 		}
+		redirect('product/index');
 	}
-	function edit()
-	{
-		// trang sua san pham
-		// hien thi form sua san pham
 
+	public function edit()
+	{
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
 		}
@@ -202,9 +179,8 @@ class Product_Controller extends Base_Controller
 		]);
 	}
 
-	function update()
+	public function update()
 	{
-		// xu li sua san pham
 		$id = getParameter('id');
 		$name = getPostParameter('name');
 		$price = getPostParameter('price');
@@ -244,7 +220,7 @@ class Product_Controller extends Base_Controller
 				'name' => $name,
 				'price' => $price,
 				'image' => $target_file,
-				'categories_id' => $category,
+				'category_id' => $category,
 				'brand' => $brand
 			]);
 
@@ -259,9 +235,8 @@ class Product_Controller extends Base_Controller
 		}
 	}
 
-	function destroy()
+	public function destroy()
 	{
-		// xu li xoa san pham
 		$id = getParameter('id');
 		$this->model->product->destroy($id);
 		$this->model->product_size->delete_by_product_id($id);

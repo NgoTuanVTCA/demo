@@ -14,7 +14,7 @@
 
 <div class="site-section">
     <div class="container">
-        <form action="<?php echo base_url("cart/index") ?>" method="post">
+        <form action="<?php echo base_url("cart/add_to_cart") ?>" method="post">
             <?php $_SESSION['product_id'] = $product['id'] ?>
             <div class="row">
                 <div class="col-md-6">
@@ -24,70 +24,49 @@
                         </a>
                     </div>
                     <a href="#1" class="lightbox trans" id="product_detail"><img src="<?php echo PRODUCT_URL . $product['image'] ?>"></a>
-                    <?php $_SESSION['product_images'] = $product['image'] ?>
                 </div>
                 <div class="col-md-6">
                     <h2 class="text-black"><?php echo $product['name'] ?></h2>
-                    <?php $_SESSION['product_name'] = $product['name'] ?>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, vitae, explicabo? Incidunt facere, natus soluta dolores iusto! Molestiae expedita veritatis nesciunt doloremque sint asperiores fuga voluptas, distinctio, aperiam, ratione dolore.</p>
                     <p class="mb-4">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
                     <p><b>Loại sản phẩm : <?php echo $category['name'] ?></b></p>
                     <p><strong class="text-primary h4"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></strong></p>
-                    <?php $_SESSION['product_price'] = $product['price'] ?>
                     <div id="label" class="mb-1 d-flex">
-                        <?php foreach ($product_size as $product_size) : ?>
-                            <?php foreach ($sizes as $size) : ?>
-                                <?php if ($product_size['size_id'] == $size['id']) : ?>
-                                    <label for="option-sm" class="d-flex mr-3 mb-3">
-                                        <input type="button" class="btn btn-outline-primary js-btn-plus a" onclick="loaddata(event)" value="<?php echo $size['name']; ?>">
-                                    </label>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        <?php endforeach; ?>
-                        <div id="sizea" style="display: none;"></div>
-                        <div id="sizeb" style="display: none;"></div>
-                        <script>
-                            var label = document.getElementById("label");
-                            var btns = label.getElementsByClassName("a");
-                            for (var i = 0; i < btns.length; i++) {
-                                btns[i].addEventListener("click", function() {
-                                    var current = document.getElementsByClassName("active");
-
-                                    if (current.length > 0) {
-
-                                        current[1].className = current[1].className.replace(" active", "");
-                                    }
-                                    this.className += " active";
-                                });
-                            }
-
-                            function loaddata(e) {
-                                var a = e.target.value;
-                                $.ajax({
-                                    type: "POST",
-                                    url: "http://localhost:8889/ProjectSEM2/frontend/views/cart/processSize.php",
-                                    data: a
-                                });
-                            }
-                        </script>
+                        <p class="mr-2"><b>Chọn kích thước : </b></p>
+                        <label for="option-sm" class="d-flex mr-3 mb-3">
+                            <select name="size" id="sources" class="custom-select sources js-btn-plus" placeholder="Source Type">
+                                <?php foreach ($product_size as $product_size) : ?>
+                                    <?php foreach ($sizes as $size) : ?>
+                                        <?php if ($product_size['size_id'] == $size['id']) : ?>
+                                            <option value="<?php echo $size['id'] ?>"><?php echo $size['name'] . ' : ' . $product_size['quantity_stock']; ?></option>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </label>
                     </div>
+                    
                     <div class="mb-5">
                         <div class="input-group mb-3" style="max-width: 120px;">
                             <div class="input-group-prepend">
                                 <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
                             </div>
-                            <input type="text" class="form-control text-center" name="vl" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                            <input type="text" class="form-control text-center" name="quantity" value="1" aria-label="Example text with button addon" aria-describedby="button-addon1">
                             <div class="input-group-append">
                                 <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
                             </div>
                         </div>
                     </div>
-                    <p><button type="submit" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Thêm vào giỏ hàng</button></p>
+                    <?php if (!$_SESSION['id']) : ?>
+                        Bạn cần <a href="<?php echo base_url('user/login') ?>">Đăng nhập</a> để thêm sản phẩm vào giỏ hàng!
+                    <?php else : ?>
+                        <p><button type="submit" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Thêm vào giỏ hàng</button></p>
+                    <?php endif; ?>
                 </div>
         </form>
         <div class="col-md-6">
             <br>
-            <form action="<?php echo base_url("comment/store&id={$product['id']}") ?>" method="post">
+            <form action="<? echo base_url("comment/store&id={$product['id']}") ?>" method="post">
                 <div class="form-content">
                     <div>
                         <?php if (!$_SESSION['name']) : ?>
@@ -116,11 +95,9 @@
                     <?php if ($comment['product_id'] == $product['id']) : ?>
                         <?php if ($comment['user_id'] == $user['id']) : ?>
                             <div class="">
-                                <?php if ($comment['active'] == 'Bật') : ?>
-                                    <p class=""><?php echo $user['name'] . ' : ' . $comment['content'] ?></p>
-                                    <p class=""><?php echo $comment['created_at']; ?></p>
-                                    <hr>
-                                <?php endif ?>
+                                <p class=""><?php echo $user['name'] . ' : ' . $comment['content'] ?></p>
+                                <p class=""><?php echo $comment['created_at']; ?></p>
+                                <hr>
                             </div>
                         <?php endif; ?>
                     <?php endif; ?>

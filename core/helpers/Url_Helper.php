@@ -13,7 +13,7 @@
 		if ($module && $action) {
 			return "?module={$module}&action={$action}";
 		}
-		return '/';
+		return 'ProjectSEM2/';
 	}
 
 	/*

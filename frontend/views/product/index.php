@@ -19,7 +19,6 @@
                                 <th>Ảnh<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
                                 <th>Loại<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
                                 <th>Thương hiệu<i class="fa fa-sort float-right" aria-hidden="true"></th>
-                                <th>Tổng số lượng<i class="fa fa-sort float-right" aria-hidden="true"></th>
                                 <th>Số lượng/Size<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
                                 <th>Thao tác</th>
                             </tr>
@@ -28,7 +27,7 @@
                             <?php foreach ($products as $product) : ?>
                                 <?php foreach ($categories as $category) : ?>
                                     <?php foreach ($brands as $brand) : ?>
-                                        <?php if ($product['categories_id'] == $category['id']) : ?>
+                                        <?php if ($product['category_id'] == $category['id']) : ?>
                                             <?php if ($product['brand_id'] == $brand['id']) : ?>
                                                 <tr>
                                                     <td class="text-center"><?php echo $product['id'] ?></td>
@@ -39,7 +38,6 @@
                                                     </td>
                                                     <td class="text-center"><?php echo $category['name'] ?></td>
                                                     <td class="text-center"><?php echo $brand['name'] ?></td>
-                                                    <td class="text-center"><?php echo $product['quantity'] ?></td>
                                                     <td>
                                                         <?php foreach ($product_sizes as $product_size)
                                                             {
@@ -67,7 +65,6 @@
                             <?php endforeach; ?>
                         </tbody>
                         <tfoot>
-                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>

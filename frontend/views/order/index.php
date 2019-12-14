@@ -24,7 +24,7 @@
                                     <td class="text-center"><?php echo $order['status'] ?></td>
                                     <td class="text-center"><?php echo $order['created_at'] ?></td>
                                     <td class="text-center">
-                                        <a class="btn btn-dark btn-block" href="<?php echo base_url("order/edit?id={$order['id']}") ?>"> Sửa</a>
+                                        <a class="btn btn-dark btn-block" href="<?php echo base_url("order/edit?id={$order['id']}") ?>"> Cập nhật</a>
                                         <a class="btn btn-dark btn-block" href="<?php echo base_url("order/show?id={$order['id']}") ?>"> Xem thêm</a>
                                     </td>
                                 </tr>
