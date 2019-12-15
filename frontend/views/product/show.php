@@ -45,7 +45,7 @@
                             </select>
                         </label>
                     </div>
-                    
+
                     <div class="mb-5">
                         <div class="input-group mb-3" style="max-width: 120px;">
                             <div class="input-group-prepend">
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                     </div>
-                    <?php if (!$_SESSION['id']) : ?>
+                    <?php if (empty($_SESSION['id'])) : ?>
                         Bạn cần <a href="<?php echo base_url('user/login') ?>">Đăng nhập</a> để thêm sản phẩm vào giỏ hàng!
                     <?php else : ?>
                         <p><button type="submit" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Thêm vào giỏ hàng</button></p>
@@ -66,10 +66,10 @@
         </form>
         <div class="col-md-6">
             <br>
-            <form action="<? echo base_url("comment/store&id={$product['id']}") ?>" method="post">
+            <form action="<?php echo base_url("comment/store&id={$product['id']}") ?>" method="post">
                 <div class="form-content">
                     <div>
-                        <?php if (!$_SESSION['name']) : ?>
+                        <?php if (empty($_SESSION['id'])) : ?>
                             <div class="question">
                                 <label>Bình luận:</label>
                                 <input type="text" class="form-control border-0" name="comment" id="form-href" disabled>

@@ -82,8 +82,8 @@
                             </div>
                             <?php if (empty($count_vest)) : ?>
                                 <?php $count_vest = 1; ?>
-                            <?php else:?>
-                            <?php $count_vest +=1?>
+                            <?php else : ?>
+                                <?php $count_vest += 1 ?>
                             <?php endif; ?>
                             <?php if ($count_vest >= 6) : ?>
                                 <?php break; ?>
@@ -117,8 +117,8 @@
                             </div>
                             <?php if (empty($count_aoda)) : ?>
                                 <?php $count_aoda = 1; ?>
-                            <?php else:?>
-                            <?php $count_aoda +=1?>
+                            <?php else : ?>
+                                <?php $count_aoda += 1 ?>
                             <?php endif; ?>
                             <?php if ($count_aoda >= 6) : ?>
                                 <?php break; ?>
@@ -152,8 +152,8 @@
                             </div>
                             <?php if (empty($count_somi)) : ?>
                                 <?php $count_somi = 1; ?>
-                            <?php else:?>
-                            <?php $count_somi +=1?>
+                            <?php else : ?>
+                                <?php $count_somi += 1 ?>
                             <?php endif; ?>
                             <?php if ($count_somi >= 6) : ?>
                                 <?php break; ?>

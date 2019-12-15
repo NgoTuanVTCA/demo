@@ -37,10 +37,14 @@
                                     <?php endif; ?>
                                 </td>
                                 <td>
+                                    <?php if ($user['role'] == 1) : ?>
+                                        <input class="btn btn-dark btn-block" value="Cập Nhật" disabled>
+                                    <?php else : ?>
                                         <a class="btn btn-dark btn-block" href="<?php echo base_url("user/edit?id={$user['id']}") ?>"> Cập Nhật</a>
+                                    <?php endif; ?>
                                 </td>
                                 <td>
-                                        <a class="btn btn-dark btn-block" href="<?php echo base_url("user/destroy?id={$user['id']}") ?>" onclick="return checkDelete()">Xóa</a>
+                                    <a class="btn btn-dark btn-block" href="<?php echo base_url("user/destroy?id={$user['id']}") ?>" onclick="return checkDelete()">Xóa</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

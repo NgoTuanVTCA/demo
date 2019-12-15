@@ -72,7 +72,6 @@ class Partner_Controller extends Base_Controller
 
 			if ($partner) {
 				redirect('partner/index');
-				var_dump($partner);
 			} else {
 				$this->view->load('partner/add', [
 					'error_message' => 'Không thêm được đối tác mới'

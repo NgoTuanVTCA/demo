@@ -1,4 +1,4 @@
-<a href="<?php echo base_url('product/index') ?>" class="btn btn-success"><i class="fa fa-backward"></i> Trở về</a>
+<a href="<?php echo base_url('product/index') ?>" class="btn btn-dark"><i class="fa fa-backward"></i> Trở về</a>
 <div class="card card-body bg-light mt-5">
     <h3>Thêm sản phẩm</h3>
     <p>Tạo mới một sản phẩm</p>
@@ -37,7 +37,7 @@
                 <?php endforeach; ?>
             </select>
         </div>
-        <input type="submit" class="btn btn-success" value="Submit" />
+        <input type="submit" class="btn btn-dark" value="Thêm mới" />
     </form>
 </div>
 

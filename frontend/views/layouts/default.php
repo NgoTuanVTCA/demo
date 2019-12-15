@@ -87,10 +87,10 @@
                                 <li><a href="<?php echo base_url('cart/index') ?>" class="icons-btn d-inline-block bag">
                                         <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
                                         <!-- <span class="number"> -->
-                                            <?php if (empty($carts)) :  0 ?>
-                                            <?php else : ?>
-                                                <?php  count($cart); ?>
-                                            <?php endif; ?>
+                                        <?php if (empty($carts)) :  0 ?>
+                                        <?php else : ?>
+                                            <?php count($cart); ?>
+                                        <?php endif; ?>
                                         <!-- </span> -->
                                     </a></li>
 

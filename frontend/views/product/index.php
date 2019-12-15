@@ -39,19 +39,15 @@
                                                     <td class="text-center"><?php echo $category['name'] ?></td>
                                                     <td class="text-center"><?php echo $brand['name'] ?></td>
                                                     <td>
-                                                        <?php foreach ($product_sizes as $product_size)
-                                                            {
-                                                                foreach ($sizes as $size)
-                                                                {
-                                                                    if ($product['id'] == $product_size['product_id'])
-                                                                    {
-                                                                        if ($product_size['size_id'] == $size['id'])
-                                                                        {
-                                                                            echo '' . $size['name'] . ': ' . $product_size['quantity_stock'] . '<br>';
-                                                                        }
-                                                                    }
-                                                                }
-                                                            } ?>
+                                                        <?php foreach ($product_sizes as $product_size) {
+                                                                                foreach ($sizes as $size) {
+                                                                                    if ($product['id'] == $product_size['product_id']) {
+                                                                                        if ($product_size['size_id'] == $size['id']) {
+                                                                                            echo '' . $size['name'] . ': ' . $product_size['quantity_stock'] . '<br>';
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            } ?>
                                                     </td>
                                                     <td class="text-center">
                                                         <a class="btn btn-dark btn-block" href="<?php echo base_url("product/edit?id={$product['id']}") ?>"> Cập nhật</a>

@@ -8,7 +8,7 @@
 <div class="site-section">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 mr-auto ml-auto">
+            <div class="col-md-9 mr-auto ml-auto">
                 <div class="row mb-5">
                     <div class="col-md-12">
                         <h2 class="h3 mb-3 text-black">Đơn hàng của bạn</h2>
@@ -28,7 +28,7 @@
                                                         <?php if ($cart['product_id'] == $product['id']) : ?>
                                                             <?php if ($cart['size_id'] == $size['id']) : ?>
                                                                 <tr>
-                                                                    <td><?php echo $product['name'] ?> <strong class="mx-2">x</strong> <?php echo $cart['quantity'] ?></td>
+                                                                    <td><?php echo $product['name'] ?> <strong class="mx-2">x</strong>Kích thước: <?php echo $size['name'] ?><strong class="mx-2">x</strong>Số lượng: <?php echo $cart['quantity'] ?></td>
                                                                     <?php $price = $product['price'] * $cart['quantity'] ?>
                                                                     <td><?php echo number_format($price, 0, '.', ',') . ' VNĐ' ?></td>
                                                                     <?php $total += $price ?>

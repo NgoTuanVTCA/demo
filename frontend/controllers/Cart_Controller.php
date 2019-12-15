@@ -25,14 +25,20 @@ class Cart_Controller extends Base_Controller
 		$carts = $this->model->cart->find();
 		$partners = $this->model->partner->find();
 		$partner_id = getPostParameter('partner');
-
-		$this->view->load("cart/checkout", [
-			'sizes' => $sizes,
-			'products' => $products,
-			'carts' => $carts,
-			'partners' => $partners,
-			'partner_id' => $partner_id
-		]);
+		if ($partner_id == -1) {
+			$this->view->load("cart/checkprofile", [
+				'partners' => $partners,
+				'error_message' => 'Bạn phải chọn đối tác giao hàng'
+			]);
+		} else {
+			$this->view->load("cart/checkout", [
+				'sizes' => $sizes,
+				'products' => $products,
+				'carts' => $carts,
+				'partners' => $partners,
+				'partner_id' => $partner_id
+			]);
+		}
 	}
 	public function checkprofile()
 	{
@@ -52,9 +58,7 @@ class Cart_Controller extends Base_Controller
 		$cart = $this->model->cart->find_by_product_id($product_id, $size_id);
 		$product_size = $this->model->product_size->find_by_product_id($product_id, $size_id);
 		$product_size_quantity = (int) $product_size['quantity_stock'];
-		$cart_quantity = (int) $cart['quantity'];
 		if (count($carts) > 0) {
-
 			if ($quantity > $product_size_quantity) {
 				$carts = $this->model->cart->find();
 				$products = $this->model->product->find();
@@ -90,17 +94,30 @@ class Cart_Controller extends Base_Controller
 				'quantity' => $quantity
 			]);
 		}
+		unset($_SESSION['product_id']);
 		redirect("cart/index");
 	}
 
 	public function update_to_cart()
 	{
-		$this->layout->set(null);
 		$id = $_SESSION['id'];
 		$product_id = getPostParameter('product_id');
 		$size_id = getPostParameter('size_id');
 		$quantity = getPostParameter('quantity');
-		if ($product_id && $id && $size_id) {
+
+		$product_size = $this->model->product_size->find_by_product_id($product_id, $size_id);
+		$product_size_quantity = (int) $product_size['quantity_stock'];
+		if ($quantity > $product_size_quantity) {
+			$carts = $this->model->cart->find();
+			$products = $this->model->product->find();
+			$sizes = $this->model->size->find();
+			$this->view->load('cart/index', [
+				'error_message' => 'Số lượng sản phẩm mà bạn chọn không còn đủ',
+				'carts' => $carts,
+				'products' => $products,
+				'sizes' => $sizes
+			]);
+		} else {
 			$this->model->cart->update_product_to_cart($id, $product_id, $size_id, [
 				'quantity' => $quantity
 			]);
@@ -120,10 +137,11 @@ class Cart_Controller extends Base_Controller
 
 	public function destroy_a_product_cart()
 	{
+		$this->layout->set(null);
 		$user_id = $_SESSION['id'];
-		$product_cart = $this->model->cart->find_product_from_cart($user_id);
-		$product_cart_id = $product_cart['id'];
-		$this->model->cart->destroy($product_cart_id);
+		$product_id = getPostParameter('product_id');
+		$size_id = getPostParameter('size_id');
+		$this->model->cart->destroy_product_by_cart($user_id, $product_id, $size_id);
 		redirect('cart/index');
 	}
 }

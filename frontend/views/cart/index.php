@@ -9,13 +9,15 @@
     <div class="container">
         <div class="row mb-5">
             <div class="site-blocks-table">
-                <?php if (empty($carts)) : ?>
+                <?php $total_price = 0 ?>
+                <?php if (empty($carts) || empty($_SESSION['id'])) : ?>
                     <div class="text-center">
                         <h3 class="ml-3">Giỏ hàng chưa có sản phẩm</h3>
                     </div>
-
                 <?php else : ?>
-                <?php echo $error_message ?>
+                    <?php if (!empty($error_message)) : ?>
+                        <?php echo $error_message ?>
+                    <?php endif; ?>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -30,7 +32,6 @@
                                 <th>Xóa</th>
                             </tr>
                         </thead>
-                        <?php $total_price = 0 ?>
                         <?php foreach ($carts as $cart) : ?>
                             <?php foreach ($products as $product) : ?>
                                 <?php foreach ($sizes as $size) : ?>

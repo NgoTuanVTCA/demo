@@ -329,8 +329,6 @@ class User_Controller extends Base_Controller
 	}
 	public function edit()
 	{
-		// trang sua san pham
-		// hien thi form sua san pham
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
 		}
@@ -370,7 +368,6 @@ class User_Controller extends Base_Controller
 
 	public function destroy()
 	{
-		// xu li xoa san pham
 		$id = getParameter('id');
 		$this->model->user->destroy($id);
 		redirect('user/index');

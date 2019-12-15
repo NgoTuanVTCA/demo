@@ -42,16 +42,16 @@
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i></a>
-                            <?php if(!empty($_SESSION['name'])):?>
-                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                                <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name text-center"><?php echo $_SESSION['name'] ?></h5>
+                            <?php if (!empty($_SESSION['name'])) : ?>
+                                <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                                    <div class="nav-user-info">
+                                        <h5 class="mb-0 text-white nav-user-name text-center"><?php echo $_SESSION['name'] ?></h5>
+                                    </div>
+                                    <a class="dropdown-item" href="<?php echo base_url('user/profile') ?>"><i class="fas fa-user mr-2"></i>Thông tin cá nhân</a>
+                                    <a class="dropdown-item" href="<?php echo base_url("user/password"); ?>"><i class="fas fa-cog mr-2"></i>Thay đổi mật khẩu</a>
+                                    <a class="dropdown-item" href="<?php echo base_url('user/handle_logout') ?>"><i class="fas fa-power-off mr-2"></i>Đăng xuất</a>
                                 </div>
-                                <a class="dropdown-item" href="<?php echo base_url('user/profile') ?>"><i class="fas fa-user mr-2"></i>Thông tin cá nhân</a>
-                                <a class="dropdown-item" href="<?php echo base_url("user/password"); ?>"><i class="fas fa-cog mr-2"></i>Thay đổi mật khẩu</a>
-                                <a class="dropdown-item" href="<?php echo base_url('user/handle_logout') ?>"><i class="fas fa-power-off mr-2"></i>Đăng xuất</a>
-                            </div>
-                            <?php endif;?>
+                            <?php endif; ?>
                         </li>
                     </ul>
                 </div>

@@ -1,8 +1,8 @@
-<a href="<?php echo base_url('product/add') ?>" class="btn btn-success"><i class="fa fa-backward"></i> Back</a>
+<a href="<?php echo base_url('product/add') ?>" class="btn btn-dark"><i class="fa fa-backward"></i> Back</a>
 <div class="card card-body bg-light mt-5">
     <h3>Update quantity stock of a Product</h3>
     <p>Update size of product: <?php echo $product['name'] ?></p>
-    
+
     <form action="<?php echo base_url('product/update_size') ?>" method="post">
         <div class="form-group">
             <?php if ($product['category_id'] == '1' || $product['category_id'] == '2' || $product['category_id'] == '7' || $product['category_id'] == '8') : ?>
@@ -33,7 +33,7 @@
             <label for="quantity">Quantity<span class="red">*</span></label>
             <input type="number" name="quantity" id="quantity" class="form-control">
         </div>
-        <input type="submit" class="btn btn-success" value="Submit" />
+        <input type="submit" class="btn btn-dark" value="Cập nhật" />
         <?php $_SESSION['product_id'] = $product['id'] ?>
     </form>
 </div>

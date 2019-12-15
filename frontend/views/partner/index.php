@@ -24,9 +24,7 @@
                                 <td><?php echo $partner['phone_number'] ?></td>
                                 <td><?php echo $partner['price'] ?></td>
                                 <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <a style="color:white; text-decoration: none;" href="<?php echo base_url("partner/edit?id={$partner['id']}") ?>">Cập nhật</a>
-                                    </button>
+                                    <a class="btn btn-primary" style="color:white; text-decoration: none;" href="<?php echo base_url("partner/edit?id={$partner['id']}") ?>">Cập nhật</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

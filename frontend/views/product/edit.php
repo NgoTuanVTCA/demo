@@ -1,4 +1,4 @@
-<a href="<?php echo base_url('product/index') ?>" class="btn btn-success"><i class="fa fa-backward"></i> Trở về</a>
+<a href="<?php echo base_url('product/index') ?>" class="btn btn-dark"><i class="fa fa-backward"></i> Trở về</a>
 <div class="card card-body bg-light mt-5">
     <h3>Cập nhật</h3>
     <p>Cập nhật thông tin sản phẩm</p>
@@ -39,7 +39,7 @@
             <label for="quantity">Số lượng <span class="red">*</span></label>
             <input name="quantity" class="form-control" placeholder="<?php echo $product['quantity']; ?>">
         </div>
-        <input type="submit" class="btn btn-success" value="Cập nhật" />
+        <input type="submit" class="btn btn-dark" value="Cập nhật" />
     </form>
 </div>
 <?php if (!empty($errors)) : ?>

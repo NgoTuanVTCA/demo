@@ -8,7 +8,7 @@
 <div class="site-section">
     <div class="container">
         <div class="row ml-auto mr-auto">
-            <div class="col-md-6 mb-5 mb-md-0 mr-auto ml-auto">
+            <div class="col-md-7 mb-5 mb-md-0 mr-auto ml-auto">
                 <h2 class="h3 mb-3 text-black">Thông tin khách hàng</h2>
                 <div class="p-3 p-lg-5 border">
                     <form action="<?php echo base_url("cart/checkout") ?>" method="post">
@@ -35,12 +35,15 @@
 
                         <div class="form-group">
                             <label for="select" class="text-black">Đối tác giao hàng <span class="text-danger">*</span></label>
-                            <select id="select" name="partner" class="form-control" onchange="showUser(this.value)">
+                            <select id="select" name="partner" class="form-control" onchange="showUser(this.value)" require>
                                 <option value="-1">Chọn đối tác giao hàng </option>
                                 <?php foreach ($partners as $partner) : ?>
                                     <option value="<?php echo $partner['id'] ?>"><?php echo $partner['name']; ?></option>
                                 <?php endforeach; ?>
                             </select>
+                            <?php if (!empty($error_message)) : ?>
+                                <?php echo $error_message ?>
+                            <?php endif; ?>
                         </div>
                         <div class="form-group row">
                             <input type="submit" value="Tiếp tục" class="btn btn-primary btn-lg btn-block">

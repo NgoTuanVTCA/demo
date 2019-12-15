@@ -1,7 +1,7 @@
 <h1>PRODUCT PAGE</h1>
 
 <div class="post-list">
-	<?php foreach($posts as $post): ?>
+	<?php foreach ($posts as $post) : ?>
 		<div class="post-item">
 			<h3><?php echo $post['id'] ?></h3>
 			<h3>

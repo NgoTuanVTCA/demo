@@ -136,14 +136,11 @@ class Product_Controller extends Base_Controller
 
 	public function update_size()
 	{
-		session_start();
 		$product_id = $_SESSION['product_id'];
 		$size_id = getPostParameter('size_name');
 		$quantity_stock = getPostParameter('quantity');
 		$product = $this->model->product->find_by_id($product_id);
 		$product_sizes = $this->model->product_size->find_by_product_id($product_id);
-		echo $size_id . '<br>';
-		var_dump($product_sizes);
 		if ($size_id == $product_sizes['size_id']) {
 			$this->model->product_size->update_product_quantity($product_id, $size_id, [
 				'quantity_stock' =>  $quantity_stock

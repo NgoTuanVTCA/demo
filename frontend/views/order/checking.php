@@ -18,12 +18,16 @@
                         </thead>
                         <tbody>
                             <?php foreach ($orders as $order) : ?>
-                                <?php if ($order['status'] != "đang xử lý") : ?>
+                                <?php if ($order['status'] != "Đang xử lý") : ?>
                                     <tr>
                                         <td><?php echo $order['id'] ?></td>
                                         <td><?php echo $order['status'] ?></td>
                                         <td>
-                                            <a class="btn btn-dark btn-block" href="<?php echo base_url("order/edit_checking?id={$order['id']}") ?>">Cập nhật</a>
+                                            <?php if ($order['status'] == "Đã giao" || $order['status'] == "Đã hủy") : ?>
+                                                <input type="text" class="btn btn-dark btn-block" disabled value="Cập nhật">
+                                            <?php else : ?>
+                                                <a class="btn btn-dark btn-block" href="<?php echo base_url("order/edit_checking?id={$order['id']}") ?>">Cập nhật</a>
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
                                 <?php endif; ?>

@@ -4,7 +4,9 @@
     }
 </script>
 
-<div class="form-container">
+<a href="<?php echo base_url('partner/index') ?>" class="btn btn-dark"><i class="fa fa-backward"></i> Trở về</a>
+
+<div class="form-container mt-5">
     <h2>Thêm đối tác giao hàng</h2>
 
     <form action="<?php echo base_url('partner/store') ?>" method="post" enctype="multipart/form-data">
@@ -20,7 +22,9 @@
                 <div class="form-group col-md-2">
                     <label for="email">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
-                    <?php echo $errors['email_err']?>
+                    <?php if (!empty($errors['email_err'])) : ?>
+                        <?php echo $errors['email_err'] ?>
+                    <?php endif; ?>
                 </div>
             </div>
 
@@ -35,7 +39,9 @@
                 <div class="form-group col-md-2">
                     <label for="phone">Số điện thoại</label>
                     <input type="number" class="form-control" id="phone" name="phone_number" placeholder="Phone Number" required>
-                    <?php echo $errors['phone_err']?>
+                    <? if (!empty($errors['phone_err'])) : ?>
+                        <?php echo $errors['phone_err'] ?>
+                    <?php endif; ?>
                 </div>
             </div>
 
@@ -47,9 +53,11 @@
                         <option>Nội Thành</option>
                         <option>Ngoại Thành</option>
                     </select>
-                    <?php echo $errors['area_err'] ?>
+                    <? if (!empty($errors['area_err'])) : ?>
+                        <?php echo $errors['area_err'] ?>
+                    <?php endif; ?>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary bt1 " onclick="return checkAdd()">Submit</button>
+            <button type="submit" class="btn btn-primary bt1 " onclick="return checkAdd()">Thêm mới</button>
         </form>
     </form>

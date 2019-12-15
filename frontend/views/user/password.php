@@ -1,4 +1,4 @@
-<?php if ($_SESSION['id'] == 2) : ?>
+<?php if ($_SESSION['role'] == 2) : ?>
 	<div class="bg-light py-3">
 		<div class="container">
 			<div class="row">
@@ -28,25 +28,25 @@
 		<div class="col-sm-9">
 			<h3>Đổi mật khẩu</h3>
 			<div class="border-bottom"></div>
-			<?php if(!empty($successfully)):?>
+			<?php if (!empty($successfully)) : ?>
 				<?php echo $successfully; ?>
-			<?php endif;?>
+			<?php endif; ?>
 			<form style="width: 100%;" class="form-content mt-3 mb" action="<?php echo base_url('user/handle_password') ?>" method="post">
 				<input type="password" name="old_password" class="info" id="nme" required />
 				<label class="change-input" for="nme"><span class="change-name">Mật khẩu cũ:</span></label>
-				<?php if(!empty($errors['old_password'])):?>
-				<?php echo $errors['old_password']; ?>
-				<?php endif;?>
+				<?php if (!empty($errors['old_password'])) : ?>
+					<?php echo $errors['old_password']; ?>
+				<?php endif; ?>
 				<input type="password" name="new_password" class="info" id="nme" required />
 				<label class="change-input" for="nme"><span class="change-name">Mật khẩu mới:</span></label>
-				<?php if(!empty($errors['new_password'])):?>
-				<?php echo $errors['new_password']; ?>
-				<?php endif;?>
+				<?php if (!empty($errors['new_password'])) : ?>
+					<?php echo $errors['new_password']; ?>
+				<?php endif; ?>
 				<input type="password" name="re_new_password" class="info" id="nme" required />
 				<label class="change-input" for="nme"><span class="change-name">Nhập lại mật khẩu mới:</span></label>
-				<?php if(!empty($errors['re_new_password'])):?>
-				<?php echo $errors['re_new_password']; ?>
-				<?php endif;?>
+				<?php if (!empty($errors['re_new_password'])) : ?>
+					<?php echo $errors['re_new_password']; ?>
+				<?php endif; ?>
 				<p class="button ml-auto"><button type="submit">Thay đổi</button></p>
 			</form>
 		</div>

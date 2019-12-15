@@ -53,7 +53,7 @@
 										<td> <?php echo $order['status'] ?> </td>
 										<td> <?php echo $order['created_at'] ?> </td>
 										<td>
-											<form action="<?php echo base_url("order/show?id={$order['id']}");?>" method="post">
+											<form action="<?php echo base_url("order/show?id={$order['id']}"); ?>" method="post">
 												<button type="submit" class="btn btn-sm btn-primary">Chi tiết</button>
 											</form>
 										</td>
@@ -64,6 +64,21 @@
 				<?php endforeach; ?>
 				</table>
 			<?php endif; ?>
+			<nav aria-label="Page navigation example">
+				<ul class="pagination justify-content-center">
+					<li class="page-item">
+						<a class="page-link" href="<?php echo base_url("order/transaction_history") . '&pageno=1' ?>">&lt;&lt;</a></li>
+					<li class="page-item <?php if ($pageno <= 1) echo 'disabled'; ?>">
+						<a class="page-link" href="<?php if ($pageno <= 1) echo '#';
+													else echo base_url("order/transaction_history") . '&pageno=' . ($pageno - 1); ?>">&lt;</a></li>
+					<li class="page-item disabled"><a class="page-link"><?php echo $pageno ?>/<?php echo $total_pages ?></a></li>
+					<li class="page-item <?php if ($pageno >= $total_pages) echo 'disabled'; ?>">
+						<a class="page-link" href="<?php if ($pageno >= $total_pages) echo '#';
+													else echo base_url("order/transaction_history") . '&pageno=' . ($pageno + 1); ?>">&gt;</a>
+					</li>
+					<li class="page-item"><a class="page-link" href="<?php echo base_url("order/transaction_history") . '&pageno=' . $total_pages; ?>">&gt;&gt;</a></li>
+				</ul>
+			</nav>
 		</div>
 	</div>
 </div>

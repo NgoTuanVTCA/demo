@@ -15,8 +15,9 @@
                     <div class="question">
                         <input type="password" name="password" required />
                         <label>Mật khẩu</label>
-                        <?php if (!empty($errors['password']) || !empty($error_message)) : ?>
+                        <?php if (!empty($errors['password'])) : ?>
                             <?php echo $errors['password']; ?>
+                        <?php elseif (!empty($error_message)) : ?>
                             <?php echo $error_message; ?>
                         <?php endif; ?>
                     </div>

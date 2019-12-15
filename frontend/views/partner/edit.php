@@ -3,9 +3,11 @@
         return confirm('Bạn có chắc muốn cập nhật thông tin mới');
     }
 </script>
-<div class="form-container">
-    <h2>Cập nhật đối tác</h2>
 
+<a href="<?php echo base_url('partner/index') ?>" class="btn btn-dark"><i class="fa fa-backward"></i> Trở về</a>
+
+<div class="form-container mt-5">
+    <h2>Cập nhật đối tác</h2>
     <form action="<?php echo base_url("partner/update&id={$partner['id']}") ?>" method="post" enctype="multipart/form-data">
         <form>
             <div class="form-row">
@@ -26,7 +28,9 @@
                 <div class="form-group col-md-4">
                     <label for="phone">Số điện thoại</label>
                     <input type="number" class="form-control" id="phone" name="phone_number" placeholder="Phone Number" value="<?php echo $partner['phone_number'] ?>" required>
-                    <?php echo $errors['phone_err']?>
+                    <? if (!empty($errors['phone_err'])) : ?>
+                        <?php echo $errors['phone_err'] ?>
+                    <?php endif; ?>
                 </div>
             </div>
 

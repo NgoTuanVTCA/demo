@@ -43,10 +43,10 @@ class Order_Controller extends Base_Controller
 			redirect('home/index');
 		}
 		$id = getGetParameter('id');
-		$orders = $this->model->order->find_by_id($id);
+		$order = $this->model->order->find_by_id($id);
 		$this->layout->set('auth_layout');
 		$this->view->load('order/edit', [
-			'orders' => $orders
+			'order' => $order
 		]);
 	}
 	public function update()
@@ -54,28 +54,25 @@ class Order_Controller extends Base_Controller
 		$this->layout->set(null);
 
 		$id = getParameter('id');
-		$status = getParameter('status');
-		$errors = [];
-
-		if (count($errors) > 0) {
-			$this->layout->set('auth_layout');
-			$this->view->load(('order/edit'), [
-				'errors' => $errors
-			]);
-		} else {
-			$order = $this->model->order->update_by_id($id, [
-				'status' => $status
-			]);
-
-			if ($order) {
-				redirect('order/index');
-			} else {
-				$this->layout->set('auth_layout');
-				$this->view->load('order/edit', [
-					'error_message' => 'Cập nhật không thành công'
-				]);
-			}
+		$status = getPostParameter('status');
+		if ($status == 1) {
+			$status = 'Đang xử lý ';
 		}
+		if ($status == 2) {
+			$status = 'Đã xử lý ';
+		}
+		$order = $this->model->order->update_by_id($id, [
+			'status' => $status
+		]);
+		if ($order) {
+			redirect('order/index');
+		} else {
+			$this->layout->set('auth_layout');
+			$this->view->load('order/edit', [
+				'error_message' => 'Cập nhật không thành công'
+			]);
+		}
+
 	}
 
 	public function delivery_status()
@@ -134,11 +131,23 @@ class Order_Controller extends Base_Controller
 
 	public function transaction_history()
 	{
-		$orders = $this->model->order->get_order_by_user($_SESSION['id']);
+		$pageno = getParameter('pageno');
+		if (getParameter('pageno')) {
+			$pageno = getParameter('pageno');
+		} else {
+			$pageno = 1;
+		}
+
+		$no_of_records_per_page = 5;
+		$offset = ($pageno - 1) * $no_of_records_per_page;
+		$total_pages = $this->model->order->count_by_order($_SESSION['id'],$no_of_records_per_page);
+		$orders = $this->model->order->pagination_by_order($_SESSION['id'], $offset, $no_of_records_per_page);
 		$partners = $this->model->partner->find();
 		$this->view->load('order/transaction', [
 			'orders' => $orders,
-			'partners' => $partners
+			'partners' => $partners,
+			'total_pages' => $total_pages,
+			'pageno' => $pageno
 		]);
 	}
 	public function store()
