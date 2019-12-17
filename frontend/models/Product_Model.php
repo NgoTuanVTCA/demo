@@ -44,8 +44,9 @@ class Product_Model extends Base_Model
 		return $data;
 	}
 
-	public function pagination($name,$offset, $no_of_records_per_page){
-		$query = "select * from `{$this->table}` where 	`name` like '%".$name."%' limit $no_of_records_per_page offset $offset";
+	public function pagination($name, $offset, $no_of_records_per_page)
+	{
+		$query = "select * from `{$this->table}` where 	`name` like '%" . $name . "%' limit $no_of_records_per_page offset $offset";
 		$sth = $this->db->prepare($query);
 		$sth->execute();
 		$data = $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -66,11 +67,7 @@ class Product_Model extends Base_Model
 
 	public function find_last_product_inserted()
 	{
-		$query = "select * 
-			from `{$this->table}` where (created_at) IN 
-			( SELECT  MAX(created_at)
-			  FROM `{$this->table}`
-			)";
+		$query = "select *  from `{$this->table}` where (created_at) IN  ( SELECT  MAX(created_at) FROM `{$this->table}`)";
 		$sth = $this->db->prepare($query);
 		$sth->execute();
 		$data = $sth->fetchAll(PDO::FETCH_ASSOC);

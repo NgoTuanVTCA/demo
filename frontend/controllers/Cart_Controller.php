@@ -58,18 +58,19 @@ class Cart_Controller extends Base_Controller
 		$cart = $this->model->cart->find_by_product_id($product_id, $size_id);
 		$product_size = $this->model->product_size->find_by_product_id($product_id, $size_id);
 		$product_size_quantity = (int) $product_size['quantity_stock'];
-		if (count($carts) > 0) {
-			if ($quantity > $product_size_quantity) {
-				$carts = $this->model->cart->find();
-				$products = $this->model->product->find();
-				$sizes = $this->model->size->find();
-				$this->view->load('cart/index', [
-					'error_message' => 'Số lượng sản phẩm mà bạn chọn không còn đủ',
-					'carts' => $carts,
-					'products' => $products,
-					'sizes' => $sizes
-				]);
-			} else {
+		if ($quantity > $product_size_quantity) {
+			$carts = $this->model->cart->find();
+			$products = $this->model->product->find();
+			$sizes = $this->model->size->find();
+			$this->view->load('cart/index', [
+				'error_message' => 'Số lượng sản phẩm mà bạn chọn không còn đủ',
+				'carts' => $carts,
+				'products' => $products,
+				'sizes' => $sizes
+			]);
+		} else {
+			if (count($carts) > 0) {
+				$quantity += $cart['quantity'];
 				if ($cart) {
 					$this->model->cart->update_by_id($cart['id'], [
 						'user_id' => $id,
@@ -85,17 +86,17 @@ class Cart_Controller extends Base_Controller
 						'quantity' => $quantity
 					]);
 				}
+			} else {
+				$this->model->cart->create([
+					'user_id' => $id,
+					'product_id' => $product_id,
+					'size_id' => $size_id,
+					'quantity' => $quantity
+				]);
 			}
-		} else {
-			$this->model->cart->create([
-				'user_id' => $id,
-				'product_id' => $product_id,
-				'size_id' => $size_id,
-				'quantity' => $quantity
-			]);
+			unset($_SESSION['product_id']);
+			redirect("cart/index");
 		}
-		unset($_SESSION['product_id']);
-		redirect("cart/index");
 	}
 
 	public function update_to_cart()
@@ -104,7 +105,6 @@ class Cart_Controller extends Base_Controller
 		$product_id = getPostParameter('product_id');
 		$size_id = getPostParameter('size_id');
 		$quantity = getPostParameter('quantity');
-
 		$product_size = $this->model->product_size->find_by_product_id($product_id, $size_id);
 		$product_size_quantity = (int) $product_size['quantity_stock'];
 		if ($quantity > $product_size_quantity) {

@@ -34,7 +34,7 @@ class Partner_Controller extends Base_Controller
 		$address = getParameter('address');
 		$phone_number = getParameter('phone_number');
 		$email = getParameter('email');
-		$area = getParameter('area');
+		$price = getParameter('price');
 
 		$partner_email = $this->model->partner->get_by_email($email);
 		$partner_phone = $this->model->partner->get_by_phone($phone_number);
@@ -53,9 +53,6 @@ class Partner_Controller extends Base_Controller
 		if ($partner_email) {
 			$errors['email_err'] = "email \"$email\" đã tồn tại";
 		}
-		if ($area == 'Chọn khu vực...') {
-			$errors['area_err'] = 'Vui lòng chọn khu vực hoạt động';
-		}
 		if (count($errors) > 0) {
 			$this->layout->set('auth_layout');
 			$this->view->load('partner/add', [
@@ -67,7 +64,7 @@ class Partner_Controller extends Base_Controller
 				'address' => $address,
 				'phone_number' => $phone_number,
 				'email' => $email,
-				'area' => $area
+				'price' => $price
 			]);
 
 			if ($partner) {
@@ -100,7 +97,7 @@ class Partner_Controller extends Base_Controller
 		$name = getParameter('name');
 		$address = getParameter('address');
 		$phone_number = getParameter('phone_number');
-		$area = getParameter('area');
+		$price = getParameter('price');
 
 		$errors = [];
 
@@ -114,7 +111,7 @@ class Partner_Controller extends Base_Controller
 				'name' => $name,
 				'address' => $address,
 				'phone_number' => $phone_number,
-				'area' => $area
+				'price' => $price
 			]);
 			if ($partner) {
 				redirect('partner/index');

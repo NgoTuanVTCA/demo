@@ -6,9 +6,4 @@ class Product_size_Controller extends Base_Controller
 		parent::__construct();
 	}
 
-	public function index()
-	{ }
-
-	public function show()
-	{ }
 }

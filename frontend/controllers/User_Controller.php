@@ -7,6 +7,7 @@ class User_Controller extends Base_Controller
 	{
 		parent::__construct();
 	}
+	
 	public function index()
 	{
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
@@ -255,7 +256,12 @@ class User_Controller extends Base_Controller
 					'password' => $password,
 					'role' => $role
 				]);
+				$_SESSION['id'] = $user['id'];
+				$_SESSION['email'] = $user['email'];
 				$_SESSION['name'] = $user['name'];
+				$_SESSION['phone_number'] = $user['phone_number'];
+				$_SESSION['address'] = $user['address'];
+				$_SESSION['role'] = $user['role'];
 				redirect('home/index');
 			} else {
 				$this->view->load('user/registration', [

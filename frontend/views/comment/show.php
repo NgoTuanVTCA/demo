@@ -1,8 +1,9 @@
-<div class="row">
+<a href="<?php echo base_url('comment/index') ?>" class="btn btn-dark"><i class="fa fa-backward"></i> Trở về</a>
+
+<div class="row mt-5">
     <!-- ============================================================== -->
     <!-- basic table  -->
     <!-- ============================================================== -->
-
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="card">
             <h5 class="card-header">Danh sách bình luận theo sản phẩm

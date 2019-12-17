@@ -39,6 +39,7 @@
 							<th scope="col" style="text-align: center;">Mã đơn hàng</th>
 							<th scope="col" style="text-align: center;">Đối tác giao hàng</th>
 							<th scope="col" style="text-align: center;">Trạng thái</th>
+							<th scope="col" style="text-align: center;">Tổng giá</th>
 							<th scope="col" style="text-align: center;">Ngày tạo</th>
 							<th scope="col" style="text-align: center;">Thao tác</th>
 						</tr>
@@ -51,6 +52,7 @@
 										<td> <?php echo $order['id'] ?> </td>
 										<td> <?php echo $partner['name'] ?></td>
 										<td> <?php echo $order['status'] ?> </td>
+										<td> <?php echo $price = $order['price'] + $partner['price'] ?> </td>
 										<td> <?php echo $order['created_at'] ?> </td>
 										<td>
 											<form action="<?php echo base_url("order/show?id={$order['id']}"); ?>" method="post">
@@ -74,7 +76,7 @@
 					<li class="page-item disabled"><a class="page-link"><?php echo $pageno ?>/<?php echo $total_pages ?></a></li>
 					<li class="page-item <?php if ($pageno >= $total_pages) echo 'disabled'; ?>">
 						<a class="page-link" href="<?php if ($pageno >= $total_pages) echo '#';
-													else echo base_url("order/transaction_history") . '&pageno=' . ($pageno + 1); ?>">&gt;</a>
+																								else echo base_url("order/transaction_history") . '&pageno=' . ($pageno + 1); ?>">&gt;</a>
 					</li>
 					<li class="page-item"><a class="page-link" href="<?php echo base_url("order/transaction_history") . '&pageno=' . $total_pages; ?>">&gt;&gt;</a></li>
 				</ul>

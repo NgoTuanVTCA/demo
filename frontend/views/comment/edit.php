@@ -4,7 +4,8 @@
     }
 </script>
 
-<div class="form-container">
+<a href="<?php echo base_url('comment/index') ?>" class="btn btn-dark"><i class="fa fa-backward"></i> Trở về</a>
+<div class="form-container mt-5">
     <h2>Cập nhật trạng thái</h2>
     <form action="<?php echo base_url("comment/update&id={$comment['id']}") ?>" method="post" enctype="multipart/form-data">
         <form>

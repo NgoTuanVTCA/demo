@@ -65,6 +65,7 @@ class Product_Controller extends Base_Controller
 
 	public function store()
 	{
+		$this->layout->set('auth_layout');
 		$name = getPostParameter('name');
 		$price = getPostParameter('price');
 		$category  = getPostParameter('category');
@@ -90,16 +91,20 @@ class Product_Controller extends Base_Controller
 			$target_dir = "quan_au";
 		}
 
-		$target_file = $target_dir . '/' . basename($_FILES["image"]["name"]);
-		if (move_uploaded_file($_FILES["image"]["tmp_name"], 'public/uploads/' . $target_file)) {
-			echo "The file " . basename($_FILES["image"]["name"]) . " has been uploaded.";
-			echo $_FILES["image"]["tmp_name"];
-		} else {
-			echo "Sorry, there was an error uploading your file.";
-		}
 		$errors = [];
+
+		$target_file = $target_dir . '/' . basename($_FILES["image"]["name"]);
+		if (!move_uploaded_file($_FILES["image"]["tmp_name"], 'public/uploads/' . $target_file)) {
+			$errors['faild'] = "Sorry, there was an error uploading your file.";
+		}
 		if (count($errors) > 0) {
+			$categories = $this->model->category->find();
+			$brands = $this->model->brand->find();
+			$sizes = $this->model->size->find();
 			$this->view->load('product/add', [
+				'sizes' => $sizes,
+				'categories' => $categories,
+				'brands' => $brands,
 				'errors' => $errors
 			]);
 		} else {
@@ -119,32 +124,41 @@ class Product_Controller extends Base_Controller
 			}
 		}
 	}
-
-	public function edit_size()
+	function edit_size()
 	{
-
 		if (empty($_SESSION['role']) || $_SESSION['role'] != 1) {
 			redirect('home/index');
 		}
 		$this->layout->set('auth_layout');
-		$data = $this->model->product->find_last_product_inserted();
-		$product = $this->model->product->find_by_id($data[0]['id']);
+		$id = getGetParameter('id');
+		$product = $this->model->product->find_by_id($id);
 		$this->view->load('product/edit_size', [
 			'product' => $product
 		]);
 	}
 
-	public function update_size()
+	function update_size()
 	{
+		$this->layout->set(null);
 		$product_id = $_SESSION['product_id'];
 		$size_id = getPostParameter('size_name');
 		$quantity_stock = getPostParameter('quantity');
 		$product = $this->model->product->find_by_id($product_id);
-		$product_sizes = $this->model->product_size->find_by_product_id($product_id);
-		if ($size_id == $product_sizes['size_id']) {
-			$this->model->product_size->update_product_quantity($product_id, $size_id, [
-				'quantity_stock' =>  $quantity_stock
-			]);
+		$product_sizes = $this->model->product_size->find_by_product_size_id($product_id);
+		$product_size = $this->model->product_size->find_by_product($product_id, $size_id);
+		$quantity_stock += $product_size['quantity_stock'];
+		if (count($product_sizes) > 0) {
+			if ($product_size['id']) {
+				$this->model->product_size->update_by_id($product_size['id'], [
+					'quantity_stock' => $quantity_stock
+				]);
+			} else {
+				$this->model->product_size->create([
+					'product_id' => $product_id,
+					'size_id' => $size_id,
+					'quantity_stock' =>  $quantity_stock
+				]);
+			}
 		} else {
 			$this->model->product_size->create([
 				'product_id' => $product_id,
@@ -178,6 +192,8 @@ class Product_Controller extends Base_Controller
 
 	public function update()
 	{
+
+		$this->layout->set('auth_layout');
 		$id = getParameter('id');
 		$name = getPostParameter('name');
 		$price = getPostParameter('price');
@@ -186,9 +202,8 @@ class Product_Controller extends Base_Controller
 		$brand = getPostParameter('brand');
 		$category_id = $category[0];
 		$brand_id = $brand[0];
-
-		$errors = [];
 		$target_dir = "";
+
 		if ($category_id == 1) {
 			$target_dir = "vest";
 		} elseif ($category_id == 2) {
@@ -208,8 +223,22 @@ class Product_Controller extends Base_Controller
 		}
 
 		$target_file = $target_dir . '/' . $ImageName;
+		$errors = [];
+		if (!move_uploaded_file($_FILES["image"]["tmp_name"], 'public/uploads/' . $target_file)) {
+			$errors['faild'] = "Sorry, there was an error uploading your file.";
+		}
 		if (count($errors > 0)) {
+			$product = $this->model->product->find_by_id($id);
+			$categories = $this->model->category->find();
+			$brands = $this->model->brand->find();
+			$product_sizes = $this->model->product_size->find();
+			$sizes = $this->model->size->find();
 			$this->view->load('product/edit', [
+				'product' => $product,
+				'sizes' => $sizes,
+				'categories' => $categories,
+				'product_sizes' => $product_sizes,
+				'brands' => $brands,
 				'errors' => $errors
 			]);
 		} else {

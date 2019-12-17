@@ -35,10 +35,6 @@
                 <?php endforeach; ?>
             </select>
         </div>
-        <div class="form-group">
-            <label for="quantity">Số lượng <span class="red">*</span></label>
-            <input name="quantity" class="form-control" placeholder="<?php echo $product['quantity']; ?>">
-        </div>
         <input type="submit" class="btn btn-dark" value="Cập nhật" />
     </form>
 </div>

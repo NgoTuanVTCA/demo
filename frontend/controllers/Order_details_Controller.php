@@ -12,42 +12,35 @@ class Order_details_Controller extends Base_Controller
 		$carts = $this->model->cart->find();
 		$sizes = $this->model->size->find();
 		$products = $this->model->product->find();
-		$product_sizes = $this->model->product_size->find();
 		foreach ($carts as $cart) {
-			foreach ($products as $product) {
-				foreach ($product_sizes as $product_size) {
-					foreach ($sizes as $size) {
-						if ($product['id'] == $product_size['product_id']) {
-							if ($product_size['size_id'] == $size['id']) {
-								$this->model->product_size->update_product_quantity($product['id'], $size['id'], [
-									'quantity_stock' => $product_size['quantity_stock'] - $cart['quantity']
-								]);
-							}
-						}
-					}
-				}
-			}
+			$product_size = $this->model->product_size->find_quantity_stock($cart['product_id'], $cart['size_id']);
+			$this->model->product_size->update_product_quantity($cart['product_id'], $cart['size_id'], [
+				'quantity_stock' => $product_size[0]['quantity_stock'] - $cart['quantity']
+			]);
 		}
+		$price = 0;
 		foreach ($carts as $cart) {
 			foreach ($products as $product) {
 				foreach ($sizes as $size) {
-					if ($cart['user_id'] == $_SESSION['id']) {
-						if ($cart['product_id'] == $product['id']) {
-							if ($cart['size_id'] == $size['id']) {
-								$this->model->order_details->create([
-									'order_id' => $order_id,
-									'product_id' => $cart['product_id'],
-									'size_name' =>  $size['name'],
-									'price' => $product['price'] * $cart['quantity'],
-									'quantity' => $cart['quantity']
-								]);
-							}
+					if ($cart['product_id'] == $product['id']) {
+						if ($cart['size_id'] == $size['id']) {
+							$this->model->order_details->create([
+								'order_id' => $order_id,
+								'product_id' => $cart['product_id'],
+								'size_name' =>  $size['name'],
+								'price' => $product['price'] * $cart['quantity'],
+								'quantity' => $cart['quantity']
+							]);
+							$price += $product['price'] * $cart['quantity'];
 						}
 					}
 				}
 			}
 		}
+		$this->model->order->update_by_id($order_id, [
+			'price' => $price
+		]);
 		$this->model->cart->destroy_product_by_user($_SESSION['id']);
-		redirect("cart/index");
+		redirect("order/confirm_success");
 	}
 }

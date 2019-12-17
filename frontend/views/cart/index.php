@@ -12,6 +12,9 @@
                 <?php $total_price = 0 ?>
                 <?php if (empty($carts) || empty($_SESSION['id'])) : ?>
                     <div class="text-center">
+                        <?php if (!empty($error_message)) : ?>
+                            <?php echo $error_message ?>
+                        <?php endif; ?>
                         <h3 class="ml-3">Giỏ hàng chưa có sản phẩm</h3>
                     </div>
                 <?php else : ?>

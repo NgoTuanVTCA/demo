@@ -152,7 +152,6 @@ class Order_Controller extends Base_Controller
 	}
 	public function store()
 	{
-
 		$this->layout->set(null);
 		$id = $_SESSION['id'];
 		$partner_id = getPostParameter('partner');
@@ -163,5 +162,9 @@ class Order_Controller extends Base_Controller
 			'status' => $status
 		]);
 		redirect("order_details/store?id={$order['id']}");
+	}
+
+	public function confirm_success(){
+		$this->view->load('order/confirm_success');
 	}
 }

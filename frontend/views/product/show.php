@@ -92,13 +92,15 @@
             </form>
             <?php foreach ($comments as $comment) : ?>
                 <?php foreach ($users as $user) : ?>
-                    <?php if ($comment['product_id'] == $product['id']) : ?>
-                        <?php if ($comment['user_id'] == $user['id']) : ?>
-                            <div class="">
-                                <p class=""><?php echo $user['name'] . ' : ' . $comment['content'] ?></p>
-                                <p class=""><?php echo $comment['created_at']; ?></p>
-                                <hr>
-                            </div>
+                    <?php if ($comment['user_id'] == $user['id']) : ?>
+                        <?php if ($comment['product_id'] == $product['id']) : ?>
+                            <?php if ($comment['active'] == 'Bật') : ?>
+                                <div class="">
+                                    <p class=""><?php echo $user['name'] . ' : ' . $comment['content'] ?></p>
+                                    <p class=""><?php echo $comment['created_at']; ?></p>
+                                    <hr>
+                                </div>
+                            <?php endif; ?>
                         <?php endif; ?>
                     <?php endif; ?>
                 <?php endforeach; ?>

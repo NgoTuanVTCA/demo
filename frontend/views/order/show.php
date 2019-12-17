@@ -55,9 +55,9 @@
                                     <tr>
                                         <td><?php echo $product['name'] ?></td>
                                         <td class="text-center"><?php echo $order_detail['size_name'] ?></td>
-                                        <td class="text-center"><?php echo number_format($order_detail['price'], 0, '.', ',') . ' VNĐ' ?></td>
+                                        <td class="text-center"><?php echo number_format($order_detail['price'] / $order_detail['quantity'], 0, '.', ',') . ' VNĐ' ?></td>
                                         <td class="text-center"><?php echo $order_detail['quantity'] ?></td>
-                                        <td class="text-center"><?php echo number_format($order_detail['price'] * $order_detail['quantity'], 0, '.', ',') . ' VNĐ' ?></td>
+                                        <td class="text-center"><?php echo number_format($order_detail['price'], 0, '.', ',') . ' VNĐ' ?></td>
                                         <?php $total += $order_detail['price'] ?>
                                     </tr>
                                 <?php endif; ?>

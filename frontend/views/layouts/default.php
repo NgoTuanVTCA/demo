@@ -152,11 +152,21 @@
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="block-7">
-                            <form action="#" method="post">
+                            <form method="post">
                                 <label for="email_subscribe" class="footer-heading">Hãy đăng ký để nhận được thông tin mới nhất</label>
                                 <div class="form-group">
-                                    <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Nhập email...">
-                                    <input type="submit" class="btn btn-sm btn-primary" value="Gửi">
+                                    <input type="email" class="form-control py-4" id="email_subscribe" placeholder="Nhập email..." require>
+                                    <button type="submit" class="btn btn-sm btn-primary" onclick="subscribe()">Gửi</button>
+                                    <script>
+                                        var a = document.getElementById("email_subscribe").value;
+                                        function subscribe(a) {
+                                            if (a == "") {
+                                                return alert("Email không được để trống hoặc không đúng định dạng");
+                                            } else {
+                                                return alert("Cảm ơn bạn đã đăng ký nhận tin!");
+                                            }
+                                        }
+                                    </script>
                                 </div>
                             </form>
                         </div>

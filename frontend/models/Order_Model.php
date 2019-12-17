@@ -31,7 +31,6 @@ class Order_Model extends Base_Model
 		return $total_pages;
 	}
 
-	// pagination by category
 	public function pagination_by_order($user_id, $offset, $no_of_records_per_page)
 	{
 		$query = "select * from `{$this->table}` where `user_id`= :user_id limit $no_of_records_per_page offset $offset";
