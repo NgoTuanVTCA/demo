@@ -35,6 +35,7 @@ class Partner_Controller extends Base_Controller
 		$phone_number = getParameter('phone_number');
 		$email = getParameter('email');
 		$price = getParameter('price');
+		$delivery_type = getParameter('delivery_type');
 
 		$partner_email = $this->model->partner->get_by_email($email);
 		$partner_phone = $this->model->partner->get_by_phone($phone_number);
@@ -45,13 +46,16 @@ class Partner_Controller extends Base_Controller
 			$errors['name_err'] = 'Vui lòng nhập tên đối tác';
 		}
 		if (!$address) {
-			$errors['address_err'] = 'Vui long nhap địa chỉ';
+			$errors['address_err'] = 'Vui lòng nhap địa chỉ';
 		}
 		if ($partner_phone) {
 			$errors['phone_err'] = "số điện thoại \"$phone_number\" đã tồn tại";
 		}
 		if ($partner_email) {
 			$errors['email_err'] = "email \"$email\" đã tồn tại";
+		}
+		if ($delivery_type == "Chọn kiểu giao hàng...") {
+			$errors['delivery_type_err'] = 'Vui lòng chọn kiểu giao hàng';
 		}
 		if (count($errors) > 0) {
 			$this->layout->set('auth_layout');
@@ -64,7 +68,8 @@ class Partner_Controller extends Base_Controller
 				'address' => $address,
 				'phone_number' => $phone_number,
 				'email' => $email,
-				'price' => $price
+				'price' => $price,
+				'delivery_type' => $delivery_type
 			]);
 
 			if ($partner) {
@@ -98,6 +103,7 @@ class Partner_Controller extends Base_Controller
 		$address = getParameter('address');
 		$phone_number = getParameter('phone_number');
 		$price = getParameter('price');
+		$delivery_type = getParameter('delivery_type');
 
 		$errors = [];
 
@@ -111,7 +117,8 @@ class Partner_Controller extends Base_Controller
 				'name' => $name,
 				'address' => $address,
 				'phone_number' => $phone_number,
-				'price' => $price
+				'price' => $price,
+				'delivery_type' => $delivery_type
 			]);
 			if ($partner) {
 				redirect('partner/index');

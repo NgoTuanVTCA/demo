@@ -20,7 +20,8 @@
                                         <th>Thành tiền</th>
                                     </thead>
                                     <tbody>
-                                        <?php $total = 0 ?>
+                                        <?php $total = 0;
+                                        $total_price = 0 ?>
                                         <?php foreach ($carts as $cart) : ?>
                                             <?php foreach ($products as $product) : ?>
                                                 <?php foreach ($sizes as $size) : ?>
@@ -45,13 +46,15 @@
                                         </tr>
                                         <tr>
                                             <td class="text-black font-weight-bold"><strong>Giá vận chuyển</strong></td>
-                                            <?php foreach ($partners as $partner) : ?>
-                                                <?php if ($partner['id'] == $partner_id) : ?>
-                                                    <td><?php echo number_format($partner['price'], 0, '.', ',') . ' VNĐ' ?></td>
-                                                    <input name="partner" type="hidden" value="<?php echo $partner_id ?>">
-                                                    <?php $total_price = $total +  $partner['price'] ?>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
+                                            <?php if ($delivery_type == 'Giao hàng nhanh') : ?>
+                                                <td><?php echo number_format(80000, 0, '.', ',') . ' VNĐ' ?></td>
+                                                <input name="delivery_type" type="hidden" value="<?php echo $delivery_type ?>">
+                                                <?php $total_price = $total + 80000 ?>
+                                            <?php else : ?>
+                                                <td><?php echo number_format(40000, 0, '.', ',') . ' VNĐ' ?></td>
+                                                <input name="delivery_type" type="hidden" value="<?php echo $delivery_type ?>">
+                                                <?php $total_price = $total + 40000 ?>
+                                            <?php endif; ?>
                                         </tr>
                                         <tr>
                                             <td class="text-black font-weight-bold"><strong>Số tiền phải trả</strong></td>

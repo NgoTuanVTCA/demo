@@ -14,8 +14,8 @@
 			<div class="col-sm-3 border-right">
 				<h3>Thông tin tài khoàn</h3>
 				<ul class="list-group mt-3">
-					<li class="list-group-item">
-						<a href="<?php echo base_url("user/profile"); ?>">Thông tin cá nhân</a>
+					<li class="list-group-item bg-dark">
+						<a class="text-light" href="<?php echo base_url("user/profile"); ?>">Thông tin cá nhân</a>
 					</li>
 					<li class="list-group-item">
 						<a href="<?php echo base_url("user/password"); ?>">Thay đổi mật khẩu</a>

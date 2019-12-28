@@ -8,9 +8,15 @@ class Home_Controller extends Base_Controller
 
 	public function index()
 	{
+		if (!empty($_SESSION['id'])) {
+			$id = $_SESSION['id'];
+			$carts = $this->model->cart->find_product_from_cart($id);
+			$count = count($carts);
+			$_SESSION['cart'] = $count;
+		}
 		$products = $this->model->product->find_by_new_products();
 		$this->view->load('home/index', [
-			'products' => $products
+			'products' => $products,
 		]);
 	}
 	public function search()
@@ -32,7 +38,7 @@ class Home_Controller extends Base_Controller
 		$total_pages = ceil($total_rows / $no_of_records_per_page);
 		$products = $this->model->product->pagination($name, $offset, $no_of_records_per_page);
 
-		$this->view->load('home/search_product', [
+		$this->view->load("home/search_product", [
 			'pageno' => $pageno,
 			'total_pages' => $total_pages,
 			'products' => $products,

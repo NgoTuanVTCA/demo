@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:7888
--- Generation Time: Dec 17, 2019 at 10:53 AM
+-- Generation Time: Dec 28, 2019 at 06:08 PM
 -- Server version: 5.7.24-log
 -- PHP Version: 7.2.10
 
@@ -101,37 +101,6 @@ CREATE TABLE `comments` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`id`, `user_id`, `product_id`, `content`, `active`, `created_at`, `updated_at`) VALUES
-(1, 17, 4, 'kjshdfkjdfshkjsd', 'Bật', '2019-11-22 16:56:37', '2019-11-22 16:56:37'),
-(2, 17, 93, 'ok', 'Bật', '2019-11-22 17:10:38', '2019-12-03 22:45:59'),
-(3, 17, 9, 'ok', 'Bật', '2019-11-22 17:10:46', '2019-11-22 17:10:46'),
-(4, 17, 1, 'asdasd', 'Bật', '2019-11-22 18:08:58', '2019-11-22 18:08:58'),
-(5, 17, 1, 'asljdalksdj', 'Bật', '2019-11-22 18:09:04', '2019-11-22 18:09:04'),
-(6, 17, 16, 'sdflksjfklsjf', 'Bật', '2019-11-24 18:27:44', '2019-11-24 18:27:44'),
-(7, 17, 16, 'lsdjflsdf', 'Bật', '2019-11-24 18:29:07', '2019-11-24 18:29:07'),
-(8, 17, 16, 'aaaaaa', 'Bật', '2019-11-24 19:54:33', '2019-11-24 19:54:33'),
-(9, 17, 16, 'sdfsdfsdf', 'Bật', '2019-11-24 20:06:31', '2019-11-24 20:06:31'),
-(10, 17, 1, 'ádasdasd', 'Bật', '2019-11-24 20:07:09', '2019-11-24 20:07:09'),
-(11, 17, 16, 'sdfsdf', 'Bật', '2019-11-24 20:07:32', '2019-11-24 20:07:32'),
-(12, 17, 16, 'sdfsdf', 'Bật', '2019-11-24 20:07:59', '2019-11-24 20:07:59'),
-(13, 17, 16, 'lfkjdslkfjslkdf', 'Bật', '2019-11-24 20:08:07', '2019-11-24 20:08:07'),
-(14, 17, 16, 'asdasd', 'Bật', '2019-11-24 23:58:44', '2019-11-24 23:58:44'),
-(15, 17, 16, 'aaaaaaaaaaaaaaa', 'Bật', '2019-11-24 23:58:53', '2019-11-24 23:58:53'),
-(16, 17, 2, 'aaaa', 'Bật', '2019-11-25 02:20:18', '2019-11-25 02:20:18'),
-(17, 17, 5, 'ahihi', 'Bật', '2019-11-25 14:15:31', '2019-11-25 14:15:31'),
-(18, 17, 31, 'đẹp đấy', 'Bật', '2019-11-27 03:27:53', '2019-11-27 03:27:53'),
-(19, 17, 2, 'uuuuuuuuuuuuu', 'Bật', '2019-11-27 03:35:18', '2019-11-27 03:35:18'),
-(20, 17, 92, 'kjasdkljaf', 'Tắt', '2019-11-27 14:17:16', '2019-12-17 17:35:43'),
-(21, 17, 93, 'skdlfjdsklfjlksdjflsdjflksdjlkfjsdfjdslkfjksdjfklsdjfklsfd', 'Bật', '2019-11-27 14:25:01', '2019-12-04 15:27:06'),
-(22, 17, 93, 'ksdjfskldjfklsd', 'Bật', '2019-11-27 14:27:54', '2019-12-04 15:27:14'),
-(23, 17, 5, 'Áo đẹp', 'Tắt', '2019-12-17 01:56:40', '2019-12-17 01:56:40'),
-(24, 17, 5, 'Mẫu mã chất', 'Tắt', '2019-12-17 01:56:51', '2019-12-17 01:56:51'),
-(25, 17, 91, 'dep', 'Bật', '2019-12-17 17:37:35', '2019-12-17 17:38:59');
-
 -- --------------------------------------------------------
 
 --
@@ -141,22 +110,14 @@ INSERT INTO `comments` (`id`, `user_id`, `product_id`, `content`, `active`, `cre
 CREATE TABLE `orders` (
   `id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
-  `partner_id` bigint(20) NOT NULL,
+  `partner_id` bigint(20) DEFAULT NULL,
+  `delivery_type` varchar(50) NOT NULL,
   `status` varchar(50) NOT NULL,
   `price` double DEFAULT NULL,
+  `reason_cancel` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `user_id`, `partner_id`, `status`, `price`, `created_at`, `updated_at`) VALUES
-(38, 17, 2, 'Đang xử lý', 3300000, '2019-12-17 17:14:00', '2019-12-17 17:14:01'),
-(39, 17, 3, 'Đang xử lý', 4600000, '2019-12-17 17:16:43', '2019-12-17 17:16:43'),
-(40, 17, 3, 'Đang xử lý', 1000000, '2019-12-17 17:19:33', '2019-12-17 17:19:33'),
-(41, 17, 4, 'Đang xử lý', 3200000, '2019-12-17 17:24:38', '2019-12-17 17:24:38');
 
 -- --------------------------------------------------------
 
@@ -168,26 +129,12 @@ CREATE TABLE `order_details` (
   `id` bigint(20) NOT NULL,
   `order_id` bigint(20) NOT NULL,
   `product_id` bigint(20) NOT NULL,
-  `size_name` varchar(20) NOT NULL,
+  `size_id` bigint(20) NOT NULL,
   `price` double NOT NULL,
   `quantity` bigint(20) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `order_details`
---
-
-INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `size_name`, `price`, `quantity`, `created_at`, `updated_at`) VALUES
-(2229, 38, 106, 'M', 1400000, 2, '2019-12-17 17:14:00', '2019-12-17 17:14:00'),
-(2230, 38, 106, 'XL', 2100000, 3, '2019-12-17 17:14:01', '2019-12-17 17:14:01'),
-(2231, 38, 77, '39', 3300000, 2, '2019-12-17 17:14:01', '2019-12-17 17:14:01'),
-(2232, 39, 77, '39', 3300000, 2, '2019-12-17 17:16:43', '2019-12-17 17:16:43'),
-(2233, 39, 18, 'M', 1300000, 2, '2019-12-17 17:16:43', '2019-12-17 17:16:43'),
-(2234, 40, 2, 'M', 1000000, 1, '2019-12-17 17:19:33', '2019-12-17 17:19:33'),
-(2235, 41, 2, 'M', 1000000, 1, '2019-12-17 17:24:38', '2019-12-17 17:24:38'),
-(2236, 41, 3, 'M', 2200000, 1, '2019-12-17 17:24:38', '2019-12-17 17:24:38');
 
 -- --------------------------------------------------------
 
@@ -202,6 +149,7 @@ CREATE TABLE `partners` (
   `phone_number` varchar(20) NOT NULL,
   `email` varchar(100) NOT NULL,
   `price` double NOT NULL,
+  `delivery_type` varchar(50) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -210,12 +158,10 @@ CREATE TABLE `partners` (
 -- Dumping data for table `partners`
 --
 
-INSERT INTO `partners` (`id`, `name`, `address`, `phone_number`, `email`, `price`, `created_at`, `updated_at`) VALUES
-(1, 'Giao hàng nhanh', 'Số 19 Nguyễn Trãi, P. Khương Trung, Q. Thanh Xuân,Hà Nội', '0904871800', 'thang.nguyen@lacco.com.vn', 50000, '2019-11-18 14:34:49', '2019-12-04 02:49:38'),
-(2, 'Công Ty Cổ Phần Đầu Tư Thành Mỹ', 'Ngõ 79, Ngọc Hồi, Hoàng Mai,Hà Nội', ' 0986102166', 'thanhmyjsic@gmail.com', 60000, '2019-11-18 14:34:49', '2019-11-18 14:34:49'),
-(3, ' Công Ty TNHH Vận Tải & Thương Mại Tuấn Mạnh', 'Tổ 21 Xóm Bãi , Phường Thanh Trì, Quận Hoàng Mai,Hà Nội', '0243645289', 'ctytuanmanh@gmail.com', 70000, '2019-11-18 14:34:49', '2019-11-18 14:34:49'),
-(4, 'Công Ty TNHH Vận Tải Và Thương Mại Nhật Thiên Hương', '716 Nơ 22, Khu Đô Thị Pháp Vân, Hoàng Liệt, Hoàng Mai,Hà Nội', '0243683072', 'nhatthienhuonglogistics@gmail.com', 80000, '2019-11-18 14:34:49', '2019-11-18 14:34:49'),
-(5, 'kldsfjkls', 'sdjfkasjf', '5555555555', 'dskfjsdkl@sadasd', 50000, '2019-12-16 13:15:24', '2019-12-16 13:15:37');
+INSERT INTO `partners` (`id`, `name`, `address`, `phone_number`, `email`, `price`, `delivery_type`, `created_at`, `updated_at`) VALUES
+(2, 'Công Ty Cổ Phần Đầu Tư Thành Mỹ', 'Ngõ 79, Ngọc Hồi, Hoàng Mai,Hà Nội', ' 0986102166', 'thanhmyjsic@gmail.com', 60000, 'Giao hàng tiêu chuẩn', '2019-11-18 14:34:49', '2019-11-18 14:34:49'),
+(3, ' Công Ty TNHH Vận Tải & Thương Mại Tuấn Mạnh', 'Tổ 21 Xóm Bãi , Phường Thanh Trì, Quận Hoàng Mai,Hà Nội', '0243645289', 'ctytuanmanh@gmail.com', 70000, 'Giao hàng nhanh', '2019-11-18 14:34:49', '2019-11-18 14:34:49'),
+(4, 'Công Ty TNHH Vận Tải Và Thương Mại Nhật Thiên Hương', '716 Nơ 22, Khu Đô Thị Pháp Vân, Hoàng Liệt, Hoàng Mai,Hà Nội', '0243683072', 'nhatthienhuonglogistics@gmail.com', 80000, 'Giao hàng nhanh', '2019-11-18 14:34:49', '2019-11-18 14:34:49');
 
 -- --------------------------------------------------------
 
@@ -239,7 +185,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `brand_id`, `name`, `price`, `image`, `created_at`, `updated_at`) VALUES
-(2, 1, 1, 'Áo Vest Đen Thường (NEW)', 1000000, 'vest/AO_VEST_DEN_THUONG_(NEW).jpg', '2019-11-09 12:50:58', '2019-12-13 17:01:05'),
+(2, 1, 1, 'Áo Vest Đen Thường (NEW)', 1000000, 'vest/AO_VEST_DEN_THUONG_(NEW).jpg', '2019-11-09 12:50:58', '2019-12-19 15:57:54'),
 (3, 1, 1, 'Áo Vest Đen Vá Viền (NEW)', 2200000, 'vest/AO_VEST_DVVMM.jpg', '2019-11-09 13:03:44', '2019-12-13 17:01:06'),
 (4, 1, 1, 'Áo Vest Kẻ Ô Xanh Sẫm', 2400000, 'vest/AO_VEST_KE_O_XANH_SAM.jpg', '2019-11-10 15:58:25', '2019-12-13 17:01:06'),
 (5, 1, 1, 'Áo Vest Kẻ Ô Xanh', 2500000, 'vest/AO_VEST_KE_O_XANH_SANG.jpg', '2019-11-12 03:02:20', '2019-12-13 17:01:06'),
@@ -357,8 +303,7 @@ INSERT INTO `products` (`id`, `category_id`, `brand_id`, `name`, `price`, `image
 (117, 8, 1, 'Quần Âu Nam Đẹp Kẻ Ghi', 700000, 'quan_au/QUAN_AU_NAM_DEP_KE_GHI.jpg', '2019-11-15 17:46:10', '2019-12-13 17:01:21'),
 (118, 8, 1, 'Quần Âu Nam Đẹp Kẻ Xanh Đỏ', 700000, 'quan_au/QUAN_AU_NAM_DEP_KE_XANH_DO.jpg', '2019-11-15 17:46:10', '2019-12-13 17:01:21'),
 (119, 8, 1, 'Quần Âu Nam Đẹp Tím Sẫm', 600000, 'quan_au/QUAN_AU_NAM_DEP_TIM_SAM.jpg', '2019-11-15 17:46:10', '2019-12-13 17:01:21'),
-(120, 8, 1, 'Quần Âu Nam Đẹp Xanh Cốm', 700000, 'quan_au/QUAN_AU_NAM_DEP_XANH_COM.jpg', '2019-11-15 17:46:10', '2019-12-13 17:01:21'),
-(128, 1, 1, 'alskdl;askd', 1312312, 'vest/7e282d379d9b5ba4616a1feab4aa4262.jpg', '2019-12-17 16:26:27', '2019-12-17 16:26:27');
+(120, 8, 1, 'Quần Âu Nam Đẹp Xanh Cốm', 700000, 'quan_au/QUAN_AU_NAM_DEP_XANH_COM.jpg', '2019-11-15 17:46:10', '2019-12-13 17:01:21');
 
 -- --------------------------------------------------------
 
@@ -380,7 +325,7 @@ CREATE TABLE `product_size` (
 --
 
 INSERT INTO `product_size` (`id`, `product_id`, `size_id`, `quantity_stock`, `created_at`, `updated_at`) VALUES
-(9, 2, 1, 10, '2019-11-18 16:11:22', '2019-12-17 17:24:38'),
+(9, 2, 1, 10, '2019-11-18 16:11:22', '2019-12-19 15:58:05'),
 (10, 2, 2, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:06'),
 (11, 2, 3, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:06'),
 (12, 2, 4, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:06'),
@@ -440,14 +385,14 @@ INSERT INTO `product_size` (`id`, `product_id`, `size_id`, `quantity_stock`, `cr
 (66, 16, 2, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:08'),
 (67, 16, 3, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:08'),
 (68, 16, 4, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:08'),
-(69, 17, 1, 10, '2019-11-18 16:11:22', '2019-12-17 16:29:30'),
+(69, 17, 1, 10, '2019-11-18 16:11:22', '2019-12-26 17:26:58'),
 (70, 17, 2, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:08'),
 (71, 17, 3, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:08'),
 (72, 17, 4, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:08'),
-(73, 18, 1, 8, '2019-11-18 16:11:22', '2019-12-17 17:16:43'),
+(73, 18, 1, 10, '2019-11-18 16:11:22', '2019-12-26 11:04:30'),
 (74, 18, 2, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:09'),
 (75, 18, 3, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:09'),
-(76, 18, 4, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:09'),
+(76, 18, 4, 10, '2019-11-18 16:11:22', '2019-12-24 19:29:14'),
 (77, 19, 1, 10, '2019-11-18 16:11:22', '2019-12-17 16:29:30'),
 (78, 19, 2, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:09'),
 (79, 19, 3, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:09'),
@@ -504,12 +449,12 @@ INSERT INTO `product_size` (`id`, `product_id`, `size_id`, `quantity_stock`, `cr
 (130, 32, 2, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:11'),
 (131, 32, 3, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:11'),
 (132, 32, 4, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:11'),
-(133, 76, 5, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:13'),
+(133, 76, 5, 10, '2019-11-18 16:11:22', '2019-12-24 11:01:14'),
 (134, 76, 6, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:13'),
 (135, 76, 7, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:13'),
 (136, 76, 8, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:13'),
-(137, 76, 9, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:13'),
-(138, 77, 5, 6, '2019-11-18 16:11:22', '2019-12-17 17:16:43'),
+(137, 76, 9, 10, '2019-11-18 16:11:22', '2019-12-26 10:52:55'),
+(138, 77, 5, 10, '2019-11-18 16:11:22', '2019-12-17 17:16:43'),
 (139, 77, 6, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:14'),
 (140, 77, 7, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:14'),
 (141, 77, 8, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:14'),
@@ -584,15 +529,15 @@ INSERT INTO `product_size` (`id`, `product_id`, `size_id`, `quantity_stock`, `cr
 (210, 91, 7, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:17'),
 (211, 91, 8, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:17'),
 (212, 91, 9, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:17'),
-(213, 92, 1, 10, '2019-11-18 16:11:22', '2019-12-17 16:29:31'),
-(214, 92, 2, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:17'),
+(213, 92, 1, 10, '2019-11-18 16:11:22', '2019-12-26 17:17:15'),
+(214, 92, 2, 10, '2019-11-18 16:11:22', '2019-12-25 16:31:12'),
 (215, 92, 3, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:17'),
 (216, 92, 4, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:17'),
-(217, 93, 1, 10, '2019-11-18 16:11:22', '2019-12-17 16:29:31'),
+(217, 93, 1, 10, '2019-11-18 16:11:22', '2019-12-24 19:36:05'),
 (218, 93, 2, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:17'),
 (219, 93, 3, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:17'),
 (220, 93, 4, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:17'),
-(221, 94, 1, 10, '2019-11-18 16:11:22', '2019-12-17 16:29:31'),
+(221, 94, 1, 10, '2019-11-18 16:11:22', '2019-12-25 16:07:39'),
 (222, 94, 2, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:17'),
 (223, 94, 3, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:18'),
 (224, 94, 4, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:18'),
@@ -616,7 +561,7 @@ INSERT INTO `product_size` (`id`, `product_id`, `size_id`, `quantity_stock`, `cr
 (242, 99, 2, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:18'),
 (243, 99, 3, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:18'),
 (244, 99, 4, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:19'),
-(245, 100, 1, 10, '2019-11-18 16:11:22', '2019-12-17 16:29:31'),
+(245, 100, 1, 10, '2019-11-18 16:11:22', '2019-12-24 16:27:14'),
 (246, 100, 2, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:19'),
 (247, 100, 3, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:19'),
 (248, 100, 4, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:19'),
@@ -636,15 +581,15 @@ INSERT INTO `product_size` (`id`, `product_id`, `size_id`, `quantity_stock`, `cr
 (262, 104, 2, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:19'),
 (263, 104, 3, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:19'),
 (264, 104, 4, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:19'),
-(265, 105, 1, 10, '2019-11-18 16:11:22', '2019-12-17 16:29:32'),
+(265, 105, 1, 10, '2019-11-18 16:11:22', '2019-12-24 11:06:48'),
 (266, 105, 2, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:20'),
 (267, 105, 3, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:20'),
 (268, 105, 4, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:20'),
-(269, 106, 1, 10, '2019-11-18 16:11:22', '2019-12-17 17:14:00'),
+(269, 106, 1, 10, '2019-11-18 16:11:22', '2019-12-22 19:10:53'),
 (270, 106, 2, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:20'),
 (271, 106, 3, 10, '2019-11-18 16:11:22', '2019-12-17 17:14:00'),
 (272, 106, 4, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:20'),
-(273, 107, 1, 10, '2019-11-18 16:11:22', '2019-12-17 16:29:32'),
+(273, 107, 1, 10, '2019-11-18 16:11:22', '2019-12-25 16:07:39'),
 (274, 107, 2, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:20'),
 (275, 107, 3, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:20'),
 (276, 107, 4, 10, '2019-11-18 16:11:22', '2019-12-17 16:28:20'),
@@ -743,7 +688,8 @@ INSERT INTO `product_size` (`id`, `product_id`, `size_id`, `quantity_stock`, `cr
 (373, 73, 10, 10, '2019-11-21 15:24:07', '2019-12-17 16:28:13'),
 (374, 74, 10, 10, '2019-11-21 15:24:07', '2019-12-17 16:28:13'),
 (375, 75, 10, 10, '2019-11-21 15:24:07', '2019-12-17 16:28:13'),
-(376, 128, 3, 10, '2019-12-17 16:26:44', '2019-12-17 16:28:23');
+(376, 128, 3, 10, '2019-12-17 16:26:44', '2019-12-17 16:28:23'),
+(377, 129, 1, 10, '2019-12-26 17:10:46', '2019-12-26 17:10:46');
 
 -- --------------------------------------------------------
 
@@ -798,8 +744,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `address`, `phone_number`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'HN', '0987654322', 'admin@gmail.com', '$2y$10$1osan5eHLH12TJyJP5MEruOUXsY6PGp4hBdOdEv/LKkO4figw.mAu', 1, '2019-11-13 19:04:43', '2019-12-16 02:36:03'),
-(17, 'Ngô Đức Nam', 'HN', '0356969828', 'nam@gmail.com', '$2y$10$j8xOweLcCGnSYU2rgPrJMOfZ7DycxrQg7IcAfGj5X2tWjjRSnvieO', 2, '2019-11-13 22:49:21', '2019-12-15 19:39:32'),
-(18, 'nam', 'ádad', '0356969828', 'duc@gmail.com', '$2y$10$XO3GlOjjv19AOfG2yCiOmu7ckHZ6NFsAmHdWU2saDHPs9FWdI1E6u', 2, '2019-11-27 14:08:14', '2019-11-27 14:08:14');
+(17, 'Ngô Đức Nam', 'HN', '0356969828', 'nam@gmail.com', '$2y$10$j8xOweLcCGnSYU2rgPrJMOfZ7DycxrQg7IcAfGj5X2tWjjRSnvieO', 2, '2019-11-13 22:49:21', '2019-12-25 16:33:33');
 
 --
 -- Indexes for dumped tables
@@ -887,13 +832,13 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -905,31 +850,31 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2237;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2253;
 
 --
 -- AUTO_INCREMENT for table `partners`
 --
 ALTER TABLE `partners`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 
 --
 -- AUTO_INCREMENT for table `product_size`
 --
 ALTER TABLE `product_size`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=377;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=378;
 
 --
 -- AUTO_INCREMENT for table `sizes`

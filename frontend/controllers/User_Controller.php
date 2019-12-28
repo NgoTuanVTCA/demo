@@ -167,7 +167,11 @@ class User_Controller extends Base_Controller
 					$_SESSION['phone_number'] = $user['phone_number'];
 					$_SESSION['address'] = $user['address'];
 					$_SESSION['role'] = $user['role'];
-					redirect('home/index');
+					if(!empty($_SESSION['url'])){
+						header("Location:" . $_SESSION['url']);
+					}else{
+						redirect('home/index');
+					}
 				} elseif ($user['role'] == 1) {
 					$_SESSION['id'] = $user['id'];
 					$_SESSION['email'] = $user['email'];
@@ -175,7 +179,7 @@ class User_Controller extends Base_Controller
 					$_SESSION['phone_number'] = $user['phone_number'];
 					$_SESSION['address'] = $user['address'];
 					$_SESSION['role'] = $user['role'];
-					redirect('user/index');
+					redirect('order/index');
 				}
 			} else {
 				$this->view->load('user/login', [
@@ -191,7 +195,7 @@ class User_Controller extends Base_Controller
 
 		unset($_SESSION);
 		session_destroy();
-		redirect('home/index');
+		redirect('user/login');
 	}
 
 	public function registration()
@@ -262,7 +266,11 @@ class User_Controller extends Base_Controller
 				$_SESSION['phone_number'] = $user['phone_number'];
 				$_SESSION['address'] = $user['address'];
 				$_SESSION['role'] = $user['role'];
-				redirect('home/index');
+				if(!empty($_SESSION['url'])){
+					header("Location:" . $_SESSION['url']);
+				}else{
+					redirect('home/index');
+				}
 			} else {
 				$this->view->load('user/registration', [
 					'error_message' => 'Email đã được đăng ký'

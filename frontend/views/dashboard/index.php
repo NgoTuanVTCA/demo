@@ -9,13 +9,14 @@ foreach ($money_by_month as $key => $value) {
 	$data = array("y" => $money_by_month[$key]['sum(price)'], "label" => $money_by_month[$key]['month']);
 	array_push($dataMoneys, $data);
 }
+
 ?>
 
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-<br>
-
-<br>
+<br><br>
 <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
+<br><br>
+<div id="chartContainer2" style="height: 300px; width: 100%;"></div>
 <script>
 	window.onload = function() {
 		var chart = new CanvasJS.Chart("chartContainer", {
@@ -50,6 +51,5 @@ foreach ($money_by_month as $key => $value) {
 			}]
 		});
 		chart1.render();
-
 	}
 </script>

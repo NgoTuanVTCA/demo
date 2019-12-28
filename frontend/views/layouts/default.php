@@ -17,11 +17,33 @@
     <link rel="stylesheet" href="<?php echo CSS_URL . 'aos.css' ?>">
     <link rel="stylesheet" href="<?php echo CSS_URL . 'style.css' ?>">
     <link rel="stylesheet" href="<?php echo CSS_URL . 'home.css' ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 60px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
 
+        #myBtn:hover {
+            background-color: #555;
+        }
+    </style>
 </head>
 
 <body>
 
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
     <div class="site-wrap">
         <div class="site-navbar bg-white py-2">
             <div class="search-wrap">
@@ -79,19 +101,18 @@
                                             <li><a href="<?php echo base_url('user/profile') ?>">Thông tin cá nhân</a></li>
                                             <li><a href="<?php echo base_url('user/password'); ?>">Thay đổi mật khẩu</a></li>
                                             <li><a href="<?php echo base_url('order/transaction_history'); ?>">Lịch sử giao dịch</a></li>
-                                            <small>-----------------------------------------</small>
-                                            <li><a href="<?php echo base_url('user/handle_logout') ?>">Đăng xuất</a></li>
+                                            <!-- <small>-----------------------------------------</small> -->
+                                            <li><a class="border-top" href="<?php echo base_url('user/handle_logout') ?>">Đăng xuất</a></li>
                                         </ul>
                                     </li>
                                 <?php endif; ?>
                                 <li><a href="<?php echo base_url('cart/index') ?>" class="icons-btn d-inline-block bag">
                                         <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
-                                        <!-- <span class="number"> -->
-                                        <?php if (empty($carts)) :  0 ?>
-                                        <?php else : ?>
-                                            <?php count($cart); ?>
-                                        <?php endif; ?>
-                                        <!-- </span> -->
+                                        <?php if (!empty($_SESSION['id']) && !empty($_SESSION['cart'])) : ?>
+                                            <span class="number ">
+                                                <?php echo $_SESSION['cart']; ?>
+                                            </span>
+                                        <?php endif ?>
                                     </a></li>
 
                             </ul>
@@ -111,7 +132,7 @@
                         <div class="block-5 mb-5">
                             <h3 class="footer-heading mb-4">Thông tin liên hệ</h3>
                             <ul class="list-unstyled">
-                                <li class="address">Tầng 4, Tòa nhà VTC Onlie, Hai Bà Trưng, Hà Nội </li>
+                                <li class="address">Tầng 4, Tòa nhà VTC Online,<br> Hai Bà Trưng, Hà Nội </li>
                                 <li class="phone"><a href="tel://23923929210">19001008</a></li>
                                 <li class="email">vtcstore@vtc.fashion.vn</li>
                             </ul>
@@ -120,7 +141,7 @@
                     <div class="col-lg-5 ml-auto mb-5 mb-lg-0">
                         <div class="row">
                             <div class="col-md-6 col-lg-4">
-                                <h3 class="footer-heading mb-3">Dịch vụ khách hàng</h3>
+                                <h3 class="footer-heading mb-3">Dịch vụ <br> khách hàng</h3>
                                 <ul class="list-unstyled">
                                     <li><a href="#">New</a></li>
                                     <li><a href="#">Khuyến mại</a></li>
@@ -156,9 +177,10 @@
                                 <label for="email_subscribe" class="footer-heading">Hãy đăng ký để nhận được thông tin mới nhất</label>
                                 <div class="form-group">
                                     <input type="email" class="form-control py-4" id="email_subscribe" placeholder="Nhập email..." require>
-                                    <button type="submit" class="btn btn-sm btn-primary" onclick="subscribe()">Gửi</button>
+                                    <button type="submit" class="btn  btn-primary" onclick="subscribe()">Gửi</button>
                                     <script>
                                         var a = document.getElementById("email_subscribe").value;
+
                                         function subscribe(a) {
                                             if (a == "") {
                                                 return alert("Email không được để trống hoặc không đúng định dạng");
@@ -184,17 +206,39 @@
                     </div>
                 </div>
             </div>
-        </footer>
-    </div>
 
-    <script src="<?php echo JS_URL . 'jquery-3.3.1.min.js'; ?>"></script>
-    <script src="<?php echo JS_URL . 'jquery-ui.js'; ?>"></script>
-    <script src="<?php echo JS_URL . 'popper.min.js'; ?>"></script>
-    <script src="<?php echo JS_URL . 'bootstrap.min.js'; ?>"></script>
-    <script src="<?php echo JS_URL . 'owl.carousel.min.js'; ?>"></script>
-    <script src="<?php echo JS_URL . 'jquery.magnific-popup.min.js'; ?>"></script>
-    <script src="<?php echo JS_URL . 'aos.js'; ?>"></script>
-    <script src="<?php echo JS_URL . 'main.js'; ?>"></script>
+
+            <script>
+                //Get the button
+                var mybutton = document.getElementById("myBtn");
+
+                // When the user scrolls down 20px from the top of the document, show the button
+                window.onscroll = function() {
+                    scrollFunction()
+                };
+
+                function scrollFunction() {
+                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                        mybutton.style.display = "block";
+                    } else {
+                        mybutton.style.display = "none";
+                    }
+                }
+
+                // When the user clicks on the button, scroll to the top of the document
+                function topFunction() {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
+            </script>
+            <script src="<?php echo JS_URL . 'jquery-3.3.1.min.js'; ?>"></script>
+            <script src="<?php echo JS_URL . 'jquery-ui.js'; ?>"></script>
+            <script src="<?php echo JS_URL . 'popper.min.js'; ?>"></script>
+            <script src="<?php echo JS_URL . 'bootstrap.min.js'; ?>"></script>
+            <script src="<?php echo JS_URL . 'owl.carousel.min.js'; ?>"></script>
+            <script src="<?php echo JS_URL . 'jquery.magnific-popup.min.js'; ?>"></script>
+            <script src="<?php echo JS_URL . 'aos.js'; ?>"></script>
+            <script src="<?php echo JS_URL . 'main.js'; ?>"></script>
 </body>
 
 </html>

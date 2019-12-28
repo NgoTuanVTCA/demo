@@ -18,6 +18,7 @@ class Order_details_Controller extends Base_Controller
 				'quantity_stock' => $product_size[0]['quantity_stock'] - $cart['quantity']
 			]);
 		}
+		
 		$price = 0;
 		foreach ($carts as $cart) {
 			foreach ($products as $product) {
@@ -27,7 +28,7 @@ class Order_details_Controller extends Base_Controller
 							$this->model->order_details->create([
 								'order_id' => $order_id,
 								'product_id' => $cart['product_id'],
-								'size_name' =>  $size['name'],
+								'size_id' =>  $size['id'],
 								'price' => $product['price'] * $cart['quantity'],
 								'quantity' => $cart['quantity']
 							]);
@@ -40,6 +41,7 @@ class Order_details_Controller extends Base_Controller
 		$this->model->order->update_by_id($order_id, [
 			'price' => $price
 		]);
+		unset($_SESSION['count']); 
 		$this->model->cart->destroy_product_by_user($_SESSION['id']);
 		redirect("order/confirm_success");
 	}

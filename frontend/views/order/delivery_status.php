@@ -20,13 +20,15 @@
                         <tbody>
                             <?php foreach ($partners as $partner) : ?>
                                 <?php foreach ($orders as $order) : ?>
-                                    <?php if ($order['partner_id'] == $partner['id']) : ?>
-                                        <tr>
-                                            <td><?php echo $order['id'] ?></td>
-                                            <td><?php echo $partner['name'] ?></td>
-                                            <td><?php echo $partner['price'] ?></td>
-                                            <td><?php echo $order['status'] ?></td>
-                                        </tr>
+                                    <?php if ($order['status'] != "Đang xử lý" && $order['status'] != "Đã hủy") : ?>
+                                        <?php if ($order['partner_id'] == $partner['id']) : ?>
+                                            <tr>
+                                                <td><?php echo $order['id'] ?></td>
+                                                <td><?php echo $partner['name'] ?></td>
+                                                <td><?php echo $partner['price'] ?></td>
+                                                <td><?php echo $order['status'] ?></td>
+                                            </tr>
+                                        <?php endif; ?>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             <?php endforeach; ?>

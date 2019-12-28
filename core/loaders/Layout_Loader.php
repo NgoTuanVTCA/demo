@@ -18,9 +18,9 @@ class Layout_Loader {
         }
         
         $layout_path = APP_PATH . "/views/layouts/{$this->_layout}.php";
-        // if (!file_exists($layout_path)) {
-        //     exit("File not found $layout_path");
-        // }
+        if (!file_exists($layout_path)) {
+            exit("File not found $layout_path");
+        }
         
         require_once $layout_path;
     }

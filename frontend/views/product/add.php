@@ -15,7 +15,6 @@
         <div class="form-group">
             <label for="image">Ảnh <span class="red">*</span></label>
             <input type="file" name="image" id="image" class="form-control">
-
         </div>
         <div class="form-group">
             <label for="category">Loại<span class="red">*</span></label>

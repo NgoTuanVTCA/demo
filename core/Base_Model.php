@@ -18,9 +18,9 @@ class Base_Model
 
 		$db_config_path = BASE_PATH . '/config/database.php';
 
-		// if (!file_exists($db_config_path)) {
-		// 	exit("File not found $db_config_path");
-		// }
+		if (!file_exists($db_config_path)) {
+			exit("File not found $db_config_path");
+		}
 
 		$config = require $db_config_path;
 		$db_host = $config['db_host'];

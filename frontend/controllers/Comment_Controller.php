@@ -11,14 +11,22 @@ class Comment_Controller extends Base_Controller
 			redirect('home/index');
 		}
 		$this->layout->set('auth_layout');
-		$comments = $this->model->comment->find();
+		$countcomment = 0;
+		$commentss = $this->model->comment->find();
+		foreach ($commentss as $comment) {
+			if ($comment['active'] == 'Tắt') {
+				$countcomment++;
+			}
+		}
+		$_SESSION['activecomment'] = $countcomment;
+		$commentActives = $this->model->comment->find_comment_by_active();
 		$comments = $this->model->comment->find_group_by();
 		$users = $this->model->user->find();
 		$products = $this->model->product->find();
-
 		$this->view->load('comment/index', [
 			'comments' => $comments,
 			'users' => $users,
+			'commentActives' => $commentActives,
 			'products' => $products
 		]);
 	}
@@ -29,7 +37,16 @@ class Comment_Controller extends Base_Controller
 		}
 		$id = getGetParameter('id');
 		$this->layout->set('auth_layout');
+		$comments = $this->model->comment->find();
+		$countcomment = 0;
+		foreach ($comments as $comment) {
+			if ($comment['active'] == 'Tắt') {
+				$countcomment++;
+			}
+		}
+		$_SESSION['activecomment'] = $countcomment;
 		$products = $this->model->product->find_by_id($id);
+
 		$comments = $this->model->comment->find_product_by_comment($id);
 		$users = $this->model->user->find();
 		$products = $this->model->product->find();

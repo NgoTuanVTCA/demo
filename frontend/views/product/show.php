@@ -1,3 +1,4 @@
+<?php  $_SESSION['url'] = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']; ?>
 <div class="bg-light py-3">
     <div class="container">
         <div class="row">
@@ -58,7 +59,7 @@
                         </div>
                     </div>
                     <?php if (empty($_SESSION['id'])) : ?>
-                        Bạn cần <a href="<?php echo base_url('user/login') ?>">Đăng nhập</a> để thêm sản phẩm vào giỏ hàng!
+                        Bạn cần <a class="btn btn-primary" style="padding-top:10px;" href="<?php echo base_url('user/login') ?>">Đăng nhập</a> để thêm sản phẩm vào giỏ hàng!
                     <?php else : ?>
                         <p><button type="submit" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Thêm vào giỏ hàng</button></p>
                     <?php endif; ?>

@@ -14,10 +14,10 @@
         </ul>
     <?php endif; ?>
     <h3>Tạo mới một loại hàng</h3>
-    <form action="<?php echo base_url('category/store') ?>" method="post">
+    <form action="<?php echo base_url('category/store') ?>" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Tên <span class="red">*</span></label>
-            <input type="text" name="name" class="form-control" require>
+            <input type="text" name="name" class="form-control" required>
             <span class="invalid-feedback"></span>
         </div>
         <input type="submit" class="btn btn-dark" value="Thêm mới" />

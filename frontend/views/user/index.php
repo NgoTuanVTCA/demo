@@ -44,7 +44,11 @@
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <a class="btn btn-dark btn-block" href="<?php echo base_url("user/destroy?id={$user['id']}") ?>" onclick="return checkDelete()">Xóa</a>
+                                    <?php if ($user['role'] == 1) : ?>
+                                        <input class="btn btn-dark btn-block" value="Xóa" disabled>
+                                    <?php else : ?>
+                                        <a class="btn btn-dark btn-block" href="<?php echo base_url("user/destroy?id={$user['id']}") ?>" onclick="return checkDelete()">Xóa</a>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

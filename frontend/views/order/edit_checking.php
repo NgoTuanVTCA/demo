@@ -15,7 +15,7 @@
                 <option>Đã xử lý</option>
                 <option>Đang giao</option>
                 <option>Đã giao</option>
-                <option>Đã hủy</option>
+                <option>Hoàn trả</option>
             </select>
             <small style="font-size: 15px">Trạng thái hiện tại của đơn hàng : <?php echo $order['status'] ?></small>
         </div>

@@ -14,7 +14,7 @@
             <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
             <h2 class="item-title"><?php echo $product['name']; ?></h2>
             <p class="item-price"><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></p>
-          </a>
+          </a>          
         </div>
       <?php endif; ?>
     <?php endforeach; ?>

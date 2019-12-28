@@ -52,6 +52,21 @@
                     <input type="number" class="form-control" id="phone" name="price" placeholder="Giá vận chuyển" required>
                 </div>
             </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputState">Kiểu giao hàng</label>
+                    <select name="delivery_type" id="inputState" class="form-control">
+                        <option selected>Chọn kiểu giao hàng...</option>
+                        <option>Giao hàng nhanh</option>
+                        <option>Giao hàng tiêu chuẩn</option>
+                    </select>
+                    <?php if (!empty($errors['delivery_type_err'])) : ?>
+                        <?php echo $errors['delivery_type_err'] ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary bt1 " onclick="return checkAdd()">Thêm mới</button>
         </form>
     </form>

@@ -11,6 +11,8 @@ class Cart_Controller extends Base_Controller
 		$sizes = $this->model->size->find();
 		$products = $this->model->product->find();
 		$carts = $this->model->cart->find();
+		$count = count($carts);
+		$_SESSION['count'] = $count;
 		$this->view->load("cart/index", [
 			'sizes' => $sizes,
 			'products' => $products,
@@ -24,28 +26,23 @@ class Cart_Controller extends Base_Controller
 		$products = $this->model->product->find();
 		$carts = $this->model->cart->find();
 		$partners = $this->model->partner->find();
-		$partner_id = getPostParameter('partner');
-		if ($partner_id == -1) {
-			$this->view->load("cart/checkprofile", [
-				'partners' => $partners,
-				'error_message' => 'Bạn phải chọn đối tác giao hàng'
-			]);
+		$delivery_type = getPostParameter('delivery_type');
+		if (!empty($delivery_type)) {
+			$delivery_type = 'Giao hàng nhanh';
 		} else {
-			$this->view->load("cart/checkout", [
-				'sizes' => $sizes,
-				'products' => $products,
-				'carts' => $carts,
-				'partners' => $partners,
-				'partner_id' => $partner_id
-			]);
+			$delivery_type = 'Giao hàng tiêu chuẩn';
 		}
+		$this->view->load("cart/checkout", [
+			'sizes' => $sizes,
+			'products' => $products,
+			'carts' => $carts,
+			'partners' => $partners,
+			'delivery_type' => $delivery_type
+		]);
 	}
 	public function checkprofile()
 	{
-		$partners = $this->model->partner->find();
-		$this->view->load("cart/checkprofile", [
-			'partners' => $partners
-		]);
+		$this->view->load("cart/checkprofile");
 	}
 
 	public function add_to_cart()
@@ -95,6 +92,10 @@ class Cart_Controller extends Base_Controller
 				]);
 			}
 			unset($_SESSION['product_id']);
+			unset($_SESSION['cart']);
+			$carts = $this->model->cart->find_product_from_cart($_SESSION['id']);
+			$count = count($carts);
+			$_SESSION['cart'] = $count;
 			redirect("cart/index");
 		}
 	}
@@ -130,6 +131,7 @@ class Cart_Controller extends Base_Controller
 		$this->layout->set(null);
 		$id = $_SESSION['id'];
 		if ($id) {
+			unset($_SESSION['cart']);
 			$this->model->cart->destroy_product_by_user($id);
 			redirect("cart/index");
 		}

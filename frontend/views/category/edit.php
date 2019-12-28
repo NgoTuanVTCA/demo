@@ -13,7 +13,7 @@
         </ul>
     <?php endif; ?>
     <h3>Cập nhật thông tin loại hàng</h3>
-    <form action="<?php echo base_url("category/update&id={$category['id']}") ?>" method="post">
+    <form action="<?php echo base_url("category/update&id={$category['id']}") ?>" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Tên loại hàng<span class="red">*</span></label>
             <input type="text" name="name" class="form-control" value="<?php echo $category['name']; ?>" required>

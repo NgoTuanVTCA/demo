@@ -33,14 +33,19 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <b>Mặc định giao hàng tiêu chuẩn ( từ 7 - 10 ngày ).</b>
+                            </div>
+                            <div class="col-md-12">
+                                <b>Bạn có thể chọn giao hàng nhanh (nếu muốn) :</b>
+                            </div>
+                        </div>
                         <div class="form-group">
-                            <label for="select" class="text-black">Đối tác giao hàng <span class="text-danger">*</span></label>
-                            <select id="select" name="partner" class="form-control" onchange="showUser(this.value)" require>
-                                <option value="-1">Chọn đối tác giao hàng </option>
-                                <?php foreach ($partners as $partner) : ?>
-                                    <option value="<?php echo $partner['id'] ?>"><?php echo $partner['name']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="delivery_type" name="delivery_type" value="Giao hàng nhanh">
+                                <label class="form-check-label" for="delivery_type">Giao hàng nhanh ( từ 3 - 5 ngày )</label>
+                            </div>
                             <?php if (!empty($error_message)) : ?>
                                 <?php echo $error_message ?>
                             <?php endif; ?>

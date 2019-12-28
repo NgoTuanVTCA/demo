@@ -92,8 +92,8 @@ class Product_Controller extends Base_Controller
 		}
 
 		$errors = [];
-
 		$target_file = $target_dir . '/' . basename($_FILES["image"]["name"]);
+		
 		if (!move_uploaded_file($_FILES["image"]["tmp_name"], 'public/uploads/' . $target_file)) {
 			$errors['faild'] = "Sorry, there was an error uploading your file.";
 		}
@@ -190,20 +190,19 @@ class Product_Controller extends Base_Controller
 		]);
 	}
 
-	public function update()
+	function update()
 	{
-
-		$this->layout->set('auth_layout');
+		$this->layout->set(null);
 		$id = getParameter('id');
-		$name = getPostParameter('name');
-		$price = getPostParameter('price');
-		$ImageName = getPostParameter('image');
-		$category  = getPostParameter('category');
-		$brand = getPostParameter('brand');
+		$name = getParameter('name');
+		$price = getParameter('price');
+		$category = getParameter('category');
+		$brand = getParameter('brand');
 		$category_id = $category[0];
 		$brand_id = $brand[0];
-		$target_dir = "";
+		$errors = [];
 
+		$target_dir = "";
 		if ($category_id == 1) {
 			$target_dir = "vest";
 		} elseif ($category_id == 2) {
@@ -222,23 +221,13 @@ class Product_Controller extends Base_Controller
 			$target_dir = "quan_au";
 		}
 
-		$target_file = $target_dir . '/' . $ImageName;
-		$errors = [];
+		$target_file = $target_dir . '/' . basename($_FILES["image"]["name"]);
 		if (!move_uploaded_file($_FILES["image"]["tmp_name"], 'public/uploads/' . $target_file)) {
-			$errors['faild'] = "Sorry, there was an error uploading your file.";
+			$errors =  "Sorry, there was an error uploading your file.";
 		}
-		if (count($errors > 0)) {
-			$product = $this->model->product->find_by_id($id);
-			$categories = $this->model->category->find();
-			$brands = $this->model->brand->find();
-			$product_sizes = $this->model->product_size->find();
-			$sizes = $this->model->size->find();
-			$this->view->load('product/edit', [
-				'product' => $product,
-				'sizes' => $sizes,
-				'categories' => $categories,
-				'product_sizes' => $product_sizes,
-				'brands' => $brands,
+		if (count($errors) > 0) {
+			$this->layout->set('auth_layout');
+			$this->view->load(('partner/edit'), [
 				'errors' => $errors
 			]);
 		} else {
@@ -246,10 +235,9 @@ class Product_Controller extends Base_Controller
 				'name' => $name,
 				'price' => $price,
 				'image' => $target_file,
-				'category_id' => $category,
-				'brand' => $brand
+				'category_id' => $category_id,
+				'brand_id' =>  $brand_id
 			]);
-
 			if ($product) {
 				redirect("product/edit_size?id={$id}");
 			} else {

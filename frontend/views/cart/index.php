@@ -24,7 +24,6 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Mã sản phẩm</th>
                                 <th>Ảnh sản phẩm</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Kích thước</th>
@@ -44,16 +43,18 @@
                                                 <tbody>
                                                     <tr>
                                                         <form action="<?php echo base_url("cart/update_to_cart") ?>" method="post">
-                                                            <td><input type="hidden" class="form-control text-center" name="product_id" value="<?php echo $product['id']; ?>"><?php echo $product['id']; ?></td>
+                                                         <input type="hidden" class="form-control text-center" name="product_id" value="<?php echo $product['id']; ?>">
                                                             <td>
-                                                                <img src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
+                                                                <img width="100" src="<?php echo PRODUCT_URL . $product['image'] ?>" alt="Image" class="img-fluid">
                                                             </td>
                                                             <td>
-                                                                <h2 class="h5 text-black"><?php echo $product['name']; ?></h2>
+                                                                <a href='<?php echo base_url("product/show?id={$product['id']}") ?>'>
+                                                                    <h2 class="h5 text-black"><?php echo $product['name']; ?></h2>
+                                                                </a>
                                                             </td>
-                                                            <td><input class="form-control text-center" type="hidden" name="size_id" value=" <?php echo $size['id']; ?>"><?php echo $size['name']; ?></td>
+                                                            <td><input class="form-control text-center" type="hidden" name="size_id" value=" <?php echo $size['id']; ?>"><h5><?php echo $size['name']; ?></h5></td>
                                                             <td><?php echo number_format($product['price'], 0, '.', ',') . ' VNĐ' ?></td>
-                                                            <td>
+                                                            <td width='100px'>
                                                                 <input type="text" class="form-control text-center" name="quantity" value="<?php echo $cart['quantity']; ?>">
                                                             </td>
                                                             <?php $total = ((float) $cart['quantity']) *  $product['price'] ?>
@@ -88,7 +89,7 @@
                 <div class="row mb-5">
                     <div class="col-md-6 mb-3 mb-md-0">
                         <form action="<?php echo base_url("cart/destroy_to_cart") ?>" method="post">
-                            <button type="submit" class="btn btn-outline-primary btn-sm btn-block">Xóa giỏ hàng</button>
+                            <button type="submit" class="btn btn-outline-primary btn-sm btn-block">Xóa tất cả sản phẩm</button>
                         </form>
                     </div>
                     <div class="col-md-6">

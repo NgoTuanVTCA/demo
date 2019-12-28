@@ -2,7 +2,7 @@
 <div class="card card-body bg-light mt-5">
     <h3>Cập nhật</h3>
     <p>Cập nhật thông tin sản phẩm</p>
-    <form action="<?php echo base_url("product/update&id={$product['id']}") ?>" method="post">
+    <form action="<?php echo base_url("product/update&id={$product['id']}") ?>" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Tên <span class="red">*</span></label>
             <input type="text" name="name" class="form-control" value="<?php echo $product['name']; ?>">

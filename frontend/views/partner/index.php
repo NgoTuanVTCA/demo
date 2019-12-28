@@ -12,6 +12,7 @@
                             <th>Địa chỉ</th>
                             <th>Số điện thoại</th>
                             <th>Giá vận chuyển</th>
+                            <th>Kiểu giao hàng</th>
                             <th>Thao tác</th>
                         </tr>
                     </thead>
@@ -22,7 +23,8 @@
                                 <td><?php echo $partner['email'] ?></td>
                                 <td><?php echo $partner['address'] ?> </td>
                                 <td><?php echo $partner['phone_number'] ?></td>
-                                <td><?php echo $partner['price'] ?></td>
+                                <td>  <?php echo number_format($partner['price'], 0, '.', ',') . ' VNĐ' ?></td>
+                                <td><?php echo $partner['delivery_type'] ?></td>
                                 <td>
                                     <a class="btn btn-primary" style="color:white; text-decoration: none;" href="<?php echo base_url("partner/edit?id={$partner['id']}") ?>">Cập nhật</a>
                                 </td>

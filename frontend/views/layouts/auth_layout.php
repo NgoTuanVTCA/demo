@@ -53,7 +53,7 @@
                                     <a class="dropdown-item" href="<?php echo base_url('user/handle_logout') ?>"><i class="fas fa-power-off mr-2"></i>Đăng xuất</a>
                                 </div>
                             <?php endif; ?>
-                        </li>
+                        </li> 
                     </ul>
                 </div>
             </nav>
@@ -97,10 +97,28 @@
                                 </div>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="<?php echo base_url("order/index") ?>"><i class="fa fa-first-order" aria-hidden="true"></i></i>Quản lý đơn hàng</span></a>
+                                <a class="nav-link" href="<?php echo base_url("order/index") ?>"><i class="fa fa-first-order" aria-hidden="true"></i></i>Quản lý đơn hàng</span>
+                                <?php if ($_SESSION['countOrder'] == 0) : ?>
+                                    <?php else : ?>
+                                        <span class="d-inline-block bag border border-danger bg-light" style="font-size: 15px">
+                                            <span class="number text-danger">
+                                                <?php echo $_SESSION['countOrder']; ?>
+                                            </span>
+                                        </span>
+                                    <?php endif; ?>
+                                </a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="<?php echo base_url("comment/index") ?>"><i class="fa fa-bug" aria-hidden="true"></i></i>Quản lý bình luận</span></a>
+                                <a class="nav-link" href="<?php echo base_url("comment/index") ?>"><i class="fa fa-bug" aria-hidden="true"></i></i>Quản lý bình luận</span>
+                                <?php if ($_SESSION['activecomment'] == 0) : ?>
+                                    <?php else : ?>
+                                        <span class="d-inline-block bag border border-danger bg-light" style="font-size: 15px">
+                                            <span class="number text-danger">
+                                                <?php echo $_SESSION['activecomment']; ?>
+                                            </span>
+                                        </span>
+                                    <?php endif; ?>
+                                </a>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link" href="<?php echo base_url("user/index") ?>"><i class="fa fa-fw fa-user-circle"></i>Quản lý người dùng</span></a>

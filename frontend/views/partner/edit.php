@@ -29,6 +29,7 @@
                 <div class="form-group col-md-4">
                     <label for="phone">Số điện thoại</label>
                     <input type="text" class="form-control" id="phone" name="phone_number" pattern="[0-9]{10,11}" placeholder="Số điện thoại" value="<?php echo $partner['phone_number'] ?>" required>
+                    <small>Số điện thoại không chứa kí tự và không quá 11 số</small>
                     <?php if (!empty($errors['phone_err'])) : ?>
                         <?php echo $errors['phone_err'] ?>
                     <?php endif; ?>
@@ -41,6 +42,18 @@
                     <input type="number" class="form-control" id="phone" name="price" placeholder="Giá vận chuyển" value="<?php echo $partner['price'] ?>" required>
                 </div>
             </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputState">Kiểu giao hàng</label>
+                    <select name="delivery_type" id="inputState" class="form-control">
+                        <option>Giao hàng nhanh</option>
+                        <option>Giao hàng tiêu chuẩn</option>
+                    </select>
+                    <small style="font-size: 15px;">Kiểu giao hàng hiện tại: <?php echo $partner['delivery_type'] ?></small>
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary bt2" onclick="return checkUpdate()">Cập nhật</button>
         </form>
     </form>
